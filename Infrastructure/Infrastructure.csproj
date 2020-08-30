@@ -4,4 +4,48 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Google.Protobuf" Version="3.12.4" />
+        <PackageReference Include="Grpc.Core" Version="2.31.0" />
+        <PackageReference Include="Grpc.Net.Client" Version="2.30.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.31.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+        <PackageReference Include="RestSharp" Version="106.10.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Core\Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Gateway\gRPC\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="Gateway\gRPC\Protos\auth.proto" GrpcServices="Client" ProtoRoot="Gateway\gRPC\Protos">
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
+        <Protobuf Include="Gateway\gRPC\Protos\common.proto" GrpcServices="Client" ProtoRoot="Gateway\gRPC\Protos">
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
+        <Protobuf Include="Gateway\gRPC\Protos\interact.proto" GrpcServices="Client" ProtoRoot="Gateway\gRPC\Protos">
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
+        <Protobuf Include="Gateway\gRPC\Protos\mail.proto" GrpcServices="Client" ProtoRoot="Gateway\gRPC\Protos">
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
+        <Protobuf Include="Gateway\gRPC\Protos\product.proto" GrpcServices="Client" ProtoRoot="Gateway\gRPC\Protos">
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
+        <Protobuf Include="Gateway\gRPC\Protos\reference.proto" GrpcServices="Client" ProtoRoot="Gateway\gRPC\Protos">
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
+        <Protobuf Include="Gateway\gRPC\Protos\search.proto" GrpcServices="Client" ProtoRoot="Gateway\gRPC\Protos">
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
+        <Protobuf Include="Gateway\gRPC\Protos\user.proto" GrpcServices="Client" ProtoRoot="Gateway\gRPC\Protos">
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
+    </ItemGroup>
+    
 </Project>
