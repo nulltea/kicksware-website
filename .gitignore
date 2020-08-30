@@ -5,11 +5,10 @@ project.lock.json
 *.pyc
 nupkg/
 
-# Visual Studio Code
-.vscode
-
-# Rider
+# Editors
 .idea
+.vscode
+.vs/
 
 # User-specific files
 *.suo
@@ -33,5 +32,5 @@ msbuild.log
 msbuild.err
 msbuild.wrn
 
-# Visual Studio 2015
-.vs/
+# css compiled stylesheets
+Web/wwwroot/styles/css
