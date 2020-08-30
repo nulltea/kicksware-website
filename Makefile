@@ -1,8 +1,8 @@
 web-app:
-	docker-compose -f web-app-service/docker-compose.yml down;
-	docker-compose -f web-app-service/docker-compose.yml build;
-	docker-compose -f web-app-service/docker-compose.yml push web-app;
-	docker-compose -f web-app-service/docker-compose.yml up -d;
+	docker-compose down;
+	docker-compose build;
+	docker-compose push web-app;
+	docker-compose up -d;
 
 styles:
 	mkdir web-app-service/Web/wwwroot/styles/css;
