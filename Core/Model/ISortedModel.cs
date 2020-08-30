@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Model.Parameters;
 using Core.Reference;
-using Microsoft.AspNetCore.Mvc.Rendering;
+// using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Core.Model
 {
@@ -19,6 +19,6 @@ namespace Core.Model
 
 		void AddSortParameters(Func<SortCriteria, SortParameter> selector);
 
-		List<SelectListItem> FormSortSelect();
+		// List<SelectListItem> FormSortSelect();
 	}
 }

@@ -10,8 +10,8 @@ using Core.Model.Parameters;
 using Core.Reference;
 using Core.Services;
 using Infrastructure.Pattern;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+// using Microsoft.AspNetCore.Mvc;
+// using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Infrastructure.Usecase.Models
 {
@@ -19,7 +19,6 @@ namespace Infrastructure.Usecase.Models
 	{
 		#region Properies
 
-		[BindProperty(SupportsGet = true)]
 		public int CurrentPage { get; set; }
 
 		public int CountTotal { get; private set; }
@@ -143,16 +142,7 @@ namespace Infrastructure.Usecase.Models
 
 		public void AddSortParameters(Func<SortCriteria, SortParameter> selector)
 		{
-			SortParameters.AddRange(
-				Enum.GetValues(typeof(SortCriteria)).Cast<SortCriteria>().Select(selector)
-			);
-		}
-
-		public List<SelectListItem> FormSortSelect()
-		{
-			return SortParameters?.Select(sort =>
-					new SelectListItem(sort.Caption, sort.RenderValue))
-				.ToList() ?? new List<SelectListItem>();
+			SortParameters.AddRange(Enum.GetValues(typeof(SortCriteria)).Cast<SortCriteria>().Select(selector));
 		}
 
 		public SortParameter ChooseSortParameter(string value) =>
