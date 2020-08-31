@@ -1,4 +1,4 @@
-{
+﻿{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -24,7 +24,7 @@
         "TLS_CERT_FILE": "../cert/client.crt"
       }
     },
-    "web_app_service": {
+    "web_app": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

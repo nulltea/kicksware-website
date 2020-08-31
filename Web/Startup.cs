@@ -17,9 +17,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using SmartBreadcrumbs.Extensions;
 using Web.Config;
@@ -68,26 +70,26 @@ namespace Web
 
 			services.AddTransient<IGatewayClient<IGatewayRestRequest>, RestfulClient>(ServiceFactory.ProvideRestClient);
 
-			services.AddSingleton(ServiceFactory.ProvideGrpcChannel);
-			services.AddSingleton<Proto.UserService.UserServiceClient>();
-			services.AddSingleton<Proto.ReferenceService.ReferenceServiceClient>();
-			services.AddSingleton<Proto.ProductService.ProductServiceClient>();
-			services.AddSingleton<Proto.SearchReferencesService.SearchReferencesServiceClient>();
-			services.AddSingleton<Proto.SearchProductService.SearchProductServiceClient>();
-			services.AddSingleton<Proto.AuthService.AuthServiceClient>();
-			services.AddSingleton<Proto.MailService.MailServiceClient>();
-			services.AddSingleton<Proto.InteractService.InteractServiceClient>();
+			// services.AddSingleton(ServiceFactory.ProvideGrpcChannel);
+			// services.AddSingleton<Proto.UserService.UserServiceClient>();
+			// services.AddSingleton<Proto.ReferenceService.ReferenceServiceClient>();
+			// services.AddSingleton<Proto.ProductService.ProductServiceClient>();
+			// services.AddSingleton<Proto.SearchReferencesService.SearchReferencesServiceClient>();
+			// services.AddSingleton<Proto.SearchProductService.SearchProductServiceClient>();
+			// services.AddSingleton<Proto.AuthService.AuthServiceClient>();
+			// services.AddSingleton<Proto.MailService.MailServiceClient>();
+			// services.AddSingleton<Proto.InteractService.InteractServiceClient>();
 
-			services.AddTransient<ISneakerProductRepository, SneakerProductsGrpcRepository>();
-			services.AddTransient<ISneakerReferenceRepository, SneakerReferencesGrpcRepository>();
-			services.AddTransient<IUserRepository, UserGrpcRepository>();
+			services.AddTransient<ISneakerProductRepository, SneakerProductsRestRepository>();
+			services.AddTransient<ISneakerReferenceRepository, SneakerReferencesRestRepository>();
+			services.AddTransient<IUserRepository, UserRestRepository>();
 
 			services.AddTransient<ICommonService<SneakerReference>, SneakerReferenceService>();
 			services.AddTransient<ICommonService<SneakerProduct>, SneakerProductService>();
 			services.AddTransient<ISneakerReferenceService, SneakerReferenceService>();
 			services.AddTransient<ISneakerProductService, SneakerProductService>();
-			services.AddTransient<IReferenceSearchService, ReferenceSearchServiceGRPC>();
-			services.AddTransient<IMailService, MailServiceGRPC>();
+			services.AddTransient<IReferenceSearchService, ReferenceSearchServiceREST>();
+			services.AddTransient<IMailService, MailServiceREST>();
 			services.AddTransient<ILikeService, InteractServiceREST>();
 			services.AddTransient<IUserService, UserService>();
 
@@ -108,7 +110,7 @@ namespace Web
 
 			services
 				.AddAuthentication(ConfigureAuthOptions)
-				.AddMiddlewareAuth<AuthServiceGRPC>(ConfigureAuthOptions)
+				.AddMiddlewareAuth<AuthServiceREST>(ConfigureAuthOptions)
 				.AddFacebook(facebookOptions =>
 				{
 					facebookOptions.AppId = Environment.GetEnvironmentVariable("AUTH_FACEBOOK_ID");
@@ -142,7 +144,6 @@ namespace Web
 				app.UseHsts();
 			}
 			app.UseHttpsRedirection();
-			app.UseStaticFiles();
 
 			app.UseRouting();
 			app.UseSession();
@@ -158,6 +159,14 @@ namespace Web
 				);
 				endpoints.MapRazorPages();
 			});
+
+			app.UseStaticFiles(new StaticFileOptions
+			{
+				FileProvider =
+					new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"node_modules")),
+				RequestPath = new PathString("/plugins"),
+			});
+			app.UseStaticFiles();
 		}
 
 		#region Configuration handlers

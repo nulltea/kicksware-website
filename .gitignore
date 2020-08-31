@@ -32,5 +32,10 @@ msbuild.log
 msbuild.err
 msbuild.wrn
 
-# css compiled stylesheets
+# Compiled static scripts & stylesheets
 Web/wwwroot/styles/css
+Web/wwwroot/bundle/
+Web/wwwroot/storage/
+Web/node_modules
+
+/cert
