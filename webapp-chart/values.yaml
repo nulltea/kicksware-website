@@ -3,15 +3,16 @@ component: web-app
 nameOverride: web-app
 fullnameOverride: web-app
 replicaCount: 1
+sourceDir: &sourceDir /run/desktop/mnt/host/wsl/source/repos/kicksware-platform/web-app
 
 image:
-  repository: ci.kicksware.com:5050/root/kicksware-platform/web-app
+  repository: registry.kicksware.com/kicksware/web-app
   pullPolicy: IfNotPresent
   tag: latest
 
 service:
   type: ClusterIP
-  port: 8080
+  port: 80
 
 ingress:
   enabled: true
@@ -28,8 +29,25 @@ ingress:
       middlewares: []
       services:
         - name: web-app
-          port: 8080
+          port: 80
           scheme: http
+
+volumes:
+  - name: cert
+    hostPathBase: /run/desktop/mnt/host/wsl
+    hostPath: /source/cert
+    mountPath: /cert
+    type: Directory
+  - name: keys
+    hostPathBase: /run/desktop/mnt/host/wsl
+    hostPath: /source/keys
+    mountPath: /keys
+    type: Directory
+  - name: dynamic
+    hostPathBase: *sourceDir
+    hostPath: /gateway/dynamic-config
+    mountPath: &dynamic-mount /dynamic-config
+    type: Directory
 
 resources: {}
 
@@ -48,9 +66,17 @@ serviceAccount:
 secrets:
   dockerRegistry: registry-token
   grpcTLSKeys: grpc-tls
+  googleOAuth: google-oauth
+  facebookOAuth: facebook-oauth
 
 config:
   environment: PROD
 
 environment:
   name: PROD
+  aspEnviroment: Production
+  aspnetURL: http://0.0.0.0:80
+  apiURL: https://api.kicksware.com
+  storagePath: https://cdn.kicksware.com
+  localStroragePath: /storage
+  tlsCertFile: cert/client.crt

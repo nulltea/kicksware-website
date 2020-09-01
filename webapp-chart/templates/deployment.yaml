@@ -28,28 +28,37 @@ spec:
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
-#          livenessProbe:
-#            httpGet:
-#              path: /health/live
-#              port: http
-#          readinessProbe:
-#            httpGet:
-#              path: /health/ready
-#              port: http
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: http
           volumeMounts:
-            - name: ssh-keys
-              mountPath: /dist/keys
+            {{- range .Values.volumes }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+            {{- end }}
           envFrom:
             - configMapRef:
                 name: {{ template "chart.fullname" . }}.env
+            - secretRef:
+                name: {{ .Values.secrets.googleOAuth }}
+            - secretRef:
+                name: {{ .Values.secrets.facebookOAuth }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       imagePullSecrets:
         - name: {{ .Values.secrets.dockerRegistry }}
       serviceAccountName: {{ include "chart.serviceAccountName" . }}
       volumes:
-        - name: ssh-keys
-          projected:
-            sources:
-              - secret:
-                  name: {{ .Values.secrets.grpcTLSKeys }}
+        {{- range .Values.volumes }}
+        - name: {{ .name }}
+          {{- if .hostPath }}
+          hostPath:
+            path: {{ .hostPathBase }}{{ .hostPath }}
+            type: {{ .type }}
+          {{- end }}
+        {{- end }}

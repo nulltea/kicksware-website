@@ -7,3 +7,9 @@ metadata:
   {{- include "chart.labels" . | nindent 4 }}
 data:
   ENV: {{ .Values.environment.name }}
+  ASPNETCORE_ENVIRONMENT: {{ .Values.environment.aspEnviroment }}
+  ASPNETCORE_URLS: {{ .Values.environment.aspnetURL }}
+  GATEWAY_API_URL: {{ .Values.environment.apiURL }}
+  STORAGE_PATH: {{ .Values.environment.storagePath }}
+  LOCAL_STORAGE_PATH: {{ .Values.environment.localStroragePath }}
+  TLS_CERT_FILE: {{ .Values.environment.tlsCertFile }}
