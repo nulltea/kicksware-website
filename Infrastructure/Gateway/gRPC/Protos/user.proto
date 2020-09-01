@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+import "common.proto";
+
+option go_package = ".;proto";
+option csharp_namespace = "Proto";
+
+message User {
+  string uniqueID = 1;
+  string username = 2;
+  string usernameN = 3;
+  string email = 4;
+  string emailN = 5;
+  string passwordHash = 6;
+  string firstName = 7;
+  string lastName = 8;
+  string phoneNumber = 9;
+  string avatar = 10;
+  string location = 11;
+  PaymentInfo paymentInfo = 12;
+  repeated string liked = 13;
+  UserSettings settings = 14;
+  bool confirmed = 15;
+  string role = 16;
+  google.protobuf.Timestamp registerDate = 17;
+  string provider = 18;
+  map<string,string> connectedProviders = 19;
+}
+
+message AddressInfo {
+  string country = 1;
+  string city = 2;
+  string address = 3;
+  string address2 = 4;
+  string region = 5;
+  string postalCode = 6;
+}
+
+message PaymentInfo {
+  string cardNumber = 1;
+  YearMonth expires = 2;
+  string cVV = 3;
+  AddressInfo billingInfo = 4;
+}
+
+message YearMonth {
+  int32 year = 1;
+  int32 month = 2;
+}
+
+message UserSettings {
+  string theme = 1;
+}
+
+service UserService {
+  rpc GetUsers(UserFilter) returns (UserResponse) {}
+  rpc CountUsers(UserFilter) returns (UserResponse) {}
+  rpc AddUsers(UserInput) returns (UserResponse) {}
+  rpc EditUsers(UserInput) returns (UserResponse) {}
+  rpc DeleteUsers(UserFilter) returns (UserResponse) {}
+}
+
+message UserFilter {
+  repeated string userID = 1;
+  google.protobuf.Struct requestQuery = 2;
+  proto.RequestParams requestParams = 3;
+}
+
+message UserInput {
+  repeated User users = 1;
+  proto.RequestParams requestParams = 2;
+}
+
+message UserResponse {
+  repeated User users = 1;
+  int64 count = 2;
+}

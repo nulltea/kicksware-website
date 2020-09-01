@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+import "common.proto";
+
+option go_package = ".;proto";
+option csharp_namespace = "Proto";
+
+message SneakerBrand {
+  string uniqueId = 1;
+  string name = 2;
+  string logo = 3;
+  string hero = 4;
+  string description = 5;
+}
+
+message SneakerModel {
+  string uniqueId = 1;
+  string name = 2;
+  string brand = 3;
+  string baseModel = 4;
+  string hero = 5;
+  string description = 6;
+}
+
+message SneakerReference {
+  string uniqueId = 1;
+  string manufactureSku = 2;
+  string brandName = 3;
+  SneakerBrand brand = 4;
+  string modelName = 5;
+  SneakerModel model = 6;
+  string baseModelName = 7;
+  SneakerModel baseModel = 8;
+  string description = 9;
+  string color = 10;
+  string gender = 11;
+  string nickname = 12;
+  repeated string materials = 13;
+  repeated string categories = 14;
+  google.protobuf.Timestamp releaseDate = 15;
+  double price = 16;
+  string imageLink = 17;
+  repeated string imageLinks = 18;
+  string stadiumUrl = 19;
+  int64 likes = 20;
+  bool liked = 21;
+}
+
+service ReferenceService {
+  rpc GetReferences(ReferenceFilter) returns (ReferenceResponse) {}
+  rpc CountReferences(ReferenceFilter) returns ( ReferenceResponse) {}
+  rpc AddReferences(ReferenceInput) returns (ReferenceResponse) {}
+  rpc EditReferences(ReferenceInput) returns (ReferenceResponse) {}
+  rpc DeleteReferences(ReferenceFilter) returns (ReferenceResponse) {}
+}
+
+message ReferenceFilter {
+  repeated string referenceID = 1;
+  google.protobuf.Struct requestQuery = 2;
+  RequestParams requestParams = 3;
+}
+
+message ReferenceInput {
+  repeated SneakerReference references = 1;
+  RequestParams requestParams = 2;
+}
+
+message ReferenceResponse {
+  repeated SneakerReference references = 1;
+  int64 count = 2;
+}
