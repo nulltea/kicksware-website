@@ -9,9 +9,11 @@ services:
     env_file: ./env/.env
     restart: always
     labels:
+      - traefik.http.routers.web-app-secure.rule=Host(`kicksware.com`)
+      - traefik.http.routers.web-app-secure.tls=true
+      - traefik.http.routers.web-app-secure.tls.certresolver=le
       - traefik.http.routers.web-app.rule=Host(`kicksware.com`)
-      - traefik.http.routers.web-app.tls=true
-      - traefik.http.routers.web-app.tls.certresolver=le
+      - traefik.http.routers.web-app.middlewares=https-redirect
       - traefik.docker.network=web
     networks:
       - web

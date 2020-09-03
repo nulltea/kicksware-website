@@ -3,6 +3,7 @@ component: web-app
 nameOverride: web-app
 fullnameOverride: web-app
 replicaCount: 1
+baseDirL: &baseDir /run/desktop/mnt/host/wsl
 sourceDir: &sourceDir /run/desktop/mnt/host/wsl/source/repos/kicksware-platform/web-app
 
 image:
@@ -33,20 +34,20 @@ ingress:
           scheme: http
 
 volumes:
-  - name: cert
-    hostPathBase: /run/desktop/mnt/host/wsl
-    hostPath: /source/cert
-    mountPath: /cert
+  - name: storage
+    hostPathBase: *baseDir
+    hostPath: /source/storage
+    mountPath: /app/wwwroot/storage
     type: Directory
   - name: keys
-    hostPathBase: /run/desktop/mnt/host/wsl
+    hostPathBase: *baseDir
     hostPath: /source/keys
     mountPath: /keys
     type: Directory
   - name: dynamic
     hostPathBase: *sourceDir
-    hostPath: /gateway/dynamic-config
-    mountPath: &dynamic-mount /dynamic-config
+    hostPath: /Web/node_modules
+    mountPath: /app/node_modules
     type: Directory
 
 resources: {}
