@@ -61,5 +61,7 @@ function closeMenu() {
 }
 
 $(document).ready(function () {
+	"use strict";
+
 	initMenu();
 });

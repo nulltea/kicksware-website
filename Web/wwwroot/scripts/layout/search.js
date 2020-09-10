@@ -77,6 +77,8 @@ function searchFavoriteInit(){
 }
 
 $(document).ready(function () {
+	"use strict";
+
 	searchPanelInit();
 
 	mainSearchInit();

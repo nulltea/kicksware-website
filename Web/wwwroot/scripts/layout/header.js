@@ -107,6 +107,8 @@ function mobileResponsiveInit(){
 }
 
 $(document).ready(function () {
+	"use strict";
+
 	headerScrollInit();
 
 	activePageInit();
