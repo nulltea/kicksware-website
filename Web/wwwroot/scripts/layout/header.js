@@ -101,7 +101,7 @@ function handleHeroBrightness(imageSrc, callback) {
 }
 
 function mobileResponsiveInit(){
-	if (isMobile()){
+	if (isMobile()) {
 		$("body").addClass("mobile");
 	}
 }
