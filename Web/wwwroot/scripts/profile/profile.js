@@ -71,7 +71,6 @@ function favouriteInit(){
 			}, 300);
 		}
 	})
-	loading
 }
 
 function loading(items){

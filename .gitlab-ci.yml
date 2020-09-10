@@ -33,8 +33,10 @@ dependencies.build:
     - apk add --update git
     - apk add --update make
   script:
+    - cd Web
     - npm install
     - make styles
+    - cd ..
   cache:
     paths:
       - Web/node_modules
@@ -71,6 +73,8 @@ web-app.build:
       - Web/node_modules
       - Web/wwwroot/styles/css
   allow_failure: true
+  needs:
+    - job: dependencies.build
 
 # test stage steps:
 
