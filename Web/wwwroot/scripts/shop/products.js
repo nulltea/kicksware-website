@@ -360,7 +360,7 @@ $(document).ready(function () {
 
 	favoriteInit();
 
-	if ($("body").hasClass("mobile") && window.screen.width < 500){
+	if ($("body").hasClass("mobile") && window.screen.width < 500) {
 		mobileResponsivePerform();
 	}
 });
