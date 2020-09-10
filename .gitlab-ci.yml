@@ -33,6 +33,7 @@ dependencies.resolve:
     - apk add --update bash
     - apk add --update git
     - apk add --update make
+    - npm install -g lessc-each
   script:
     - cd Web &&
       npm install &&
