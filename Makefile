@@ -4,10 +4,9 @@ web-app:
 	docker-compose up -d;
 
 styles:
-	cd Web/wwwroot;
-	mkdir -p styles/css2;
-	for dir in $(shell ls styles/less); do \
-		mkdir -p styles/css/$$dir; \
-		lessc-each styles/less/$$dir styles/css/$$dir; \
+	mkdir -p Web/wwwroot/styles/css2;
+	for dir in $(shell ls Web/wwwroot/styles/less); do \
+		printf "Building $$dir stylesheets:\n"; \
+		mkdir -p Web/wwwroot/styles/css2/$$dir; \
+		lessc-each Web/wwwroot/styles/less/$$dir Web/wwwroot/styles/css2/$$dir; \
 	done;
-	cd ../..;

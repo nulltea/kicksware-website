@@ -19,7 +19,7 @@ web-app.build.compose:
     - npm install
     - npm install -g lessc-each
   script:
-    - make styles;
+    - make styles --always-make
   artifacts:
     paths:
       - Web/wwwroot/styles/css
