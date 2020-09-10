@@ -3,6 +3,7 @@ include: /.gitlab/.gitlab-ci.compose.yml
 image: dtzar/helm-kubectl:3.3.0
 
 stages:
+  - resolve
   - build
   - test
   - deploy
@@ -10,10 +11,10 @@ stages:
 
 # build stage steps:
 
-dependencies.build:
+dependencies.resolve:
   image:
     name: node:8-alpine
-  stage: build
+  stage: resolve
   tags:
     - k8s
     - web-app
@@ -37,10 +38,12 @@ dependencies.build:
     - npm install
     - make styles
     - cd ..
-  cache:
+  artifacts:
+    untracked: true
     paths:
       - Web/node_modules
       - Web/wwwroot/styles/css
+    expire_in: 10 mins
 
 web-app.build:
   image: docker/compose:1.25.0
@@ -72,9 +75,8 @@ web-app.build:
     paths:
       - Web/node_modules
       - Web/wwwroot/styles/css
-  allow_failure: true
-  needs:
-    - job: dependencies.build
+  dependencies:
+    - dependencies.resolve
 
 # test stage steps:
 

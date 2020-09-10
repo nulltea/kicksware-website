@@ -20,6 +20,8 @@ function favoriteInit(){
 }
 
 $(document).ready(function () {
+	"use strict";
+
 	initCarousels();
 
 	favoriteInit();

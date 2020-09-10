@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿$(document).ready(function (x) {
 	"use strict";
 
 	let displayMax = $(".max-price-display");
@@ -45,7 +45,7 @@
 		minValue = parseInt(minRangeElement.value);
 		maxValue = parseInt(maxRangeElement.value);
 		offset = (maxRangeElement.max - maxRangeElement.min) * 4 / 50;
-		
+
 
 		if (minValue > maxValue - offset) {
 			maxRangeElement.value = minValue + offset;

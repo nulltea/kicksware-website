@@ -342,6 +342,8 @@ function mobileResponsivePerform(){
 }
 
 $(document).ready(function () {
+	"use strict";
+
 	initFilterPanel();
 
 	priceRangeInit();
