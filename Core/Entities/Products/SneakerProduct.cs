@@ -91,8 +91,8 @@ namespace Core.Entities.Products
 		{
 			foreach (var image in Images.Keys)
 			{
-				File.WriteAllBytes(Path.Combine(Constants.Constants.FileStoragePath, "products", image), Images[image]);
-				Photos.Add(Path.Combine($"{Constants.Constants.FileStoragePath}/photos/products", image));
+				File.WriteAllBytes(Path.Combine(Environment.Environment.FileStoragePath, "products", image), Images[image]);
+				Photos.Add(Path.Combine($"{Environment.Environment.FileStoragePath}/photos/products", image));
 			}
 		}
 

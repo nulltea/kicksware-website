@@ -4,19 +4,20 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Security.Authentication;
 using System.Threading.Tasks;
-using Core.Constants;
+using Core.Environment;
 using Core.Entities.Users;
 using Core.Extension;
 using Core.Gateway;
 using Infrastructure.Serializers;
 using RestSharp;
 using RestSharp.Authenticators;
+using Environment = Core.Environment.Environment;
 
 namespace Infrastructure.Gateway.REST.Client
 {
 	public class RestfulClient : RestClient, IGatewayClient<IGatewayRestRequest>
 	{
-		public RestfulClient() : base(Constants.GatewayBaseUrl)
+		public RestfulClient() : base(Environment.GatewayBaseUrl)
 		{
 			UseSerializer(() => new JsonRestSerializer());
 		}

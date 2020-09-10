@@ -1,0 +1,125 @@
+include: /.gitlab/.gitlab-ci.compose.yml
+
+image: dtzar/helm-kubectl:3.3.0
+
+stages:
+  - build
+  - test
+  - deploy
+  - check
+
+# build stage steps:
+
+dependencies.build:
+  image:
+    name: node:8-alpine
+  stage: build
+  tags:
+    - k8s
+    - web-app
+  variables:
+    NODE_ENV: production
+  only:
+    changes:
+      - Core/**/*
+      - Infrastructure/**/*
+      - Web/**/*
+  except:
+    changes:
+      - "*.md"
+  before_script:
+    - apk add --update bash
+    - apk add --update git
+  script:
+    - npm install
+    - make styles
+  cache:
+    paths:
+      - Web/node_modules
+      - Web/wwwroot/styles/css
+
+web-app.build:
+  image: docker/compose:1.25.0
+  services: [docker:18.09-dind]
+  stage: build
+  tags:
+    - k8s
+    - web-app
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+  only:
+    changes:
+      - Core/**/*
+      - Infrastructure/**/*
+      - Web/**/*
+  except:
+    changes:
+      - "*.md"
+  before_script:
+    - docker version
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_TOKEN $CI_REGISTRY
+  script:
+    - docker-compose build
+  after_script:
+    - docker-compose push
+  cache:
+    paths:
+      - Web/node_modules
+      - Web/wwwroot/styles/css
+  allow_failure: true
+
+# test stage steps:
+
+web-app.test:
+  stage: test
+  tags:
+    - k8s
+    - web-app
+  except:
+    changes:
+      - "*.md"
+  before_script:
+    - printf "\e[32mTODO"
+  script:
+    - echo -e "\e[33mYou should implement test... \e[91mI am serisous, dude - \e[1mTESTS ARE IMPORTANT!"
+
+# deploy stage steps:
+
+web-app.deploy.k8s:
+  stage: deploy
+  tags:
+    - k8s
+    - web-app
+  only:
+    kubernetes: active
+  except:
+    changes:
+      - "*.md"
+  before_script:
+    - kubectl create secret docker-registry registry-token -n webapp
+      --docker-server=$CI_REGISTRY --docker-web-appname=$CI_REGISTRY_USER --docker-password=$CI_REGISTRY_TOKEN --dry-run -o yaml | kubectl apply -f -
+    - kubectl create secret generic google-oauth -n webapp
+      --from-literal=AUTH_GOOGLE_ID=$AUTH_GOOGLE_ID --from-literal=AUTH_GOOGLE_SECRET=$AUTH_GOOGLE_SECRET --dry-run -o yaml | kubectl apply -f -
+    - kubectl create secret generic facebook-oauth -n webapp
+      --from-literal=AUTH_FACEBOOK_ID=$AUTH_FACEBOOK_ID --from-literal=AUTH_FACEBOOK_SECRET=$AUTH_FACEBOOK_SECRET --dry-run -o yaml | kubectl apply -f -
+    - apk add gettext && envsubst < env/.env > .env && kubectl create configmap web-app.env -n webapp
+      --from-file=.env --dry-run -o yaml | kubectl apply -f -
+  script:
+    - helm upgrade --install -n webapp web-app webapp-chart
+
+# check stage steps:
+
+web-app.check.k8s:
+  image: curlimages/curl
+  stage: check
+  tags:
+    - k8s
+    - web-app
+  before_script:
+    - echo Waiting half a minute for app to properly start or fail... && sleep 30s
+  script:
+    - curl "http://$WEBAPP_ENDPOINT_URL/health/live" -f -o /dev/null || exit 1 | echo -e "\e[91mWeb app dead! Triggering check job failure"
+    - echo -e "\e[36mWeb app live. Checking service readiness:\n"
+    - curl "http://$WEBAPP_ENDPOINT_URL/health/ready" -f -o /dev/null || exit 1 | echo -e "\e[91mWeb app not ready! Triggering check job failure"
+    - echo -e "\e[36mWeb app ready. Check job succeeded!"
+  retry: 2

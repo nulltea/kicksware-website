@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection.Metadata;
 using System.Threading.Tasks;
-using Core.Constants;
+using Core.Environment;
 using Core.Gateway;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
@@ -11,6 +11,7 @@ using Infrastructure.Gateway.REST.Client;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Web.Utils.Extensions;
+using Environment = Core.Environment.Environment;
 
 namespace Web.Container.Factory
 {
@@ -49,9 +50,9 @@ namespace Web.Container.Factory
 				return Task.CompletedTask;
 			});
 
-			var host = new Uri(Constants.GatewayBaseUrl).Host;
+			var host = new Uri(Environment.GatewayBaseUrl).Host;
 			var rootCertificate = string.Empty;
-			var rootCertFile = Environment.GetEnvironmentVariable("TLS_CERT_FILE");
+			var rootCertFile = System.Environment.GetEnvironmentVariable("TLS_CERT_FILE");
 			if (!string.IsNullOrEmpty(rootCertFile)) rootCertificate = File.ReadAllText(rootCertFile);
 
 			var channel = new Channel(host, ChannelCredentials.Create(new SslCredentials(rootCertificate), credentials));

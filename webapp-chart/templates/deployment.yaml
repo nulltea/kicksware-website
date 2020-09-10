@@ -23,11 +23,23 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.registry }}/{{ .Values.project }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
+          envFrom:
+            - configMapRef:
+                name: {{ template "chart.fullname" . }}.env
+            {{- range .Values.secrets.environment }}
+            - secretRef:
+                name: {{ . }}
+            {{- end }}
+          volumeMounts:
+            {{- range .Values.volumes }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+            {{- end }}
           livenessProbe:
             httpGet:
               path: /health/live
@@ -36,29 +48,26 @@ spec:
             httpGet:
               path: /health/ready
               port: http
-          volumeMounts:
-            {{- range .Values.volumes }}
-            - name: {{ .name }}
-              mountPath: {{ .mountPath }}
-            {{- end }}
-          envFrom:
-            - configMapRef:
-                name: {{ template "chart.fullname" . }}.env
-            - secretRef:
-                name: {{ .Values.secrets.googleOAuth }}
-            - secretRef:
-                name: {{ .Values.secrets.facebookOAuth }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       imagePullSecrets:
         - name: {{ .Values.secrets.dockerRegistry }}
       serviceAccountName: {{ include "chart.serviceAccountName" . }}
       volumes:
-        {{- range .Values.volumes }}
+      {{- range .Values.secrets.mounts }}
         - name: {{ .name }}
-          {{- if .hostPath }}
-          hostPath:
-            path: {{ .hostPathBase }}{{ .hostPath }}
-            type: {{ .type }}
-          {{- end }}
+          secret:
+            secretName: {{ .name }}
+      {{- end }}
+      {{- range .Values.volumes }}
+        - name: {{ .name }}
+        {{- with .persistent }}
+          persistentVolumeClaim:
+            claimName: {{ .claim }}
         {{- end }}
+        {{- with .host }}
+          hostPath:
+            path: {{ .pathBase }}{{ .path }}
+            type: {{ .type }}
+        {{- end }}
+      {{- end }}

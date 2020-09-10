@@ -64,10 +64,3 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
-
-{{/*
-
-*/}}
-{{- define "chart.configPath" }}
-{{- printf "../env/config.%s.yaml" (default .Values.configPath .Values.config.environment | lower) }}
-{{- end }}

@@ -1,4 +1,5 @@
-﻿@using Core.Constants
+﻿@using Core.Environment
+@using Environment = Core.Environment.Environment
 @model SneakerProductViewModel
 
 @{
@@ -21,7 +22,7 @@
 				<div class="image-carousel">
 					@foreach (var photo in Model.Photos)
 					{
-						var imageLink = System.IO.Path.GetRelativePath(Constants.WebRootPath, photo);
+						var imageLink = System.IO.Path.GetRelativePath(Environment.WebRootPath, photo);
 						<picture>
 							<source srcset="\@imageLink" media="(min-width: 600px)">
 							<img src="\@imageLink" alt="">
@@ -45,7 +46,7 @@
 					<div class="carousel-wrapper js-flickity" data-flickity-options='{ "wrapAround": true }'>
 						@foreach (var photo in Model.Photos)
 						{
-							var imageLink = System.IO.Path.GetRelativePath(Constants.WebRootPath, photo);
+							var imageLink = System.IO.Path.GetRelativePath(Environment.WebRootPath, photo);
 							<picture>
 								<source srcset="@imageLink" media="(min-width: 600px)">
 								<img src="\@imageLink" alt="">

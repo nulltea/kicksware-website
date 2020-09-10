@@ -2,17 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Core.Constants;
+using Core.Environment;
 using Microsoft.AspNetCore.Mvc;
 using SmartBreadcrumbs.Attributes;
 using Web.Models;
+using Environment = Core.Environment.Environment;
 
 namespace Web.Controllers
 {
 	public class ContactController : Controller
 	{
 		[ViewData]
-		public string HeroCoverPath { get; set; } = $"{Constants.FileStoragePath}/heroes/contact-hero.jpg";
+		public string HeroCoverPath { get; set; } = $"{Environment.FileStoragePath}/heroes/contact-hero.jpg";
 
 		[ViewData]
 		public string HeroBreadTitle { get; set; } = "Get in touch with us";

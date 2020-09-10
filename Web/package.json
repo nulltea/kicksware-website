@@ -13,6 +13,7 @@
     "gsap": "^3.5.1",
     "scrollax": "^1.0.0",
     "flickity": "^2.2.1",
-    "animate.css": "^4.1.0"
+    "animate.css": "^4.1.0",
+    "lessc-each": "^1.1.0"
   }
 }

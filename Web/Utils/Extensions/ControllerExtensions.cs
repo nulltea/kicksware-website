@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using Core.Constants;
+using Core.Environment;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -38,7 +38,7 @@ namespace Web.Utils.Extensions
 			if (!viewName.StartsWith("~/")) return viewEngine.FindView(controller.ControllerContext, viewName, !isPartial);
 			var hostingEnv = controller.HttpContext.RequestServices.GetService(typeof(IWebHostEnvironment)) as
 					IWebHostEnvironment;
-			return viewEngine.GetView(hostingEnv?.WebRootPath ?? Constants.WebRootPath, viewName, !isPartial);
+			return viewEngine.GetView(hostingEnv?.WebRootPath ?? Environment.WebRootPath, viewName, !isPartial);
 		}
 	}
 }

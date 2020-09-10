@@ -71,11 +71,11 @@ namespace Core.Entities.References
 			get
 			{
 				if (string.IsNullOrEmpty(ImageLink)) return string.Empty; // TODO no image available icon
-				return Path.Combine(Constants.Constants.FileStoragePath, "references", ImageLink);
+				return Path.Combine(Environment.Environment.FileStoragePath, "references", ImageLink);
 			}
 		}
 
-		public List<string> OtherImages => ImageLinks.Select(img => Path.Combine(Constants.Constants.FileStoragePath, "references", img)).ToList();
+		public List<string> OtherImages => ImageLinks.Select(img => Path.Combine(Environment.Environment.FileStoragePath, "references", img)).ToList();
 
 		public DateTime ReleaseDate { get; set; }
 

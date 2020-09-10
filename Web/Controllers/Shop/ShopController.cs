@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Core.Constants;
+using Core.Environment;
 using Core.Entities;
 using Core.Entities.Products;
 using Core.Entities.References;
@@ -22,7 +22,7 @@ namespace Web.Controllers
 	public partial class ShopController : Controller
 	{
 		[ViewData]
-		public string HeroCoverPath { get; set; } = $"{Constants.FileStoragePath}/heroes/shop-hero.jpg";
+		public string HeroCoverPath { get; set; } = $"{Environment.FileStoragePath}/heroes/shop-hero.jpg";
 
 		[ViewData]
 		public string HeroBreadTitle { get; set; } = "Buy sneakers";

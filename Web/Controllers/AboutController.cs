@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Core.Constants;
+using Core.Environment;
 using Microsoft.AspNetCore.Mvc;
 using SmartBreadcrumbs.Attributes;
 
@@ -13,11 +13,11 @@ namespace Web.Controllers
 		{
 			return View(new List<string>
 			{
-				$"{Constants.FileStoragePath}/heroes/about-hero.jpg",
-				$"{Constants.FileStoragePath}/heroes/seller-hero.jpg",
-				$"{Constants.FileStoragePath}/heroes/shop-hero.jpg",
-				$"{Constants.FileStoragePath}/heroes/seller-hero2.jpg",
-				$"{Constants.FileStoragePath}/heroes/contact-hero.jpg",
+				$"{Environment.FileStoragePath}/heroes/about-hero.jpg",
+				$"{Environment.FileStoragePath}/heroes/seller-hero.jpg",
+				$"{Environment.FileStoragePath}/heroes/shop-hero.jpg",
+				$"{Environment.FileStoragePath}/heroes/seller-hero2.jpg",
+				$"{Environment.FileStoragePath}/heroes/contact-hero.jpg",
 			});
 		}
 	}

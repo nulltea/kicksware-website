@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Core.Constants;
+using Core.Environment;
 
 namespace Web.Utils.UrlHelpers
 {
 	public static class ContentDelivery
 	{
-		public static string OriginalImageLink(string from, string image) => Path.Combine(Constants.FileStoragePath, from, image);
+		public static string OriginalImageLink(string from, string image) => Path.Combine(Environment.FileStoragePath, from, image);
 
 		public static string CroppedImageLink(string from, string image, int width = 0, int height = 0)
-			=> Path.Combine(Constants.FileStoragePath, "crop", from, image) + LinkParamsOf(width, height);
+			=> Path.Combine(Environment.FileStoragePath, "crop", from, image) + LinkParamsOf(width, height);
 
 		public static string ResizedImageLink(string from, string image, int width = 0, int height = 0)
-			=> Path.Combine(Constants.FileStoragePath, "resize", from, image) + LinkParamsOf(width, height);
+			=> Path.Combine(Environment.FileStoragePath, "resize", from, image) + LinkParamsOf(width, height);
 
 		public static string ThumbnailLink(string from, string image)
-			=> Path.Combine(Constants.FileStoragePath, "thumbnail", from, image);
+			=> Path.Combine(Environment.FileStoragePath, "thumbnail", from, image);
 
 		private static string LinkParamsOf(int width , int height)
 		{

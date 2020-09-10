@@ -1,0 +1,83 @@
+project: kicksware
+component: web-app
+nameOverride: web-app
+fullnameOverride: web-app
+replicaCount: 1
+baseDirL: &baseDir /run/desktop/mnt/host/wsl
+sourceDir: &sourceDir /run/desktop/mnt/host/wsl/source/repos/kicksware-platform/web-app
+
+image:
+  repository: registry.kicksware.com/kicksware/web-app
+  pullPolicy: IfNotPresent
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  entrypoints:
+    - web
+    - websecure
+  tls:
+    enabled: true
+    certResolver: le
+  routes:
+    - host: kicksware.com
+      paths:
+        - /
+      middlewares: []
+      services:
+        - name: web-app
+          port: 80
+          scheme: http
+
+volumes:
+  - name: storage
+    hostPathBase: *baseDir
+    hostPath: /source/storage
+    mountPath: /app/wwwroot/storage
+    type: Directory
+  - name: keys
+    hostPathBase: *baseDir
+    hostPath: /source/keys
+    mountPath: /keys
+    type: Directory
+  - name: dynamic
+    hostPathBase: *sourceDir
+    hostPath: /Web/node_modules
+    mountPath: /app/node_modules
+    type: Directory
+
+resources: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 25
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+secrets:
+  dockerRegistry: registry-token
+  grpcTLSKeys: grpc-tls
+  googleOAuth: google-oauth
+  facebookOAuth: facebook-oauth
+
+config:
+  environment: PROD
+
+environment:
+  name: PROD
+  aspEnviroment: Production
+  aspnetURL: http://0.0.0.0:80
+  apiURL: https://api.kicksware.com
+  storagePath: https://cdn.kicksware.com
+  localStroragePath: /storage
+  tlsCertFile: cert/client.crt

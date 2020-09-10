@@ -3,12 +3,11 @@ component: web-app
 nameOverride: web-app
 fullnameOverride: web-app
 replicaCount: 1
-baseDirL: &baseDir /run/desktop/mnt/host/wsl
-sourceDir: &sourceDir /run/desktop/mnt/host/wsl/source/repos/kicksware-platform/web-app
 
 image:
-  repository: registry.kicksware.com/kicksware/web-app
-  pullPolicy: IfNotPresent
+  registry: registry.kicksware.com
+  repository: web-app
+  pullPolicy: Always
   tag: latest
 
 service:
@@ -35,20 +34,13 @@ ingress:
 
 volumes:
   - name: storage
-    hostPathBase: *baseDir
-    hostPath: /source/storage
+    persistent:
+      claim: webapp-storage
+      storageClass: glusterfs
+      size: 25Gi
+      accessModes:
+        - ReadWriteMany
     mountPath: /app/wwwroot/storage
-    type: Directory
-  - name: keys
-    hostPathBase: *baseDir
-    hostPath: /source/keys
-    mountPath: /keys
-    type: Directory
-  - name: dynamic
-    hostPathBase: *sourceDir
-    hostPath: /Web/node_modules
-    mountPath: /app/node_modules
-    type: Directory
 
 resources: {}
 
@@ -66,18 +58,12 @@ serviceAccount:
 
 secrets:
   dockerRegistry: registry-token
-  grpcTLSKeys: grpc-tls
-  googleOAuth: google-oauth
-  facebookOAuth: facebook-oauth
+  mounts:
+    - name: grpc-tls
+      mountPath: /app/certs
+  environment:
+    - google-oauth
+    - facebook-oauth
 
 config:
   environment: PROD
-
-environment:
-  name: PROD
-  aspEnviroment: Production
-  aspnetURL: http://0.0.0.0:80
-  apiURL: https://api.kicksware.com
-  storagePath: https://cdn.kicksware.com
-  localStroragePath: /storage
-  tlsCertFile: cert/client.crt

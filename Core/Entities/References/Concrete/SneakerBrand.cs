@@ -19,11 +19,11 @@ namespace Core.Entities.References
 
 		public string Logo { get; set; }
 
-		public string LogoPath => $"{Constants.Constants.FileStoragePath}/logos/{Logo ?? $"{UniqueID.ToLower()}-logo.svg"}";
+		public string LogoPath => $"{Environment.Environment.FileStoragePath}/logos/{Logo ?? $"{UniqueID.ToLower()}-logo.svg"}";
 
 		public string Hero { get; set; }
 
-		public string HeroPath => $"{Constants.Constants.FileStoragePath}/heroes/{Hero ?? $"{UniqueID.ToLower()}-hero.jpg"}";
+		public string HeroPath => $"{Environment.Environment.FileStoragePath}/heroes/{Hero ?? $"{UniqueID.ToLower()}-hero.jpg"}";
 
 		public decimal Relevance { get; set; }
 

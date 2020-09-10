@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Core.Constants;
+using Core.Environment;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Environment = Core.Environment.Environment;
 
 namespace Web.Wizards
 {
@@ -53,7 +54,7 @@ namespace Web.Wizards
 		public IHtmlContent RenderStep()
 		{
 			var span = new TagBuilder("span");
-			span.InnerHtml.AppendHtml(File.ReadAllText(Path.Combine(Constants.ImagesPath, Icon)));
+			span.InnerHtml.AppendHtml(File.ReadAllText(Path.Combine(Environment.ImagesPath, Icon)));
 
 			var stepListItem = new TagBuilder("li");
 			var stepListClass = Passed ? "passed" : Active ? "active" : string.Empty;

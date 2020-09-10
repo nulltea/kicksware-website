@@ -1,0 +1,46 @@
+stages:
+  - build
+  - deploy
+
+web-app.build.compose:
+  image:
+    name: node:8-alpine
+  stage: build
+  variables:
+    NODE_ENV: production
+  tags:
+    - compose
+    - web-app
+  except:
+    kubernetes: active
+  before_script:
+    - apk add --update bash
+    - apk add --update git && rm -rf /tmp/* /var/cache/apk/*
+    - npm install
+    - npm install -g lessc-each
+  script:
+    - make styles;
+  artifacts:
+    paths:
+      - Web/wwwroot/styles/css
+    expire_in: 10 mins
+
+web-app.deploy.compose:
+  image:
+    name: docker/compose:1.25.0
+  services:
+    - docker:stable-dind
+  stage: deploy
+  variables:
+    SOURCE_DIR: /source/repos/$CI_PROJECT_NAME
+  tags:
+    - compose
+    - web-app
+  except:
+    kubernetes: active
+  before_script:
+    - apk add make
+  script:
+    - make web-app
+  dependencies:
+    - web-app.build.compose
