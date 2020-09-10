@@ -322,5 +322,6 @@ function mapDarkTheme() {
 
 $(document).ready(function () {
 	"use strict";
+
 	mapInit();
 });

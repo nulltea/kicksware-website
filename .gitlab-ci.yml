@@ -24,6 +24,7 @@ dependencies.build:
       - Core/**/*
       - Infrastructure/**/*
       - Web/**/*
+      - docker/*
   except:
     changes:
       - "*.md"
@@ -40,7 +41,8 @@ dependencies.build:
 
 web-app.build:
   image: docker/compose:1.25.0
-  services: [docker:18.09-dind]
+  services:
+    - docker:18.09-dind
   stage: build
   tags:
     - k8s
@@ -52,6 +54,7 @@ web-app.build:
       - Core/**/*
       - Infrastructure/**/*
       - Web/**/*
+      - docker/*
   except:
     changes:
       - "*.md"
