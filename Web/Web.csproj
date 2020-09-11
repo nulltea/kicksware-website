@@ -706,70 +706,29 @@
 
     <ItemGroup>
       <!-- JS plugins -->
-      <Content Include="node_modules\jquery\dist\jquery.js" />
-      <Content Include="node_modules\jquery\dist\jquery.min.map" />
-      <Content Include="node_modules\popper.js\dist\popper.min.js" />
-      <Content Include="node_modules\popper.js\dist\popper.min.js.map" />
-      <Content Include="node_modules\bootstrap\dist\js/bootstrap.min.js" />
-      <Content Include="node_modules\bootstrap\dist\js/bootstrap.min.js.map" />
-      <Content Include="node_modules\gsap\dist\EasePack.min.js" />
-      <Content Include="node_modules\gsap\dist\EasePack.min.js.map" />
-      <Content Include="node_modules\gsap\dist\ScrollToPlugin.min.js" />
-      <Content Include="node_modules\gsap\dist\ScrollToPlugin.min.js.map" />
-      <Content Include="node_modules\gsap\dist\gsap.min.js" />
-      <Content Include="node_modules\gsap\dist\gsap.min.js.map" />
-      <Content Include="node_modules\scrollmagic\scrollmagic\minified\ScrollMagic.min.js" />
-      <Content Include="node_modules\scrollmagic\scrollmagic\minified\plugins\animation.gsap.min.js" />
-      <Content Include="node_modules\scrollax\scrollax.min.js" />
-      <Content Include="node_modules\jquery-validation\dist\jquery.validate.min.js" />
-      <Content Include="node_modules\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js" />
-      <Content Include="node_modules\flickity\dist\flickity.pkgd.min.js" />
+      <Content Include="node_modules\jquery\dist\jquery.js" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\jquery\dist\jquery.min.map" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\popper.js\dist\popper.min.js" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\popper.js\dist\popper.min.js.map" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\bootstrap\dist\js/bootstrap.min.js" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\bootstrap\dist\js/bootstrap.min.js.map" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\gsap\dist\EasePack.min.js" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\gsap\dist\EasePack.min.js.map" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\gsap\dist\ScrollToPlugin.min.js" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\gsap\dist\ScrollToPlugin.min.js.map" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\gsap\dist\gsap.min.js" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\gsap\dist\gsap.min.js.map" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\scrollmagic\scrollmagic\minified\ScrollMagic.min.js" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\scrollmagic\scrollmagic\minified\plugins\animation.gsap.min.js" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\scrollax\scrollax.min.js" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\jquery-validation\dist\jquery.validate.min.js" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\flickity\dist\flickity.pkgd.min.js" CopyToPublishDirectory="PreserveNewest" />
       <!-- CSS plugins -->
-      <Content Include="node_modules\bootstrap\dist\css/bootstrap.min.css" />
-      <Content Include="node_modules\bootstrap\dist\css/bootstrap.min.css.map" />
-      <Content Include="node_modules\flickity\dist\flickity.min.css" />
-      <Content Include="node_modules\animate.css\animate.min.css" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="wwwroot\css\site.css" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.css" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\LICENSE" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\LICENSE.md" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.min.js" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.min.map" />
-      <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\LICENSE.txt" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="wwwroot\storage\products" />
+      <Content Include="node_modules\bootstrap\dist\css/bootstrap.min.css" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\bootstrap\dist\css/bootstrap.min.css.map" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\flickity\dist\flickity.min.css" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\animate.css\animate.min.css" CopyToPublishDirectory="PreserveNewest" />
     </ItemGroup>
 
     <ItemGroup>

@@ -37,7 +37,7 @@ volumes:
     persistent:
       claim: webapp-storage
       storageClass: glusterfs
-      size: 5Gi
+      size: 25Gi
       accessModes:
         - ReadWriteMany
     mountPath: /app/wwwroot/storage
