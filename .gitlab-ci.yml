@@ -110,7 +110,7 @@ web-app.deploy.k8s:
     - kubectl create secret generic facebook-oauth -n webapp
       --from-literal=AUTH_FACEBOOK_ID=$AUTH_FACEBOOK_ID --from-literal=AUTH_FACEBOOK_SECRET=$AUTH_FACEBOOK_SECRET --dry-run -o yaml | kubectl apply -f -
     - apk add gettext && envsubst < env/.env > .env && kubectl create configmap web-app.env -n webapp
-      --from-file=.env --dry-run -o yaml | kubectl apply -f -
+      --from-env-file=.env --dry-run -o yaml | kubectl apply -f -
   script:
     - helm upgrade --install -n webapp web-app webapp-chart
 
