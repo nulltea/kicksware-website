@@ -169,7 +169,7 @@ namespace Web
 			app.UseStaticFiles(new StaticFileOptions
 			{
 				FileProvider =
-					new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"/storage")),
+					new PhysicalFileProvider(@"/storage"),
 				RequestPath = new PathString("/storage"),
 			});
 			app.UseStaticFiles();
