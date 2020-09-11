@@ -166,6 +166,12 @@ namespace Web
 					new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"node_modules")),
 				RequestPath = new PathString("/plugins"),
 			});
+			app.UseStaticFiles(new StaticFileOptions
+			{
+				FileProvider =
+					new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"/storage")),
+				RequestPath = new PathString("/storage"),
+			});
 			app.UseStaticFiles();
 		}
 

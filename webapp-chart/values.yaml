@@ -40,7 +40,7 @@ volumes:
       size: 25Gi
       accessModes:
         - ReadWriteMany
-    mountPath: /app/wwwroot/storage
+    mountPath: /storage
   - name: keys
     persistent:
       claim: webapp-keys
