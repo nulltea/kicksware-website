@@ -24,7 +24,7 @@ namespace Web.Controllers
 		[Authorize]
 		public IActionResult Index([FromServices]IOptions<AppConfig> options)
 		{
-			HomeFeedInfo ??= JsonConvert.DeserializeObject<List<HomePageInfoViewModel>>(System.IO.File.ReadAllText(options.Value.HomeFeedContentPath));
+			HomeFeedInfo ??= JsonConvert.DeserializeObject<List<HomePageInfoViewModel>>(System.IO.File.ReadAllText(options.Value.HomeFeedContentPath))?.Where(post => !post.Outdated).ToList();
 			ViewBag.FeaturedReferences = GetFeatured();
 			return View(HomeFeedInfo);
 		}

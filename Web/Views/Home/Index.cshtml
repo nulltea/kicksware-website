@@ -27,19 +27,11 @@
 				<!-- Slider Item -->
 				<div class="owl-item auto-slider-item">
 					<div class="auto-slider-background" style="background-image: url(@info.Image)"></div>
-					<div class="auto-slider-content-container">
-						<div class="container">
-							<div class="row">
-								<div class="col">
-									<div class="auto-slider-content" data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
-										<div class="auto-slider-title">@info.Title</div>
-										<div class="auto-slider-subtitle">@info.Description</div>
-										<div class="button button_light home_button" id="home-button">
-											<a href=@info.ButtonAction>@info.ButtonCaption</a>
-										</div>
-									</div>
-								</div>
-							</div>
+					<div class="auto-slider-content" style='background: @(info.Background ?? "#D5E4E9"); color: @(info.Color ?? "#171F25");' data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
+						<div class="auto-slider-title">@info.Title</div>
+						<div class="auto-slider-subtitle">@info.Description</div>
+						<div class="button button_light home_button" id="home-button" style='border-color: @(info.Color ?? "#171F25")'>
+							<a href=@info.ButtonAction>@info.ButtonCaption</a>
 						</div>
 					</div>
 				</div>
@@ -53,9 +45,10 @@
 					<div class="col">
 						<div class="auto-slider-dots">
 							<ul class="auto-slider-dots-list">
-								<li class="auto-slider-dot active">01.</li>
-								<li class="auto-slider-dot">02.</li>
-								<li class="auto-slider-dot">03.</li>
+								@for (var i = 1; i <= Model.Count; i++)
+								{
+									<li class="auto-slider-dot">@($"N{i.ToString().PadLeft(2, '0')}")</li>
+								}
 							</ul>
 						</div>
 					</div>
@@ -104,6 +97,7 @@
 		</div>
 	</section>
 </div>
+
 @section Scripts
 {
 	<script src="~/plugins/flickity/dist/flickity.pkgd.min.js"></script>
