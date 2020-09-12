@@ -1,6 +1,6 @@
 ﻿function mapInit() {
 	let homeCoordinates = new google.maps.LatLng(50.416101, 30.6324291);
-	let workCoordinates = new google.maps.LatLng(52.5080931, 13.4505881);
+	let workCoordinates = new google.maps.LatLng(50.4322091,30.5288932);
 	let map = new google.maps.Map(document.getElementById('map'), {
 		center: workCoordinates,
 		zoom: 12,
