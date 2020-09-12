@@ -113,6 +113,7 @@ web-app.deploy.k8s:
       --from-env-file=.env --dry-run -o yaml | kubectl apply -f -
   script:
     - helm upgrade --install -n webapp web-app webapp-chart
+  dependencies: []
 
 # check stage steps:
 
@@ -129,4 +130,5 @@ web-app.check.k8s:
     - echo -e "\e[36mWeb app live. Checking service readiness:\n"
     - curl "https://$WEBAPP_ENDPOINT_URL/health/ready" -f -o /dev/null || exit 1 | echo -e "\e[91mWeb app not ready! Triggering check job failure"
     - echo -e "\e[36mWeb app ready. Check job succeeded!"
+  dependencies: []
   retry: 2
