@@ -11,7 +11,7 @@ namespace Web.Container.Factory
 	{
 		public static MenuBuilder<ShopMenuContent> ProvideShopMenuBuilder(IServiceProvider provider)
 		{
-			var options = provider.GetService<IOptions<AppSettings>>();
+			var options = provider.GetService<IOptions<AppConfig>>();
 			if (options?.Value is null) throw new NullReferenceException("App settings not configured, although needed to build shop menu content");
 
 			var builder = new MenuBuilder<ShopMenuContent>(options.Value.ShopMenuContentPath);

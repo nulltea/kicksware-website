@@ -16,19 +16,19 @@ namespace Web.Data.Catalog
 		/// <summary>
 		///
 		/// </summary>
-		public static readonly SneakerSize[] SneakerSizesList = JsonConvert.DeserializeObject<SneakerSize[]>(File.ReadAllText($"wwwroot{Environment.LocalStoragePath}/meta/sizes.json"));
+		public static readonly SneakerSize[] SneakerSizesList = JsonConvert.DeserializeObject<SneakerSize[]>(File.ReadAllText($"wwwroot{Environment.LocalStoragePath}/content/sizes.json"));
 
 		/// <summary>
 		///
 		/// </summary>
-		public static readonly string[] SneakerBrandsList = JsonConvert.DeserializeObject<string[]>(File.ReadAllText($"wwwroot{Environment.LocalStoragePath}/meta/sneaker_brands.json"));
+		public static readonly string[] SneakerBrandsList = JsonConvert.DeserializeObject<string[]>(File.ReadAllText($"wwwroot{Environment.LocalStoragePath}/content/sneaker_brands.json"));
 
 		/// <summary>
 		///
 		/// </summary>
-		public static readonly string[] ColorsList = JsonConvert.DeserializeObject<string[]>(File.ReadAllText($"wwwroot{Environment.LocalStoragePath}/meta/colors.json"));
+		public static readonly string[] ColorsList = JsonConvert.DeserializeObject<string[]>(File.ReadAllText($"wwwroot{Environment.LocalStoragePath}/content/colors.json"));
 
-		public static FilterColor[] FilterColors = JsonConvert.DeserializeObject<FilterColor[]>(File.ReadAllText($"wwwroot{Environment.LocalStoragePath}/meta/filter-colors.json"));
+		public static FilterColor[] FilterColors = JsonConvert.DeserializeObject<FilterColor[]>(File.ReadAllText($"wwwroot{Environment.LocalStoragePath}/content/filter-colors.json"));
 
 		public static Dictionary<string, string> CurrencySigns { get; } = Enum.GetValues(typeof(Currency)).OfType<Currency>().Select(value =>
 		{

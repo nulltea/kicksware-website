@@ -49,7 +49,7 @@ namespace Web
 			services.AddHttpContextAccessor();
 			services.AddSession();
 
-			services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+			services.Configure<AppConfig>(Configuration.GetSection("AppConfig"));
 
 			services.AddBreadcrumbs(GetType().Assembly, options =>
 			{

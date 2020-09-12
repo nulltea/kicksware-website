@@ -734,5 +734,4 @@
     <ItemGroup>
       <TypeScriptCompile Include="node_modules\ajv\lib\ajv.d.ts" />
     </ItemGroup>
-
 </Project>

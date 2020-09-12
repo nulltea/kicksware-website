@@ -7,5 +7,6 @@
 		public string Description { get; set; }
 		public string ButtonCaption { get; set; }
 		public string ButtonAction { get; set; }
+		public bool Outdated { get; set; }
 	}
 }
