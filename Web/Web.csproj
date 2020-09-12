@@ -706,7 +706,7 @@
 
     <ItemGroup>
       <!-- JS plugins -->
-      <Content Include="node_modules\jquery\dist\jquery.js" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="node_modules\jquery\dist\jquery.min.js" CopyToPublishDirectory="PreserveNewest" />
       <Content Include="node_modules\jquery\dist\jquery.min.map" CopyToPublishDirectory="PreserveNewest" />
       <Content Include="node_modules\popper.js\dist\popper.min.js" CopyToPublishDirectory="PreserveNewest" />
       <Content Include="node_modules\popper.js\dist\popper.min.js.map" CopyToPublishDirectory="PreserveNewest" />
