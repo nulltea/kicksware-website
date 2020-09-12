@@ -53,6 +53,10 @@
 				height: 45%;
 				width: 50%;
 				.elevation(8);
+				.with-theme({
+					background: @secondary;
+					color: @primary;
+;				});
 
 				.auto-slider-title {
 					font-size: 35px;
@@ -72,17 +76,24 @@
 					});
 				}
 
-				#home-button {
-					border: 4px solid @theme-dark-primary;
+				.home_button {
+					.with-theme({
+						background: @secondary;
+						border: 4px solid @primary;
+
+						&:hover {
+							color: @secondary;
+
+							&::after {
+								background: @primary;
+							}
+						}
+					});
 
 					a {
 						color: inherit;
 						font-weight: 700;
 						font-size: 18px;
-					}
-
-					&:hover::after {
-						content: none;
 					}
 				}
 			}

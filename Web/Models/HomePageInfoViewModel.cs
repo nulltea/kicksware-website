@@ -8,8 +8,5 @@
 		public string ButtonCaption { get; set; }
 		public string ButtonAction { get; set; }
 		public bool Outdated { get; set; }
-
-		public string Background { get; set; }
-		public string Color { get; set; }
 	}
 }

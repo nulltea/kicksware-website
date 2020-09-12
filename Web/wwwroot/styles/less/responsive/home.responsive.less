@@ -75,9 +75,6 @@
 				font-size: 30px;
 			}
 
-			.auto-slider-subtitle {
-				display: none;
-			}
 
 			.auto-slider-dots {
 				right: 15px;
@@ -103,6 +100,7 @@
 	.home .main-carousel {
 		.auto-slider-item {
 			flex-direction: row;
+			justify-content: unset;
 
 			.auto-slider-content {
 				margin: 20px 10px;
@@ -110,23 +108,32 @@
 				width: 100%;
 				height: min-content;
 				max-height: 50%;
+				overflow: hidden;
 
 				.auto-slider-title {
-					font-size: 25px;
+					font-size: 20px;
 				}
 
 				.auto-slider-subtitle {
-					font-size: 14px;
+					font-size: 11px;
+				}
+			}
+			.home_button {
+				position: absolute;
+				left: 15px;
+				bottom: 15px;
+				border-width: 3px;
+				.elevation(8);
+				.with-theme({
+					background: @secondary;
+					border-color: @secondary;
+				});
+
+
+				a {
+					font-weight: 600;
 				}
 
-				#home-button {
-					margin-top: 10px;
-					border-width: 3px;
-					a {
-						font-weight: 600;
-					}
-
-				}
 			}
 		}
 

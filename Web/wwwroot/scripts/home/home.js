@@ -61,8 +61,19 @@
 	}
 }
 
+function mobileHandle() {
+	if (!isMobile()) return;
+
+	$(".auto-slider-item .home_button").each(function() {
+		let target = $(this).closest(".auto-slider-item");
+		$(this).detach().appendTo(target);
+	})
+}
+
 $(document).ready(function () {
 	"use strict";
 
 	autoSliderInit();
+
+	mobileHandle();
 });
