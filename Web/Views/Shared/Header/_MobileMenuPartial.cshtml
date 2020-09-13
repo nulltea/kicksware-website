@@ -1,4 +1,6 @@
 ﻿@using Web.Utils.Helpers
+@using Web.Handlers.Menu
+@inject MenuBuilder<MobileShopMenuContent> ShopMenuBuilder;
 
 <div class="menu">
 	<nav class="icon-nav">
@@ -22,14 +24,68 @@
 				<li class="slider-menu-item">
 					<a asp-controller="Home" asp-action="Index">Home</a>
 				</li>
-				<li class="slider-menu-item">
+				<li class="slider-menu-item expandable">
 					<a asp-controller="Profile" asp-action="Profile">Profile</a>
+					<div class="sub-menu">
+						<div class="submenu-header">
+							<button>
+								<span>BACK TO MENU</span>
+							</button>
+							<a asp-controller="Profile" asp-action="Profile">VISIT PROFILE</a>
+						</div>
+						<ul class="slider-menu-nav">
+							<li class="slider-menu-item">
+								<a asp-action="Profile" asp-controller="Profile">ACCOUNT</a>
+							</li>
+							<li class="slider-menu-item">
+								<a asp-action="Profile" asp-controller="Profile" asp-route-mode="buying">BUYING</a>
+							</li>
+							<li class="slider-menu-item">
+								<a asp-action="Profile" asp-controller="Profile" asp-route-mode="selling">SELLING</a>
+							</li>
+							<li class="slider-menu-item">
+								<a asp-action="Profile" asp-controller="Profile" asp-route-mode="favorite">FAVORITE</a>
+							</li>
+							<li class="slider-menu-item">
+								<a asp-action="Profile" asp-controller="Profile" asp-route-mode="payment">PAYMENT</a>
+							</li>
+							<li class="slider-menu-item">
+								<a asp-action="Profile" asp-controller="Profile" asp-route-mode="settings">SETTINGS</a>
+							</li>
+						</ul>
+					</div>
 				</li>
-				<li class="slider-menu-item">
+				<li class="slider-menu-item expandable">
 					<a asp-controller="Shop" asp-action="References">Shop</a>
+					@ShopMenuBuilder.RenderMenu(Html)
 				</li>
-				<li class="slider-menu-item">
+				<li class="slider-menu-item expandable">
 					<a asp-controller="Sell" asp-action="NewProduct">Sell</a>
+					<div class="sub-menu">
+						<div class="submenu-header">
+							<button>
+								<span>BACK TO MENU</span>
+							</button>
+							<a asp-controller="Sell" asp-action="NewProduct">SELL NOW</a>
+						</div>
+						<ul class="slider-menu-nav">
+							<li class="slider-menu-item">
+								<a asp-action="NewProduct" asp-controller="Sell">FIND YOUR KICKS</a>
+							</li>
+							<li class="slider-menu-item">
+								<a asp-action="SetDetails" asp-controller="Sell">START FROM SCRATCH</a>
+							</li>
+							<li class="slider-menu-item">
+								<a asp-action="Profile" asp-controller="Profile" asp-route-mode="selling">SOLD PRODUCTS</a>
+							</li>
+							<li class="slider-menu-item">
+								<a asp-action="Profile" asp-controller="Profile" asp-route-mode="selling">ALL PRODUCTS</a>
+							</li>
+							<li class="slider-menu-item">
+								<a asp-action="Profile" asp-controller="Profile" asp-route-mode="payment">PAYMENT</a>
+							</li>
+						</ul>
+					</div>
 				</li>
 				<li class="slider-menu-item">
 					<a asp-controller="About" asp-action="About">About</a>

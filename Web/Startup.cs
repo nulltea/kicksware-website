@@ -97,6 +97,7 @@ namespace Web
 			services.AddTransient<FilterContentBuilder<SneakerProduct>, ProductsFilterContent>();
 
 			services.AddTransient(ServiceFactory.ProvideShopMenuBuilder);
+			services.AddTransient(ServiceFactory.ProvideMobileShopMenuBuilder);
 
 			services.AddTransient<IUserStore<User>, UserStore>();
 			services.AddTransient<SignInManager<User>, MiddlewareSignInManager>();

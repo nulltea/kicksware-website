@@ -55,13 +55,31 @@ function openMenu() {
 }
 
 function closeMenu() {
-	let menu = $(".menu");
-	menu.removeClass("active");
+	$(".menu.active, .menu .active").each(function (){
+		$(this).removeClass("active");
+	});
 	menuActive = false;
+}
+
+function goBackMenu() {
+	$(".submenu-header button").click(function (){
+		$(this).closest(".slider-menu-item.expandable").removeClass("active");
+	});
+}
+
+function expandSumMenuHandle() {
+	$(".slider-menu-item.expandable > a").click(function (evt) {
+		evt.preventDefault();
+		$(this).parent().toggleClass("active");
+	})
 }
 
 $(document).ready(function () {
 	"use strict";
 
 	initMenu();
+
+	expandSumMenuHandle();
+
+	goBackMenu();
 });

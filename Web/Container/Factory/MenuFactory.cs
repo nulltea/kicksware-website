@@ -18,5 +18,15 @@ namespace Web.Container.Factory
 
 			return builder;
 		}
+
+		public static MenuBuilder<MobileShopMenuContent> ProvideMobileShopMenuBuilder(IServiceProvider provider)
+		{
+			var options = provider.GetService<IOptions<AppConfig>>();
+			if (options?.Value is null) throw new NullReferenceException("App settings not configured, although needed to build shop menu content");
+
+			var builder = new MenuBuilder<MobileShopMenuContent>(options.Value.ShopMenuContentPath);
+
+			return builder;
+		}
 	}
 }
