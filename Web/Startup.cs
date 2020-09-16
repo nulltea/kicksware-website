@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,6 +49,12 @@ namespace Web
 			services.AddControllersWithViews();
 			services.AddHttpContextAccessor();
 			services.AddSession();
+
+			services.Configure<ForwardedHeadersOptions>(options =>
+			{
+				options.ForwardedHeaders =
+					ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+			});
 
 			services.Configure<AppConfig>(Configuration.GetSection("AppConfig"));
 
@@ -138,14 +145,16 @@ namespace Web
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
+				app.UseForwardedHeaders();
 			}
 			else
 			{
 				app.UseExceptionHandler("/Home/Error");
+				app.UseForwardedHeaders();
 				app.UseHsts();
 			}
 			app.UseHttpsRedirection();
-
+			app.UseCertificateForwarding();
 			app.UseRouting();
 			app.UseSession();
 
