@@ -50,12 +50,6 @@ namespace Web
 			services.AddHttpContextAccessor();
 			services.AddSession();
 
-			services.Configure<ForwardedHeadersOptions>(options =>
-			{
-				options.ForwardedHeaders =
-					ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-			});
-
 			services.Configure<AppConfig>(Configuration.GetSection("AppConfig"));
 
 			services.AddBreadcrumbs(GetType().Assembly, options =>
@@ -145,12 +139,10 @@ namespace Web
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
-				app.UseForwardedHeaders();
 			}
 			else
 			{
 				app.UseExceptionHandler("/Home/Error");
-				app.UseForwardedHeaders();
 				app.UseHsts();
 			}
 			app.UseHttpsRedirection();
