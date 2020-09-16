@@ -146,7 +146,7 @@ namespace Web
 				app.UseHsts();
 			}
 			app.UseHttpsRedirection();
-			app.UseCertificateForwarding();
+
 			app.UseRouting();
 			app.UseSession();
 
