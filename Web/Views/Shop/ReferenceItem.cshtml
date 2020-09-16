@@ -123,9 +123,10 @@
 				}
 				@if (Model.Categories != null && Model.Categories.Any())
 				{
+
 					<div class="carousel-cell">
 						<div class="details-caption">CATEGORY</div>
-						<a class="underline details-info">@string.Join(", ", Model.Categories)</a>
+						<a class="underline details-info">@string.Join(", ", Model.Categories.Take(3))</a>
 					</div>
 				}
 			</div>

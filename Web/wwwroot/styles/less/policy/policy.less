@@ -1,0 +1,29 @@
+// COLORS //
+@import "../properties/colors";
+
+// FONTS //
+@import "../properties/fonts";
+
+// MIXINS
+@import "../mixins/mixins";
+
+.policy {
+	width: 100%;
+
+	.policy-content {
+		.flex-col(@justify: flex-start, @align: initial);
+		max-width: 100%;
+		width: auto;
+		margin: 30px 60px;
+
+		ul {
+			margin-bottom: 15px;
+		}
+
+		.with-theme({
+			li {
+				color: @secondary;
+			}
+		})
+	}
+}
