@@ -31,13 +31,13 @@ function mainSearchInit() {
 	let action = searchForm.attr("action")
 
 	searchInput.on("input", function () {
-		submitSearch(action, this.value);
+		submitAutoSearch(action, this.value);
 	})
 	$(window).keypress(function(event) {
 		if (event.keyCode === 13) {
 			event.preventDefault();
 			if ($(event.target).is(searchInput)) {
-				submitSearch(action, event.target.value);
+				submitAutoSearch(action, event.target.value);
 			}
 			return false;
 		}
@@ -45,13 +45,13 @@ function mainSearchInit() {
 }
 
 
-function submitSearch(actionUrl, prefix) {
+function submitAutoSearch(actionUrl, prefix) {
 	$.get(`${actionUrl}?prefix=${prefix}`, function (response) {
 		if (!response["success"]) {
 			return;
 		}
-		$(".search-results").html(response["content"]);
-		loadingSearch($(".result-cell"));
+		$("header .search-results").html(response["content"]);
+		loadingSearch($("header .result-cell"));
 		searchFavoriteInit();
 	})
 }
@@ -69,10 +69,11 @@ function loadingSearch(items){
 }
 
 function searchFavoriteInit(){
-	$(".result-cell .favorite input[type=checkbox]").click(function () {
+	$("header .search-results .result-cell .favorite input[type=checkbox]").click(function () {
 		let id = $(this).closest(".result-cell").attr("id")
 		let checked = $(this).is(":checked");
 		$.get(`/shop/${checked ? "like" : "unlike"}/${id}`);
+		$(this).parent().toggleClass("liked")
 	})
 }
 

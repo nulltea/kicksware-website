@@ -61,6 +61,7 @@ function favouriteInit(){
 		let id = $(this).closest(".product-cell").attr("id")
 		let checked = $(this).is(":checked");
 		$.get(`/shop/${checked ? "like" : "unlike"}/${id}`);
+		$(this).parent().toggleClass("liked")
 		if (!$(this).is(":checked")) {
 			let cell = $(this).closest(".product-cell");
 			requestAnimationFrame(function () {

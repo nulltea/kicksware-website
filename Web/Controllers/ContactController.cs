@@ -45,15 +45,15 @@ namespace Web.Controllers
 			{
 				new ContactInfoViewModel
 				{
-					Caption = "Information", Email = "info@kicksware.com", PhoneNumber = "+380 66 50 70 532"
+					Caption = "Information", Email = "info@kicksware.com", PhoneNumber = "+830 88 05 07 325"
 				},
 				new ContactInfoViewModel
 				{
-					Caption = "Partnership", Email = "partner@kicksware.com", PhoneNumber = "+380 66 50 70 532"
+					Caption = "Partnership", Email = "partner@kicksware.com", PhoneNumber = "+830 88 05 08 325"
 				},
 				new ContactInfoViewModel
 				{
-					Caption = "Development", Email = "dev@kicksware.com", PhoneNumber = "+380 66 50 70 532"
+					Caption = "Development", Email = "dev@kicksware.com", PhoneNumber = "+830 88 05 09 325"
 				},
 			};
 		}

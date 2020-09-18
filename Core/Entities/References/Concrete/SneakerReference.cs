@@ -75,7 +75,7 @@ namespace Core.Entities.References
 			}
 		}
 
-		public List<string> OtherImages => ImageLinks.Select(img => Path.Combine(Environment.Environment.FileStoragePath, "references", img)).ToList();
+		public List<string> OtherImages => ImageLinks?.Select(img => Path.Combine(Environment.Environment.FileStoragePath, "references", img)).ToList();
 
 		public DateTime ReleaseDate { get; set; }
 

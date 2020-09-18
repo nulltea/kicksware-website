@@ -43,10 +43,11 @@
 				</div>
 				@if (SignInManager.IsSignedIn(Context.User))
 				{
-					<div class="favorite">
+					@*TODO: Elasticsearch does not have likes data*@
+					@*<div class="favorite">
 						<input type="checkbox" value="true" @(result.Liked ? "checked" : "")/>
 						@Html.VectorIconRender("favorite.svg")
-					</div>
+					</div>*@
 				}
 			</div>
 		</div>

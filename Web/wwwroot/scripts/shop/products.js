@@ -266,6 +266,7 @@ function bindRequestUpdateEvent(element, page=1, event="change") {
 		let entityID = pathValues[3];
 		toggleLoadOverlay();
 		$.post(`/${controller}/${entity}/requestUpdate/${entityID}`, {filterInputs: formFilterParameters(), page: page, sortBy: formSortParameter() }, function(response) {
+			window.scroll({top: 450, left: 0, behavior: "instant" });
 			$(".result-content").html(response["content"]);
 			$(".count span").text(`Showing ${(page - 1) * response["pageSize"]}-${Math.min(response["pageSize"], response["length"])} / ${response["length"]} results`);
 			setLayoutMode();
@@ -333,6 +334,7 @@ function favoriteInit(){
 		let id = $(this).closest(".product-cell").attr("id")
 		let checked = $(this).is(":checked");
 		$.get(`/shop/${checked ? "like" : "unlike"}/${id}`);
+		$(this).parent().toggleClass("liked")
 	})
 }
 
