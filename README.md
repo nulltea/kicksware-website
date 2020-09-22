@@ -18,7 +18,19 @@
 [![web-app pipeline]](https://ci.kicksware.com/kicksware/web-app/-/commits/master)&nbsp;
 [![maintainability][maintainability badge]][maintainability source]
 
+## Overview
 
+_**Kicksware web application**_ provides a publicly accessible visual user interface to interact with the Kicksware sneaker resale platform.
+
+It introduces a new, convenient, and visually satisfying way to both buy and sell new or used sneakers, create your own great wishlist and collaborate with other sneakerheads around the globe.
+
+Sounds interesting? Consider visiting [**kicksware.com**][kicksware url] to see everything for yourself!
+
+## Back-end design
+
+## Front-end design
+
+## Wrap Up
 
 ## License
 
