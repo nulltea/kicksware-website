@@ -6,7 +6,8 @@
 	</a>
 </p>
 
-[![c# badge]](https://dotnet.microsoft.com/apps/aspnet)&nbsp;
+[![c# badge]](https://docs.microsoft.com/dotnet/csharp)&nbsp;
+[![js badge]](https://jamstack.org)&ensp;
 [![lines][lines counter]](https://github.com/timoth-y/kicksware-web-app)&nbsp;
 [![github commit activity][commit activity badge]][repo commit activity]&nbsp;
 [![asp.net badge]](https://dotnet.microsoft.com/apps/aspnet)&nbsp;
