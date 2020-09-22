@@ -9,6 +9,7 @@
 [![c# badge]](https://dotnet.microsoft.com/apps/aspnet)&nbsp;
 [![lines][lines counter]](https://github.com/timoth-y/kicksware-web-app)&nbsp;
 [![github commit activity][commit activity badge]][repo commit activity]&nbsp;
+[![asp.net badge]](https://dotnet.microsoft.com/apps/aspnet)&nbsp;
 [![kubernetes badge]](https://kubernetes.io)&nbsp;
 [![license badge]](https://www.gnu.org/licenses/agpl-3.0)
 
@@ -32,6 +33,7 @@ Licensed under the [GNU AGPLv3][license file].
 [commit activity badge]: https://img.shields.io/github/commit-activity/m/timoth-y/kicksware-web-app?label=Commit%20activity&color=teal
 [repo commit activity]: https://github.com/timoth-y/kicksware-web-app/graphs/commit-activity
 [lines counter]: https://img.shields.io/tokei/lines/github/timoth-y/kicksware-web-app?color=teal&label=Lines
+[asp.net badge]: https://img.shields.io/badge/Framework-ASP.NET%20Core-informational?style=flat&logo=.net&logoColor=white&color=teal
 [license badge]: https://img.shields.io/badge/License-AGPL%20v3-blue.svg?color=teal
 [architecture badge]: https://img.shields.io/badge/Architecture-Microservices-informational?style=flat&logo=opslevel&logoColor=white&color=teal
 [kubernetes badge]: https://img.shields.io/badge/DevOps-Kubernetes-informational?style=flat&logo=kubernetes&logoColor=white&color=316DE6
