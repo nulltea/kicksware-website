@@ -11,9 +11,9 @@
 [![lines][lines counter]](https://github.com/timoth-y/kicksware-web-app)&nbsp;
 [![github commit activity][commit activity badge]][repo commit activity]&nbsp;
 [![asp.net badge]](https://dotnet.microsoft.com/apps/aspnet)&nbsp;
-[![kubernetes badge]](https://kubernetes.io)&nbsp;
 [![license badge]](https://www.gnu.org/licenses/agpl-3.0)
 
+[![kubernetes badge]](https://kubernetes.io)&nbsp;
 [![gitlab badge]](https://ci.kicksware.com/kicksware/kicksware-web-app)&nbsp;
 [![web-app pipeline]](https://ci.kicksware.com/kicksware/web-app/-/commits/master)&nbsp;
 [![maintainability][maintainability badge]][maintainability source]
