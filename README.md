@@ -86,7 +86,7 @@ Although this website can not satisfy the potential buyer in a pair of new Nike'
 
 ## License
 
-Licensed under the [GNU AGPLv3][license file].
+Licensed under the [GNU AGPL-3.0][license file].
 
 [repo logo]: https://ci.kicksware.com/kicksware/web-app/-/raw/master/assets/repo-logo.png
 [kicksware url]: https://kicksware.com
