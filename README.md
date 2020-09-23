@@ -30,7 +30,7 @@ Sounds interesting? Consider visiting [**kicksware.com**][kicksware url] to see 
 
 Being a part of microservice based system brings flexibility into web application development process while eliminating vendor and technology lock-in.
 
-Globally Kickswares back-end logic is written using Go programming language as a set of microservices. Unfortunately currently, Go isn't as great for front-end development as it is for back-end. Luckily MSA is designed to deal with such problems so your client and server-side logic can be implemented with different languages, in fact every service can be build with it own set of languages and technologies as long as it possible to maintain all of them.
+Globally Kicksware's back-end logic is written using Go programming language as a set of microservices. Unfortunately currently, Go isn't as great for front-end development as it is for back-end. Luckily MSA is designed to deal with such problems so your client and server-side logic can be implemented with different languages, in fact every service can be build with it own set of languages and technologies as long as it possible to maintain all of them.
 
 On these terms, Kicksware web app is developed using **C#** language with its native [**Asp.Net Core**][asp.net core], as it is a cross-platform, enterprise-ready, open-source framework for building modern, cloud-enabled, web apps.
 
@@ -45,6 +45,7 @@ To make your experience while surfing through tons of great designed sneaker mod
 The last but not the least is the visual design itself. To achieve a modern, appealing look while providing a user-friendly intuitive interface Kicksware adopts Google's Material design.
 
 [![kicksware browser][]][Kicksware url]
+
 
 ## Requirements
 
@@ -111,7 +112,7 @@ Licensed under the [GNU AGPL-3.0][license file].
 [jamstack]: https://jamstack.org
 [material design]: https://material.io/design
 
-[kicksware browser]: https://ci.kicksware.com/kicksware/web-app/-/raw/master/assets/kicksware-browser.png
+[kicksware browser]: https://ci.kicksware.com/kicksware/web-app/-/raw/master/assets/kicksware-browser.gif
 
 [api repo]: https://github.com/timoth-y/kicksware-api
 [gateway repo]: https://github.com/timoth-y/kicksware-gateway
