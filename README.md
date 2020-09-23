@@ -48,7 +48,9 @@ The last but not the least is the visual design itself. To achieve a modern, app
 
 ## Requirements
 
-To ensure proper, full-fledge performance of Kicksware web application, all [Gateway][gateway repo], [Tool Stack][tool-stack repo] and [API][api repo] components must be deployed first. Otherwise, public accessibility will not be possible without [Traefik proxy][gateway repo]. Website will actually work without dedicated API and database, but in such conditions it will be useless.
+To ensure proper, full-fledge performance of Kicksware web application, all [Gateway][gateway repo], [Tool Stack][tool-stack repo] and [API][api repo] components must be deployed first. Otherwise, without [Traefik proxy][gateway repo] website's public accessibility will not be possible.
+
+It's also worth noticing that the app will actually work without a dedicated [API][api repo] and [database][tool-stack repo], although in such conditions it will be useless.
 
 ## Deployment
 
