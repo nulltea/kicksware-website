@@ -78,7 +78,7 @@ Kicksware web app can be deployed using following methods:
 
 ## Wrap Up
 
-**Kicksware web app** is a public demonstration of a noncommercial, research project dedicated to showcasing the use of modern technologies in the context of the fashion industry.
+**Kicksware web app** is a public exposure of a noncommercial, research project dedicated to showcasing the use of modern technologies in the context of the fashion industry.
 
 While being a part of a distributed, diverse microservice-based software infrastructure it exploits the flexibility and independence provided to it by the architecture.
 
@@ -88,7 +88,7 @@ Although this website can not satisfy the potential buyer in a pair of new Nike'
 
 Licensed under the [GNU AGPLv3][license file].
 
-[kicksware-webapp logo]: https://ci.kicksware.com/kicksware/web-app/-/raw/master/assets/kicksware-webapp-logo.png
+[kicksware-webapp logo]: https://ci.kicksware.com/kicksware/web-app/-/raw/master/assets/repo-logo.png
 [kicksware url]: https://kicksware.com
 
 [Website badge]: https://img.shields.io/website?label=Visit%20website&down_message=unavailable&up_color=teal&up_message=kicksware.com%20%7C%20online&url=https%3A%2F%2Fkicksware.com
