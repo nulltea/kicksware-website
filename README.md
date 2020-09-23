@@ -1,4 +1,4 @@
-# [![kicksware-webapp logo][]][Kicksware url]
+# [![repo logo][]][Kicksware url]
 
 <p align="center">
 	<a href="https://kicksware.com">
@@ -88,7 +88,7 @@ Although this website can not satisfy the potential buyer in a pair of new Nike'
 
 Licensed under the [GNU AGPLv3][license file].
 
-[kicksware-webapp logo]: https://ci.kicksware.com/kicksware/web-app/-/raw/master/assets/repo-logo.png
+[repo logo]: https://ci.kicksware.com/kicksware/web-app/-/raw/master/assets/repo-logo.png
 [kicksware url]: https://kicksware.com
 
 [Website badge]: https://img.shields.io/website?label=Visit%20website&down_message=unavailable&up_color=teal&up_message=kicksware.com%20%7C%20online&url=https%3A%2F%2Fkicksware.com
@@ -119,13 +119,13 @@ Licensed under the [GNU AGPLv3][license file].
 
 [docker-desktop]: https://docs.docker.com/desktop/
 [docker-compose]: https://docs.docker.com/compose/
-[compose config]: https://github.com/timoth-y/kicksware-api/blob/master/docker-compose.yml
-[ci compose config]: https://github.com/timoth-y/kicksware-api/blob/master/.gitlab/.gitlab-ci.compose.yml
-[ci k8s config]: https://github.com/timoth-y/kicksware-api/blob/master/.gitlab-ci.yml
+[compose config]: https://github.com/timoth-y/kicksware-web-app/blob/master/docker-compose.yml
+[ci compose config]: https://github.com/timoth-y/kicksware-web-app/blob/master/.gitlab/.gitlab-ci.compose.yml
+[ci k8s config]: https://github.com/timoth-y/kicksware-web-app/blob/master/.gitlab-ci.yml
 [k8s crd]: https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
 [ingress route]: https://docs.traefik.io/routing/providers/kubernetes-crd/
 
 [helm]: https://helm.sh/
 [helm chart]: https://github.com/timoth-y/kicksware-web-app/tree/master/webapp-chart
 
-[license file]: https://github.com/timoth-y/kicksware-platform/blob/master/LICENSE
+[license file]: https://github.com/timoth-y/kicksware-web-app/blob/master/LICENSE
