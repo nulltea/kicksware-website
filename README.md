@@ -46,7 +46,6 @@ The last but not the least is the visual design itself. To achieve a modern, app
 
 [![kicksware browser][]][Kicksware url]
 
-
 ## Requirements
 
 To ensure proper, full-fledge performance of Kicksware web application, all [Gateway][gateway repo], [Tool Stack][tool-stack repo] and [API][api repo] components must be deployed first. Otherwise, without [Traefik proxy][gateway repo] website's public accessibility will not be possible.
@@ -112,7 +111,7 @@ Licensed under the [GNU AGPL-3.0][license file].
 [jamstack]: https://jamstack.org
 [material design]: https://material.io/design
 
-[kicksware browser]: https://ci.kicksware.com/kicksware/web-app/-/raw/master/assets/kicksware-browser.gif
+[kicksware browser]: https://ci.kicksware.com/kicksware/web-app/-/raw/master/assets/kicksware-browser.png
 
 [api repo]: https://github.com/timoth-y/kicksware-api
 [gateway repo]: https://github.com/timoth-y/kicksware-gateway
