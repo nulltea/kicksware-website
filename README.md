@@ -26,6 +26,16 @@ It introduces a new, convenient, and visually satisfying way to both buy and sel
 
 Sounds interesting? Consider visiting [**kicksware.com**][kicksware url] to see everything for yourself!
 
+## Table of contents
+
+* [Overview](#overview)
+* [Back-end design](#back-end-design)
+* [Front-end design](#front-end-design)
+* [Requirements](#requirements)
+* [Deployment](#deployment)
+* [Wrap Up](#wrap-up)
+* [License](#license)
+
 ## Back-end design
 
 Being a part of microservice based system brings flexibility into web application development process while eliminating vendor and technology lock-in.
