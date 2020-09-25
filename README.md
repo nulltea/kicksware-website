@@ -64,13 +64,13 @@ It's also worth noticing that the app will actually work without a dedicated [AP
 
 ## Deployment
 
-Kicksware web app can be deployed using following methods:
+Kicksware web app can be deployed using the following methods:
 
 1. **Docker Compose file**
 
    This method require single dedicated server with installed both [`docker`][docker-compose] and [`docker-compose`][docker-compose] utilities.
 
-   Compose [configuration file][compose config] can be found in root of the project. This file already contains setting for reverse proxy routing and load balancing.
+   Compose [configuration file][compose config] can be found in the root of the project. This file already contains setting for reverse proxy routing and load balancing.
 
    Gitlab CI deployment pipeline [configuration file][ci compose config] for compose method can be found in `.gitlab` directory.
 
@@ -78,9 +78,9 @@ Kicksware web app can be deployed using following methods:
 
    Deployment to Kubernetes cluster is the default and desired way.
 
-   For more flexible and easier deployment [Helm package manager][helm] is used. It provides a simple, yet elegant way to write pre-configured, reusable Kubernetes resources configuration using YAML and Go Templates (or Lua scripts). Helm packages are called `charts`.
+   For more flexible and easier deployment [Helm package manager][helm] is used. It provides a simple, yet elegant way to write pre-configured, reusable Kubernetes resource configuration using YAML and Go Templates (or Lua scripts). Helm packages are called `charts`.
 
-   Web application [deployment chart][helm chart] directory can be found in root of the project.
+   Web application [deployment chart][helm chart] directory can be found in the root of the project.
 
    Helm chart configuration already contains configuration of [Traefik IngressRoute][ingress route] [Custom Resource Definition (CRD)][k8s crd] for reverse proxy routing and load balancing.
 
