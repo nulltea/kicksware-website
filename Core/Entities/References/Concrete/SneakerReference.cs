@@ -41,9 +41,10 @@ namespace Core.Entities.References
 
 		public SneakerModel BaseModel
 		{
-			get => _model ??= new SneakerModel(BaseModelName, Brand);
-			private set => _model = value;
+			get => _baseModel ??= string.IsNullOrEmpty(BaseModelName) ? null : new SneakerModel(BaseModelName, Brand);
+			private set => _baseModel = value;
 		}
+		private SneakerModel _baseModel;
 
 		[DataType(DataType.Currency)]
 		public decimal Price { get; set; }

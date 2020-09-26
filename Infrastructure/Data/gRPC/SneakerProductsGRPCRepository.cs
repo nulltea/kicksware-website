@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Model.Parameters;
 using Core.Repositories;
+using Google.Protobuf;
+using Google.Protobuf.Collections;
+using Google.Protobuf.WellKnownTypes;
 using Infrastructure.Gateway.gRPC;
 using Proto;
 using RequestParams = Core.Gateway.RequestParams;
@@ -26,16 +30,16 @@ namespace Infrastructure.Data
 			_client.GetProducts(new ProductFilter {RequestParams = requestParams?.FromNative()})?.Products.ToList()
 				.ToNative();
 
-		public List<SneakerProduct> Get(IEnumerable<string> productnames, RequestParams requestParams = default) =>
+		public List<SneakerProduct> Get(IEnumerable<string> productNames, RequestParams requestParams = default) =>
 			_client.GetProducts(new ProductFilter
 			{
-				ProductID = {productnames}, RequestParams = requestParams?.FromNative()
+				ProductID = {productNames}, RequestParams = requestParams?.FromNative()
 			})?.Products.ToList().ToNative();
 
-		public List<SneakerProduct> Get(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+		public List<SneakerProduct> Get(RequestQuery query, RequestParams requestParams = default) =>
 			_client.GetProducts(new ProductFilter
 			{
-				RequestQuery = queryMap.AsStruct(), RequestParams = requestParams?.FromNative()
+				RequestQuery = query.GetQuery<Struct>(), RequestParams = requestParams?.FromNative()
 			})?.Products.ToList().ToNative();
 
 		public List<SneakerProduct> Get(object queryObject, RequestParams requestParams = default) =>
@@ -74,10 +78,10 @@ namespace Infrastructure.Data
 				ProductID = {productID}, RequestParams = requestParams?.FromNative()
 			})?.Count > 0;
 
-		public int Count(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+		public int Count(RequestQuery query, RequestParams requestParams = default) =>
 			Convert.ToInt32(_client.CountProducts(new ProductFilter
 			{
-				RequestQuery = queryMap.AsStruct(), RequestParams = requestParams?.FromNative()
+				RequestQuery = query.GetQuery<Struct>(), RequestParams = requestParams?.FromNative()
 			})?.Count);
 
 		public int Count(object queryObject, RequestParams requestParams = default) =>
@@ -103,17 +107,17 @@ namespace Infrastructure.Data
 			.ToList().ToNative();
 
 		public async Task<List<SneakerProduct>>
-			GetAsync(IEnumerable<string> productnames, RequestParams requestParams = default) =>
+			GetAsync(IEnumerable<string> productNames, RequestParams requestParams = default) =>
 			(await _client.GetProductsAsync(new ProductFilter
 			{
-				ProductID = {productnames}, RequestParams = requestParams?.FromNative()
+				ProductID = {productNames}, RequestParams = requestParams?.FromNative()
 			})).Products.ToList().ToNative();
 
 		public async Task<List<SneakerProduct>>
-			GetAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+			GetAsync(RequestQuery query, RequestParams requestParams = default) =>
 			(await _client.GetProductsAsync(new ProductFilter
 			{
-				RequestQuery = queryMap.AsStruct(), RequestParams = requestParams?.FromNative()
+				RequestQuery = query.GetQuery<Struct>(), RequestParams = requestParams?.FromNative()
 			})).Products.ToList().ToNative();
 
 		public async Task<List<SneakerProduct>> GetAsync(object queryObject, RequestParams requestParams = default) =>
@@ -153,10 +157,10 @@ namespace Infrastructure.Data
 				ProductID = {productID}, RequestParams = requestParams?.FromNative()
 			}))?.Count > 0;
 
-		public async Task<int> CountAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+		public async Task<int> CountAsync(RequestQuery query, RequestParams requestParams = default) =>
 			Convert.ToInt32((await _client.CountProductsAsync(new ProductFilter
 			{
-				RequestQuery = queryMap.AsStruct(), RequestParams = requestParams?.FromNative()
+				RequestQuery = query.GetQuery<Struct>(), RequestParams = requestParams?.FromNative()
 			}))?.Count);
 
 		public async Task<int> CountAsync(object queryObject, RequestParams requestParams = default) =>
@@ -169,5 +173,26 @@ namespace Infrastructure.Data
 			Convert.ToInt32((await _client.CountProductsAsync(new ProductFilter()))?.Count);
 
 		#endregion
+
+		#region Usecases
+
+		public bool UploadImages(SneakerProduct sneakerProduct, RequestParams requestParams = default) =>
+			_client.UploadImages(new UploadImageRequest
+			{
+				ProductID = sneakerProduct.UniqueID, Images = {sneakerProduct.GetImagesData().FromNative()}
+			}) != null;
+
+		public async Task<bool> UploadImagesAsync(SneakerProduct sneakerProduct, RequestParams requestParams = default) =>
+			await _client.UploadImagesAsync(new UploadImageRequest
+		{
+			ProductID = sneakerProduct.UniqueID, Images = {sneakerProduct.GetImagesData().FromNative()}
+		}) != null;
+
+		public async Task<decimal> RequestConditionAnalysis(SneakerProduct sneaker) => throw new NotImplementedException();
+
+		public Task<SneakerProduct> RequestSneakerPrediction(List<string> images) => throw new NotImplementedException();
+
+		#endregion
+
 	}
 }

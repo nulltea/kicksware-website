@@ -38,5 +38,13 @@ namespace Core.Services
 		Task<bool> RemoveAsync(string username, RequestParams requestParams = default);
 
 		#endregion
+
+		#region Use cases
+
+		Theme GetTheme(string userID);
+
+		Task<Theme> GetThemeAsync(string userID);
+
+		#endregion
 	}
 }

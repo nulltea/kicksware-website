@@ -8,6 +8,8 @@ using Infrastructure.Gateway.gRPC;
 using Infrastructure.Gateway.REST;
 using Infrastructure.Gateway.REST.References.Sneakers;
 using Core.Entities.References;
+using Core.Model.Parameters;
+using Google.Protobuf.WellKnownTypes;
 using Proto;
 using RequestParams = Core.Gateway.RequestParams;
 using SneakerReference = Core.Entities.References.SneakerReference;
@@ -32,16 +34,16 @@ namespace Infrastructure.Data
 			_client.GetReferences(new ReferenceFilter {RequestParams = requestParams?.FromNative()})?.References.ToList()
 				.ToNative();
 
-		public List<SneakerReference> Get(IEnumerable<string> referencenames, RequestParams requestParams = default) =>
+		public List<SneakerReference> Get(IEnumerable<string> referenceNames, RequestParams requestParams = default) =>
 			_client.GetReferences(new ReferenceFilter
 			{
-				ReferenceID = {referencenames}, RequestParams = requestParams?.FromNative()
+				ReferenceID = {referenceNames}, RequestParams = requestParams?.FromNative()
 			})?.References.ToList().ToNative();
 
-		public List<SneakerReference> Get(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+		public List<SneakerReference> Get(RequestQuery query, RequestParams requestParams = default) =>
 			_client.GetReferences(new ReferenceFilter
 			{
-				RequestQuery = queryMap.AsStruct(), RequestParams = requestParams?.FromNative()
+				RequestQuery = query.GetQuery<Struct>(), RequestParams = requestParams?.FromNative()
 			})?.References.ToList().ToNative();
 
 		public List<SneakerReference> Get(object queryObject, RequestParams requestParams = default) =>
@@ -80,10 +82,10 @@ namespace Infrastructure.Data
 				ReferenceID = {referenceID}, RequestParams = requestParams?.FromNative()
 			})?.Count > 0;
 
-		public int Count(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+		public int Count(RequestQuery query, RequestParams requestParams = default) =>
 			Convert.ToInt32(_client.CountReferences(new ReferenceFilter
 			{
-				RequestQuery = queryMap.AsStruct(), RequestParams = requestParams?.FromNative()
+				RequestQuery = query.GetQuery<Struct>(), RequestParams = requestParams?.FromNative()
 			})?.Count);
 
 		public int Count(object queryObject, RequestParams requestParams = default) =>
@@ -109,17 +111,17 @@ namespace Infrastructure.Data
 			.References.ToList().ToNative();
 
 		public async Task<List<SneakerReference>>
-			GetAsync(IEnumerable<string> referencenames, RequestParams requestParams = default) =>
+			GetAsync(IEnumerable<string> referenceNames, RequestParams requestParams = default) =>
 			(await _client.GetReferencesAsync(new ReferenceFilter
 			{
-				ReferenceID = {referencenames}, RequestParams = requestParams?.FromNative()
+				ReferenceID = {referenceNames}, RequestParams = requestParams?.FromNative()
 			})).References.ToList().ToNative();
 
 		public async Task<List<SneakerReference>>
-			GetAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+			GetAsync(RequestQuery query, RequestParams requestParams = default) =>
 			(await _client.GetReferencesAsync(new ReferenceFilter
 			{
-				RequestQuery = queryMap.AsStruct(), RequestParams = requestParams?.FromNative()
+				RequestQuery = query.GetQuery<Struct>(), RequestParams = requestParams?.FromNative()
 			})).References.ToList().ToNative();
 
 		public async Task<List<SneakerReference>> GetAsync(object queryObject, RequestParams requestParams = default) =>
@@ -160,10 +162,10 @@ namespace Infrastructure.Data
 				ReferenceID = {referenceID}, RequestParams = requestParams?.FromNative()
 			}))?.Count > 0;
 
-		public async Task<int> CountAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+		public async Task<int> CountAsync(RequestQuery query, RequestParams requestParams = default) =>
 			Convert.ToInt32((await _client.CountReferencesAsync(new ReferenceFilter
 			{
-				RequestQuery = queryMap.AsStruct(), RequestParams = requestParams?.FromNative()
+				RequestQuery = query.GetQuery<Struct>(), RequestParams = requestParams?.FromNative()
 			}))?.Count);
 
 		public async Task<int> CountAsync(object queryObject, RequestParams requestParams = default) =>

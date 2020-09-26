@@ -9,7 +9,8 @@ using Core.Model;
 using Core.Model.Parameters;
 using Core.Reference;
 using Core.Services;
-using Infrastructure.Pattern;
+using Infrastructure.Gateway.REST.Builder;
+
 // using Microsoft.AspNetCore.Mvc;
 // using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -39,9 +40,12 @@ namespace Infrastructure.Usecase.Models
 
 		private readonly ICommonService<T> _service;
 
+		private readonly IQueryBuilder _builder;
+
 		#endregion
-		public FilteredModel(ICommonService<T> service, int currentPage = 1, int pageSize = 20)
+		public FilteredModel(IQueryBuilder builder, ICommonService<T> service, int currentPage = 1, int pageSize = 20)
 		{
+			_builder = builder;
 			_service = service;
 			PageSize = pageSize;
 			CurrentPage = currentPage;
@@ -127,11 +131,10 @@ namespace Infrastructure.Usecase.Models
 
 		public void FetchFiltered() => FetchPage(1);
 
-		private Dictionary<string, object> GetQueryMap()
+		private RequestQuery GetQueryMap()
 		{
-			var queryBuilder = new QueryBuilder();
-			queryBuilder.SetQueryArguments(FilterGroups);
-			return queryBuilder.Build();
+			_builder.SetQueryArguments(FilterGroups);
+			return _builder.Build();
 		}
 
 		#endregion
@@ -269,9 +272,9 @@ namespace Infrastructure.Usecase.Models
 			}));
 		}
 
-		private int GetCountTotal(Dictionary<string, object> query) => CountTotal = _service.Count(query);
+		private int GetCountTotal(RequestQuery query) => CountTotal = _service.Count(query);
 
-		private async Task<int> GetCountTotalAsync(Dictionary<string, object> query) => CountTotal = await _service.CountAsync(query);
+		private async Task<int> GetCountTotalAsync(RequestQuery query) => CountTotal = await _service.CountAsync(query);
 
 		#endregion
 	}

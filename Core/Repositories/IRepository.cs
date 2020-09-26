@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Core.Entities;
 using Core.Gateway;
+using Core.Model.Parameters;
 
 namespace Core.Repositories
 {
@@ -12,7 +13,7 @@ namespace Core.Repositories
 
 		List<T> Get(IEnumerable<string> idList, RequestParams requestParams = default);
 
-		List<T> Get(Dictionary<string, object> queryMap, RequestParams requestParams = default);
+		List<T> Get(RequestQuery query, RequestParams requestParams = default);
 
 		List<T> Get(object queryObject, RequestParams requestParams = default);
 
@@ -24,7 +25,7 @@ namespace Core.Repositories
 
 		bool Delete(string uniqueId, RequestParams requestParams = default);
 
-		int Count(Dictionary<string, object> queryMap, RequestParams requestParams = default);
+		int Count(RequestQuery query, RequestParams requestParams = default);
 
 		int Count(object queryObject, RequestParams requestParams = default);
 

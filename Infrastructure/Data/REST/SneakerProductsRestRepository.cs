@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Entities.Products;
 using Core.Gateway;
+using Core.Model.Parameters;
 using Core.Repositories;
 using Infrastructure.Gateway.REST;
 using Infrastructure.Gateway.REST.ProductRequests.Sneakers;
@@ -28,8 +30,8 @@ namespace Infrastructure.Data
 		public List<SneakerProduct> Get(object queryObject, RequestParams requestParams = default) =>
 			_client.Request<List<SneakerProduct>>(new GetQueriedSneakersRequest(queryObject) {RequestParams = requestParams});
 
-		public List<SneakerProduct> Get(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
-			_client.Request<List<SneakerProduct>>(new GetQueriedSneakersRequest(queryMap) {RequestParams = requestParams});
+		public List<SneakerProduct> Get(RequestQuery query, RequestParams requestParams = default) =>
+			_client.Request<List<SneakerProduct>>(new GetQueriedSneakersRequest(query.GetQuery<Dictionary<string, object>>()) {RequestParams = requestParams});
 
 
 		public SneakerProduct Post(SneakerProduct sneakerProduct, RequestParams requestParams = default) =>
@@ -44,8 +46,8 @@ namespace Infrastructure.Data
 		public bool Delete(string sneakerId, RequestParams requestParams = default) =>
 			_client.Request(new DeleteSneakerProductRequest(sneakerId) {RequestParams = requestParams});
 
-		public int Count(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
-			Get(queryMap, requestParams).Count;// TODO _client.Request<int>(new CountSneakerProductsRequest(queryObject));
+		public int Count(RequestQuery query, RequestParams requestParams = default) =>
+			Get(query.GetQuery<Dictionary<string, object>>(), requestParams).Count;// TODO _client.Request<int>(new CountSneakerProductsRequest(queryObject));
 
 		public int Count(object queryObject, RequestParams requestParams = default) =>
 			Get(requestParams).Count;// TODO _client.Request<int>(new CountSneakerProductsRequest(queryObject));
@@ -68,8 +70,8 @@ namespace Infrastructure.Data
 		public Task<List<SneakerProduct>> GetAsync(object queryObject, RequestParams requestParams = default) =>
 			_client.RequestAsync<List<SneakerProduct>>(new GetQueriedSneakersRequest(queryObject) {RequestParams = requestParams});
 
-		public Task<List<SneakerProduct>> GetAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
-			_client.RequestAsync<List<SneakerProduct>>(new GetQueriedSneakersRequest(queryMap) {RequestParams = requestParams});
+		public Task<List<SneakerProduct>> GetAsync(RequestQuery query, RequestParams requestParams = default) =>
+			_client.RequestAsync<List<SneakerProduct>>(new GetQueriedSneakersRequest(query.GetQuery<Dictionary<string, object>>()) {RequestParams = requestParams});
 
 		public Task<SneakerProduct> PostAsync(SneakerProduct sneakerProduct, RequestParams requestParams = default) =>
 			_client.RequestAsync<SneakerProduct>(new PostSneakerProductRequest(sneakerProduct) {RequestParams = requestParams});
@@ -83,13 +85,27 @@ namespace Infrastructure.Data
 		public Task<bool> DeleteAsync(string sneakerId, RequestParams requestParams = default) =>
 			_client.RequestAsync(new DeleteSneakerProductRequest(sneakerId) {RequestParams = requestParams});
 
-		public Task<int> CountAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
-			_client.RequestAsync<int>(new CountSneakerProductsRequest(queryMap));
+		public Task<int> CountAsync(RequestQuery query, RequestParams requestParams = default) =>
+			_client.RequestAsync<int>(new CountSneakerProductsRequest(query.GetQuery<Dictionary<string, object>>()));
 
 		public Task<int> CountAsync(object queryObject, RequestParams requestParams = default) =>
 			_client.RequestAsync<int>(new CountSneakerProductsRequest(queryObject));
 
 		public Task<int> CountAsync() => _client.RequestAsync<int>(new CountSneakerProductsRequest());
+
+		#endregion
+
+		#region Usecases
+
+		public bool UploadImages(SneakerProduct sneakerProduct, RequestParams requestParams = default) =>
+			_client.Request(new PutSneakerImagesRequest(sneakerProduct));
+
+		public Task<bool> UploadImagesAsync(SneakerProduct sneakerProduct, RequestParams requestParams = default) =>
+			_client.RequestAsync(new PutSneakerImagesRequest(sneakerProduct));
+
+		public Task<decimal> RequestConditionAnalysis(SneakerProduct sneaker) => throw new NotImplementedException();
+
+		public Task<SneakerProduct> RequestSneakerPrediction(List<string> images) => throw new NotImplementedException();
 
 		#endregion
 	}

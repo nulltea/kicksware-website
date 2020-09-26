@@ -36,7 +36,8 @@ namespace Web.Controllers
 		private IFilteredModel<TEntity> InitFilterHandler<TEntity>(object additionalParams = default) where TEntity : IBaseEntity
 		{
 			var service = HttpContext.RequestServices.GetService<ICommonService<TEntity>>();
-			var handler = new FilteredModel<TEntity>(service);
+			var builder = HttpContext.RequestServices.GetService<IQueryBuilder>();
+			var handler = new FilteredModel<TEntity>(builder, service);
 
 			var contentBuilder = HttpContext.RequestServices.GetService<FilterContentBuilder<TEntity>>();
 			if (additionalParams != default) contentBuilder.SetAdditionalParams(additionalParams);

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Gateway;
+using Core.Model.Parameters;
 
 namespace Core.Services
 {
@@ -11,9 +12,9 @@ namespace Core.Services
 
 		List<T> Fetch(RequestParams requestParams = default);
 
-		List<T> Fetch(Dictionary<string, object> query, RequestParams requestParams = default);
+		List<T> Fetch(RequestQuery query, RequestParams requestParams = default);
 
-		int Count(Dictionary<string, object> query, RequestParams requestParams = default);
+		int Count(RequestQuery query, RequestParams requestParams = default);
 
 		int Count(object query = default, RequestParams requestParams = default);
 
@@ -21,9 +22,9 @@ namespace Core.Services
 
 		Task<List<T>> FetchAsync(RequestParams requestParams = default);
 
-		Task<List<T>> FetchAsync(Dictionary<string, object> query, RequestParams requestParams = default);
+		Task<List<T>> FetchAsync(RequestQuery query, RequestParams requestParams = default);
 
-		Task<int> CountAsync(Dictionary<string, object> query, RequestParams requestParams = default);
+		Task<int> CountAsync(RequestQuery query, RequestParams requestParams = default);
 
 		Task<int> CountAsync(object query = default, RequestParams requestParams = default);
 	}

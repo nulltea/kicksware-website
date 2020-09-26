@@ -46,7 +46,7 @@ namespace Web.Container.Factory
 				var context = contextAccessor.HttpContext;
 				if (context is null) throw new NullReferenceException(nameof(context));
 				var token = context.RetrieveCookieAuthToken();
-				if (!string.IsNullOrEmpty(token)) 	metadata.Add("authorization", token);
+				if (!string.IsNullOrEmpty(token)) metadata.Add("authorization", token);
 				return Task.CompletedTask;
 			});
 
@@ -55,7 +55,11 @@ namespace Web.Container.Factory
 			var rootCertFile = System.Environment.GetEnvironmentVariable("TLS_CERT_FILE");
 			if (!string.IsNullOrEmpty(rootCertFile)) rootCertificate = File.ReadAllText(rootCertFile);
 
-			var channel = new Channel(host, ChannelCredentials.Create(new SslCredentials(rootCertificate), credentials));
+			var channel = new Channel(host, ChannelCredentials.Create(new SslCredentials(rootCertificate), credentials), new []
+			{
+				new ChannelOption(ChannelOptions.MaxReceiveMessageLength, 25 * 1024 * 1024)
+			});
+
 
 			return channel;
 		}

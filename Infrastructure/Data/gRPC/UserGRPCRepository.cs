@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Model.Parameters;
 using Core.Repositories;
+using Google.Protobuf.WellKnownTypes;
 using Infrastructure.Gateway.gRPC;
 using Proto;
 using RequestParams = Core.Gateway.RequestParams;
@@ -29,10 +31,10 @@ namespace Infrastructure.Data
 			_client.GetUsers(new UserFilter {UserID = {usernames}, RequestParams = requestParams?.FromNative()})?.Users
 				.ToList().ToNative();
 
-		public List<User> Get(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+		public List<User> Get(RequestQuery query, RequestParams requestParams = default) =>
 			_client.GetUsers(new UserFilter
 			{
-				RequestQuery = queryMap.AsStruct(), RequestParams = requestParams?.FromNative()
+				RequestQuery = query.GetQuery<Struct>(), RequestParams = requestParams?.FromNative()
 			})?.Users.ToList().ToNative();
 
 		public List<User> Get(object queryObject, RequestParams requestParams = default) =>
@@ -57,10 +59,10 @@ namespace Infrastructure.Data
 			_client.DeleteUsers(new UserFilter {UserID = {userID}, RequestParams = requestParams?.FromNative()})?.Count >
 			0;
 
-		public int Count(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+		public int Count(RequestQuery query, RequestParams requestParams = default) =>
 			Convert.ToInt32(_client.CountUsers(new UserFilter
 			{
-				RequestQuery = queryMap.AsStruct(), RequestParams = requestParams?.FromNative()
+				RequestQuery = query.GetQuery<Struct>(), RequestParams = requestParams?.FromNative()
 			})?.Count);
 
 		public int Count(object queryObject, RequestParams requestParams = default) =>
@@ -90,10 +92,10 @@ namespace Infrastructure.Data
 			})).Users.ToList()?.ToNative();
 
 		public async Task<List<User>>
-			GetAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+			GetAsync(RequestQuery query, RequestParams requestParams = default) =>
 			(await _client.GetUsersAsync(new UserFilter
 			{
-				RequestQuery = queryMap.AsStruct(), RequestParams = requestParams?.FromNative()
+				RequestQuery = query.GetQuery<Struct>(), RequestParams = requestParams?.FromNative()
 			})).Users.ToList()?.ToNative();
 
 		public async Task<List<User>> GetAsync(object queryObject, RequestParams requestParams = default) =>
@@ -126,10 +128,10 @@ namespace Infrastructure.Data
 				UserID = {userID}, RequestParams = requestParams?.FromNative()
 			}))?.Count > 0;
 
-		public async Task<int> CountAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+		public async Task<int> CountAsync(RequestQuery query, RequestParams requestParams = default) =>
 			Convert.ToInt32((await _client.CountUsersAsync(new UserFilter
 			{
-				RequestQuery = queryMap.AsStruct(), RequestParams = requestParams?.FromNative()
+				RequestQuery = query.GetQuery<Struct>(), RequestParams = requestParams?.FromNative()
 			}))?.Count);
 
 		public async Task<int> CountAsync(object queryObject, RequestParams requestParams = default) =>
@@ -142,5 +144,9 @@ namespace Infrastructure.Data
 			Convert.ToInt32((await _client.CountUsersAsync(new UserFilter()))?.Count);
 
 		#endregion
+
+		public string GetTheme(string userID) => _client.GetTheme(new UserFilter {UserID = {userID}})?.Theme;
+
+		public async Task<string> GetThemeAsync(string userID) => (await _client.GetThemeAsync(new UserFilter {UserID = {userID}}))?.Theme;
 	}
 }

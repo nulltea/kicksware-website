@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Core.Entities;
 using Core.Gateway;
+using Core.Model.Parameters;
 
 namespace Core.Repositories
 {
@@ -13,7 +14,7 @@ namespace Core.Repositories
 
 		Task<List<T>> GetAsync(IEnumerable<string> idList, RequestParams requestParams = default);
 
-		Task<List<T>> GetAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default);
+		Task<List<T>> GetAsync(RequestQuery query, RequestParams requestParams = default);
 
 		Task<List<T>> GetAsync(object queryObject, RequestParams requestParams = default);
 
@@ -25,7 +26,7 @@ namespace Core.Repositories
 
 		Task<bool> DeleteAsync(string uniqueId, RequestParams requestParams = default);
 
-		Task<int> CountAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default);
+		Task<int> CountAsync(RequestQuery query, RequestParams requestParams = default);
 
 		Task<int> CountAsync(object queryObject, RequestParams requestParams = default);
 

@@ -5,13 +5,11 @@ using Core.Entities;
 using Core.Entities.References;
 using Core.Extension;
 using Core.Gateway;
+using Core.Model;
 using Core.Model.Parameters;
 using Core.Reference;
 using Core.Repositories;
 using Core.Services;
-using Infrastructure.Gateway.REST;
-using Infrastructure.Gateway.REST.Interact;
-using Infrastructure.Pattern;
 
 namespace Infrastructure.Usecase
 {
@@ -19,10 +17,16 @@ namespace Infrastructure.Usecase
 	{
 		private readonly ISneakerReferenceRepository _repository;
 
-		private readonly IGatewayClient<IGatewayRestRequest> _client;
+		private readonly IQueryBuilder _builder;
 
-		public SneakerReferenceService(ISneakerReferenceRepository repository, IGatewayClient<IGatewayRestRequest> client) =>
-			(_repository, _client) = (repository, client);
+		private readonly Task<List<SneakerReference>> _cachedSneakers;
+
+		public SneakerReferenceService(ISneakerReferenceRepository repository, IQueryBuilder builder)
+		{
+			_repository = repository;
+			_builder = builder;
+			_cachedSneakers = FetchAsync();
+		}
 
 		#region CRUD sync
 
@@ -35,7 +39,7 @@ namespace Infrastructure.Usecase
 
 		public List<SneakerReference> Fetch(object queryObject, RequestParams requestParams = default) => _repository.Get(queryObject, requestParams);
 
-		public List<SneakerReference> Fetch(Dictionary<string, object> queryMap, RequestParams requestParams = default) => _repository.Get(queryMap, requestParams);
+		public List<SneakerReference> Fetch(RequestQuery query, RequestParams requestParams = default) => _repository.Get(query, requestParams);
 
 		public SneakerReference Store(SneakerReference sneakerReference, RequestParams requestParams = default) => _repository.Post(sneakerReference, requestParams);
 
@@ -45,7 +49,7 @@ namespace Infrastructure.Usecase
 
 		public int Count() => _repository.Count();
 
-		public int Count(Dictionary<string, object> queryMap, RequestParams requestParams = default) => _repository.Count(queryMap, requestParams);
+		public int Count(RequestQuery query, RequestParams requestParams = default) => _repository.Count(query, requestParams);
 
 		public int Count(object queryObject, RequestParams requestParams = default) => _repository.Count(queryObject, requestParams);
 
@@ -61,7 +65,7 @@ namespace Infrastructure.Usecase
 
 		public Task<List<SneakerReference>> FetchAsync(object queryObject, RequestParams requestParams = default) => _repository.GetAsync(queryObject, requestParams);
 
-		public Task<List<SneakerReference>> FetchAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) => _repository.GetAsync(queryMap, requestParams);
+		public Task<List<SneakerReference>> FetchAsync(RequestQuery query, RequestParams requestParams = default) => _repository.GetAsync(query, requestParams);
 
 		public Task<SneakerReference> StoreAsync(SneakerReference sneakerReference, RequestParams requestParams = default) => _repository.PostAsync(sneakerReference, requestParams);
 
@@ -69,7 +73,7 @@ namespace Infrastructure.Usecase
 
 		public Task<bool> ModifyAsync(SneakerReference sneakerReference, RequestParams requestParams = default) => _repository.UpdateAsync(sneakerReference, requestParams);
 
-		public Task<int> CountAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) => _repository.CountAsync(queryMap, requestParams);
+		public Task<int> CountAsync(RequestQuery query, RequestParams requestParams = default) => _repository.CountAsync(query, requestParams);
 
 		public Task<int> CountAsync(object queryObject, RequestParams requestParams = default) => _repository.CountAsync(queryObject, requestParams);
 
@@ -80,7 +84,8 @@ namespace Infrastructure.Usecase
 		public List<SneakerReference> GetRelated(SneakerReference reference, RequestParams requestParams = default)
 		{
 			var requiredCount = requestParams?.Limit ?? 5;
-			var query = new QueryBuilder()
+			var query = _builder
+				.Reset()
 				.SetQueryArguments("brandname", ExpressionType.And, new FilterParameter(reference.BrandName))
 				.SetQueryArguments("modelname", ExpressionType.And, new FilterParameter(reference.ModelName, ExpressionType.Regex))
 				.Build();
@@ -90,11 +95,12 @@ namespace Infrastructure.Usecase
 			var related = Fetch(query, requestParams);
 			if ((related is null || related.Count < requiredCount) && reference.BaseModel != null)
 			{
-				query = new QueryBuilder()
+				query = _builder
+					.Reset()
 					.SetQueryArguments("brandname", ExpressionType.And, new FilterParameter(reference.BrandName))
 					.SetQueryArguments("modelname", ExpressionType.And, new FilterParameter(reference.BaseModel?.Name, ExpressionType.Regex))
 					.Build();
-				var lessRelated = Fetch(query);
+				var lessRelated = Fetch(query, new RequestParams{Limit = 100});
 				if (lessRelated != null && lessRelated.Any())
 				{
 					lessRelated = lessRelated.OrderBySimilarity(r => r.ModelName, reference.ModelName)
@@ -104,18 +110,15 @@ namespace Infrastructure.Usecase
 				}
 			}
 
-			if (related != null && related.Count < requiredCount && reference.Brand != null)
+			if (related != null && related.Count < requiredCount && reference.Brand != null && _cachedSneakers.IsCompleted && _cachedSneakers.Result != null)
 			{
-				query = new QueryBuilder()
-					.SetQueryArguments("brandname", ExpressionType.And, new FilterParameter(reference.BrandName))
-					.Build();
-				var lessRelated = Fetch(query);
-				if (lessRelated != null && lessRelated.Any())
+				var brandRelated = _cachedSneakers.Result.Where(r => r.BrandName == reference.BrandName).ToList();
+				if (brandRelated.Any())
 				{
-					lessRelated = lessRelated.OrderBySimilarity(r => r.ModelName, reference.ModelName)
+					brandRelated = brandRelated.OrderBySimilarity(r => r.ModelName, reference.ModelName)
 						.Where(r => r.UniqueID != reference.UniqueID)
 						.ToList();
-					related = related.Union(lessRelated).ToList();
+					related = related.Union(brandRelated).ToList();
 				}
 			}
 
@@ -128,7 +131,8 @@ namespace Infrastructure.Usecase
 		public async Task<List<SneakerReference>> GetRelatedAsync(SneakerReference reference, RequestParams requestParams = default)
 		{
 			var requiredCount = requestParams?.Limit ?? 5;
-			var query = new QueryBuilder()
+			var query = _builder
+				.Reset()
 				.SetQueryArguments("modelname", ExpressionType.And, new FilterParameter(reference.ModelName, ExpressionType.Regex))
 				.Build();
 			if (requestParams?.Limit != null) requestParams.Limit++; // later -1 current reference
@@ -136,7 +140,8 @@ namespace Infrastructure.Usecase
 			var related = await FetchAsync(query, requestParams);
 			if ((related is null || related.Count < requiredCount) && reference.Model?.BaseModel != null)
 			{
-				query = new QueryBuilder()
+				query = _builder
+					.Reset()
 					.SetQueryArguments("modelname", ExpressionType.And, new FilterParameter(reference.ModelName, ExpressionType.Regex))
 					.Build();
 				var lessRelated = await FetchAsync(query);
@@ -148,6 +153,19 @@ namespace Infrastructure.Usecase
 					related = (related?.Union(lessRelated) ?? lessRelated).ToList();
 				}
 			}
+
+			if (related != null && related.Count < requiredCount && reference.Brand != null && _cachedSneakers.IsCompleted && _cachedSneakers.Result != null)
+			{
+				var brandRelated = _cachedSneakers.Result.Where(r => r.BrandName == reference.BrandName).ToList();
+				if (brandRelated.Any())
+				{
+					brandRelated = brandRelated.OrderBySimilarity(r => r.ModelName, reference.ModelName)
+						.Where(r => r.UniqueID != reference.UniqueID)
+						.ToList();
+					related = related.Union(brandRelated).ToList();
+				}
+			}
+
 			return related?
 				.Where(r => r.UniqueID != reference.UniqueID)
 				.Distinct(new EntityComparer<SneakerReference>())
@@ -156,7 +174,8 @@ namespace Infrastructure.Usecase
 
 		public List<SneakerReference> GetFeatured(IEnumerable<string> models, RequestParams requestParams = default)
 		{
-			var query = new QueryBuilder()
+			var query = _builder
+				.Reset()
 				.SetQueryArguments("modelname", ExpressionType.Or, models.Select(model => new FilterParameter(model, ExpressionType.Regex)).ToArray())
 				.Build();
 
@@ -170,7 +189,8 @@ namespace Infrastructure.Usecase
 
 		public async Task<List<SneakerReference>> GetFeaturedAsync(IEnumerable<string> models, RequestParams requestParams = default)
 		{
-			var query = new QueryBuilder()
+			var query = _builder
+				.Reset()
 				.SetQueryArguments("modelname", ExpressionType.And, models.Select(model => new FilterParameter(model, ExpressionType.Regex)).ToArray())
 				.Build();
 
@@ -181,7 +201,6 @@ namespace Infrastructure.Usecase
 			}
 			return await FetchAsync(query, requestParams);
 		}
-
 		#endregion
 	}
 }

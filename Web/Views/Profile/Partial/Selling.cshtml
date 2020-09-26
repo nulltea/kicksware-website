@@ -1,15 +1,17 @@
 ﻿@using Core.Services
 @using Infrastructure.Usecase.Models
 @using Core.Entities.Products
+@using Core.Model
 @model Core.Entities.Users.User
 @inject ISneakerProductService Service
+@inject IQueryBuilder Builder
 
 <div class="row section-content" id="selling-content">
 	<h3>SOLD SNEAKERS</h3>
 	@{
 		if (Model?.UniqueID != null)
 		{
-			var soldSneakers = new FilteredModel<SneakerProduct>(Service);
+			var soldSneakers = new FilteredModel<SneakerProduct>(Builder, Service);
 			soldSneakers.AddHiddenFilterGroup("owner").AssignParameter(Model.UniqueID);
 			await soldSneakers.FetchPageAsync(1);
 			await Html.RenderPartialAsync("../Shop/Partial/ProductsPartial", soldSneakers);

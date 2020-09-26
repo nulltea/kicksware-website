@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Entities.Products;
 using Core.Gateway;
+using Core.Model.Parameters;
 using Core.Repositories;
 using Core.Services;
-using Infrastructure.Gateway.REST;
-using Infrastructure.Gateway.REST.Client;
-using Infrastructure.Gateway.REST.Interact;
-using Infrastructure.Gateway.REST.ProductRequests.Sneakers;
 
 namespace Infrastructure.Usecase
 {
@@ -17,10 +12,7 @@ namespace Infrastructure.Usecase
 	{
 		private readonly ISneakerProductRepository _repository;
 
-		private readonly IGatewayClient<IGatewayRestRequest> _client;
-
-		public SneakerProductService(ISneakerProductRepository repository, IGatewayClient<IGatewayRestRequest> client) =>
-			(_repository, _client) = (repository, client);
+		public SneakerProductService(ISneakerProductRepository repository) => _repository = repository;
 
 		#region CRUD sync
 
@@ -35,7 +27,7 @@ namespace Infrastructure.Usecase
 		public List<SneakerProduct> Fetch(object queryObject, RequestParams requestParams = default) =>
 			_repository.Get(queryObject, requestParams);
 
-		public List<SneakerProduct> Fetch(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+		public List<SneakerProduct> Fetch(RequestQuery queryMap, RequestParams requestParams = default) =>
 			_repository.Get(queryMap, requestParams);
 
 		public SneakerProduct Store(SneakerProduct sneakerProduct, RequestParams requestParams = default)
@@ -45,7 +37,7 @@ namespace Infrastructure.Usecase
 			if (response == null) return null;
 			sneakerProduct.UniqueID = response.UniqueID;
 
-			return !_client.Request(new PutSneakerImagesRequest(sneakerProduct)) ? null : response;
+			return !_repository.UploadImages(sneakerProduct) ? null : response;
 		}
 
 		public bool Modify(SneakerProduct sneakerProduct, RequestParams requestParams = default) =>
@@ -59,8 +51,8 @@ namespace Infrastructure.Usecase
 
 		public bool Remove(string sneakerId, RequestParams requestParams = default) => _repository.Delete(sneakerId, requestParams);
 
-		public int Count(Dictionary<string, object> queryMap = default, RequestParams requestParams = default) =>
-			_repository.Count(queryMap, requestParams);
+		public int Count(RequestQuery query = default, RequestParams requestParams = default) =>
+			_repository.Count(query, requestParams);
 
 		public int Count(object queryObject = default, RequestParams requestParams = default) =>
 			_repository.Count(queryObject, requestParams);
@@ -81,7 +73,7 @@ namespace Infrastructure.Usecase
 		public Task<List<SneakerProduct>> FetchAsync(object queryObject, RequestParams requestParams = default) =>
 			_repository.GetAsync(queryObject, requestParams);
 
-		public Task<List<SneakerProduct>> FetchAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
+		public Task<List<SneakerProduct>> FetchAsync(RequestQuery queryMap, RequestParams requestParams = default) =>
 			_repository.GetAsync(queryMap, requestParams);
 
 		public async Task<SneakerProduct> StoreAsync(SneakerProduct sneakerProduct, RequestParams requestParams = default)
@@ -90,7 +82,7 @@ namespace Infrastructure.Usecase
 
 			if (sneakerProduct == null) return null;
 
-			return !await _client.RequestAsync(new PutSneakerImagesRequest(sneakerProduct)) ? null : sneakerProduct;
+			return !await _repository.UploadImagesAsync(sneakerProduct) ? null : sneakerProduct;
 		}
 
 		public Task<bool> ModifyAsync(SneakerProduct sneakerProduct, RequestParams requestParams = default) =>
@@ -105,8 +97,8 @@ namespace Infrastructure.Usecase
 		public Task<bool> RemoveAsync(string sneakerId, RequestParams requestParams = default) =>
 			_repository.DeleteAsync(sneakerId, requestParams);
 
-		public Task<int> CountAsync(Dictionary<string, object> queryMap = default, RequestParams requestParams = default) =>
-			_repository.CountAsync(queryMap, requestParams);
+		public Task<int> CountAsync(RequestQuery query = default, RequestParams requestParams = default) =>
+			_repository.CountAsync(query, requestParams);
 
 		public Task<int> CountAsync(object queryObject = default, RequestParams requestParams = default) =>
 			_repository.CountAsync(queryObject, requestParams);
@@ -116,14 +108,16 @@ namespace Infrastructure.Usecase
 		#region Usecases
 
 		public bool AttachImages(SneakerProduct sneaker) =>
-			_client.Request(new PutSneakerImagesRequest(sneaker));
+			_repository.UploadImages(sneaker);
 
 		public Task<bool> AttachImagesAsync(SneakerProduct sneaker) =>
-			_client.RequestAsync(new PutSneakerImagesRequest(sneaker));
+			_repository.UploadImagesAsync(sneaker);
 
-		public Task<decimal> RequestConditionAnalysis(SneakerProduct sneaker) => throw new NotImplementedException();
+		public Task<decimal> RequestConditionAnalysis(SneakerProduct sneaker) =>
+			_repository.RequestConditionAnalysis(sneaker);
 
-		public Task<SneakerProduct> RequestSneakerPrediction(List<string> images) => throw new NotImplementedException();
+		public Task<SneakerProduct> RequestSneakerPrediction(List<string> images) =>
+			_repository.RequestSneakerPrediction(images);
 
 		#endregion
 	}

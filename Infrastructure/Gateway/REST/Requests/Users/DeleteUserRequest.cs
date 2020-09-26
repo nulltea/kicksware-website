@@ -1,9 +1,8 @@
-﻿using Core.Entities.Products;
-using Core.Entities.Users;
+﻿using Core.Entities.Users;
 using Infrastructure.Gateway.REST.Users;
 using RestSharp;
 
-namespace Infrastructure.Gateway.REST.ProductRequests.Sneakers
+namespace Infrastructure.Gateway.REST.Requests.Users
 {
 	public class DeleteUserRequest : UserBaseRequest
 	{

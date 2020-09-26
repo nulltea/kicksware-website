@@ -2,16 +2,18 @@
 @using Infrastructure.Usecase.Models
 @using Core.Entities.References
 @using Core.Entities
+@using Core.Model
 @using Core.Reference
 @model Core.Entities.Users.User
 @inject ISneakerReferenceService Service
+@inject IQueryBuilder Builder
 
 <div class="row section-content" id="buying-content">
 	<h3>PURCHASED SNEAKERS</h3>
 	@{
 		if (Model?.UniqueID != null)
 		{
-			var purchasedSneakers = new FilteredModel<SneakerReference>(Service);
+			var purchasedSneakers = new FilteredModel<SneakerReference>(Builder, Service);
 			// purchasedSneakers.AddHiddenFilterGroup<Order>("user_id", ExpressionType.Equal).AssignParameter(Model.UniqueID);
 			// await purchasedSneakers.FetchPageAsync(1); TODO orders foreign key filtering
 			await Html.RenderPartialAsync("../Shop/Partial/ReferencesPartial", purchasedSneakers);

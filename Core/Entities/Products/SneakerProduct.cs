@@ -75,6 +75,8 @@ namespace Core.Entities.Products
 		[JsonProperty("Images")]
 		internal Dictionary<string, byte[]> Images = new Dictionary<string, byte[]>();
 
+		public Dictionary<string, byte[]> GetImagesData() => Images;
+
 		public decimal ConditionIndex { get; set; }
 
 		public Dictionary<string, ShippingInfo> ShippingInfo { get; set; }

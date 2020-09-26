@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Attributes;
 using Core.Extension;
+using Core.Model;
 using Core.Model.Parameters;
 using Core.Reference;
 
-namespace Infrastructure.Pattern
+namespace Infrastructure.Gateway.REST.Builder
 {
-	public class QueryBuilder
+	public class QueryBuilderREST : IQueryBuilder
 	{
-		public QueryBuilder SetQueryArguments(FilterGroup group)
+		public IQueryBuilder SetQueryArguments(FilterGroup group)
 		{
 			_queryGroups = new List<FilterGroup> {group};
 			return this;
 		}
 
-		public QueryBuilder SetQueryArguments(List<FilterGroup> groups)
+		public IQueryBuilder SetQueryArguments(List<FilterGroup> groups)
 		{
 			_queryGroups = groups;
 			return this;
@@ -24,21 +25,21 @@ namespace Infrastructure.Pattern
 
 		private List<FilterGroup> _queryGroups;
 
-		public QueryBuilder SetQueryArguments(List<FilterParameter> parameters, FilterProperty property, ExpressionType expressionType = ExpressionType.Or)
+		public IQueryBuilder SetQueryArguments(List<FilterParameter> parameters, FilterProperty property, ExpressionType expressionType = ExpressionType.Or)
 		{
 			(_queryGroups ??= new List<FilterGroup>())
 				.Add(new FilterGroup(property, expressionType).AssignParameters(parameters.ToArray()));
 			return this;
 		}
 
-		public QueryBuilder SetQueryArguments(FilterProperty property, ExpressionType expressionType = ExpressionType.In, params FilterParameter[] parameters)
+		public IQueryBuilder SetQueryArguments(FilterProperty property, ExpressionType expressionType = ExpressionType.In, params FilterParameter[] parameters)
 		{
 			(_queryGroups ??= new List<FilterGroup>())
 				.Add(new FilterGroup(property, expressionType).AssignParameters(parameters.ToArray()));
 			return this;
 		}
 
-		public Dictionary<string, object> Build()
+		public RequestQuery Build()
 		{
 			var resultQuery = new Dictionary<string, object>();
 			foreach (var filterGroup in _queryGroups)
@@ -68,7 +69,7 @@ namespace Infrastructure.Pattern
 
 				resultQuery.TryAdd(queryPair.property, queryPair.query);
 			}
-			return resultQuery;
+			return RequestQuery.FromValue(resultQuery);
 		}
 
 		private bool BuildForGroup(FilterGroup filterGroup, out (string property, object query) resultQuery)
@@ -160,5 +161,11 @@ namespace Infrastructure.Pattern
 		}
 
 		private static string FormatProperty(string property) => property.ToLower();
+
+		public IQueryBuilder Reset()
+		{
+			_queryGroups = null;
+			return this;
+		}
 	}
 }

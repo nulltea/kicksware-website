@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Entities.References;
 using Core.Gateway;
+using Core.Model.Parameters;
 using Core.Repositories;
 using Infrastructure.Gateway.REST;
 using Infrastructure.Gateway.REST.References.Sneakers;
@@ -29,8 +30,8 @@ namespace Infrastructure.Data
 		public List<SneakerReference> Get(object queryObject, RequestParams requestParams = default) =>
 			_client.Request<List<SneakerReference>>(new GetQueriedSneakerReferencesRequest(queryObject){RequestParams = requestParams});
 
-		public List<SneakerReference> Get(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
-			_client.Request<List<SneakerReference>>(new GetQueriedSneakerReferencesRequest(queryMap){RequestParams = requestParams});
+		public List<SneakerReference> Get(RequestQuery query, RequestParams requestParams = default) =>
+			_client.Request<List<SneakerReference>>(new GetQueriedSneakerReferencesRequest(query.GetQuery<Dictionary<string, object>>()){RequestParams = requestParams});
 
 		public SneakerReference Post(SneakerReference sneakerReference, RequestParams requestParams = default) =>
 			_client.Request<SneakerReference>(new PostSneakerReferenceRequest(sneakerReference){RequestParams = requestParams});
@@ -45,8 +46,8 @@ namespace Infrastructure.Data
 
 		public bool Delete(string referenceId, RequestParams requestParams = default) => throw new NotImplementedException();
 
-		public int Count(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
-			_client.Request<int>(new CountSneakerReferencesRequest(queryMap){RequestParams = requestParams});
+		public int Count(RequestQuery query, RequestParams requestParams = default) =>
+			_client.Request<int>(new CountSneakerReferencesRequest(query.GetQuery<Dictionary<string, object>>()){RequestParams = requestParams});
 
 		public int Count(object queryObject, RequestParams requestParams = default) =>
 			_client.Request<int>(new CountSneakerReferencesRequest(queryObject){RequestParams = requestParams});
@@ -69,8 +70,8 @@ namespace Infrastructure.Data
 		public Task<List<SneakerReference>> GetAsync(object queryObject, RequestParams requestParams = default) =>
 			_client.RequestAsync<List<SneakerReference>>(new GetQueriedSneakerReferencesRequest(queryObject){RequestParams = requestParams});
 
-		public Task<List<SneakerReference>> GetAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
-			_client.RequestAsync<List<SneakerReference>>(new GetQueriedSneakerReferencesRequest(queryMap){RequestParams = requestParams});
+		public Task<List<SneakerReference>> GetAsync(RequestQuery query, RequestParams requestParams = default) =>
+			_client.RequestAsync<List<SneakerReference>>(new GetQueriedSneakerReferencesRequest(query.GetQuery<Dictionary<string, object>>()){RequestParams = requestParams});
 
 		public Task<SneakerReference> PostAsync(SneakerReference sneakerReference, RequestParams requestParams = default) =>
 			_client.RequestAsync<SneakerReference>(new PostSneakerReferenceRequest(sneakerReference){RequestParams = requestParams});
@@ -85,8 +86,8 @@ namespace Infrastructure.Data
 
 		public Task<bool> DeleteAsync(string referenceId, RequestParams requestParams = default) => throw new NotImplementedException();
 
-		public  Task<int> CountAsync(Dictionary<string, object> queryMap, RequestParams requestParams = default) =>
-			_client.RequestAsync<int>(new CountSneakerReferencesRequest(queryMap){RequestParams = requestParams});
+		public  Task<int> CountAsync(RequestQuery query, RequestParams requestParams = default) =>
+			_client.RequestAsync<int>(new CountSneakerReferencesRequest(query.GetQuery<Dictionary<string, object>>()){RequestParams = requestParams});
 
 		public Task<int> CountAsync(object queryObject, RequestParams requestParams = default) =>
 			_client.RequestAsync<int>(new CountSneakerReferencesRequest(queryObject){RequestParams = requestParams});

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Core.Extension;
 using Core.Gateway;
 using Core.Reference;
@@ -59,7 +60,13 @@ namespace Infrastructure.Gateway.gRPC
 			var value = new Value();
 			switch (obj)
 			{
+				case Value v:
+					value = v;
+					break;
 				case int n:
+					value.NumberValue = n;
+					break;
+				case long n:
 					value.NumberValue = n;
 					break;
 				case decimal n:
@@ -76,6 +83,12 @@ namespace Infrastructure.Gateway.gRPC
 					break;
 				case string s:
 					value.StringValue = s;
+					break;
+				case Struct st:
+					value.StructValue = st;
+					break;
+				case IEnumerable<Value> lv:
+					value = Value.ForList(lv.ToArray());
 					break;
 				case Dictionary<string, object> m:
 					value.StructValue = m.AsStruct();

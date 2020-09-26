@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Entities.Users;
+using Core.Extension;
 using Core.Gateway;
+using Core.Model.Parameters;
 using Core.Repositories;
 using Core.Services;
-using Infrastructure.Gateway.REST;
-using Infrastructure.Gateway.REST.Mail;
 
 namespace Infrastructure.Usecase
 {
@@ -23,7 +24,7 @@ namespace Infrastructure.Usecase
 
 		public List<User> Fetch(RequestParams requestParams = default) =>_repository.Get(requestParams);
 
-		public List<User> Fetch(Dictionary<string, object> query, RequestParams requestParams = default) =>
+		public List<User> Fetch(RequestQuery query, RequestParams requestParams = default) =>
 			_repository.Get(query, requestParams);
 
 		public List<User> Fetch(IEnumerable<string> usernames, RequestParams requestParams = default) => _repository.Get(usernames, requestParams);
@@ -38,7 +39,7 @@ namespace Infrastructure.Usecase
 
 		public bool Remove(string userID, RequestParams requestParams = default) => _repository.Delete(userID, requestParams);
 
-		public int Count(Dictionary<string, object> query, RequestParams requestParams = default) => _repository.Count(query, requestParams);
+		public int Count(RequestQuery query, RequestParams requestParams = default) => _repository.Count(query, requestParams);
 
 		public int Count(object query = default, RequestParams requestParams = default) => _repository.Count(query, requestParams);
 
@@ -50,7 +51,7 @@ namespace Infrastructure.Usecase
 
 		public Task<List<User>> FetchAsync(RequestParams requestParams = default) => _repository.GetAsync(requestParams);
 
-		public Task<List<User>> FetchAsync(Dictionary<string, object> query, RequestParams requestParams = default) => _repository.GetAsync(query, requestParams);
+		public Task<List<User>> FetchAsync(RequestQuery query, RequestParams requestParams = default) => _repository.GetAsync(query, requestParams);
 
 		public Task<List<User>> FetchAsync(IEnumerable<string> usernames, RequestParams requestParams = default) => _repository.GetAsync(usernames, requestParams);
 
@@ -64,7 +65,7 @@ namespace Infrastructure.Usecase
 
 		public Task<bool> RemoveAsync(string userID, RequestParams requestParams = default) => _repository.DeleteAsync(userID, requestParams);
 
-		public Task<int> CountAsync(Dictionary<string, object> query, RequestParams requestParams = default) => _repository.CountAsync(query, requestParams);
+		public Task<int> CountAsync(RequestQuery query, RequestParams requestParams = default) => _repository.CountAsync(query, requestParams);
 
 		public Task<int> CountAsync(object query = default, RequestParams requestParams = default) => _repository.CountAsync(requestParams);
 
@@ -90,6 +91,11 @@ namespace Infrastructure.Usecase
 
 		public Task<bool> SendNotificationAsync(string userID, string msg) =>
 			_mailClient.SendNotificationAsync(userID, msg);
+
+		public Theme GetTheme(string userID) => _repository.GetTheme(userID).GetEnumByMemberValue<Theme>();
+
+		public async Task<Theme> GetThemeAsync(string userID) =>
+			(await _repository.GetThemeAsync(userID)).GetEnumByMemberValue<Theme>();
 
 		#endregion
 	}

@@ -1,5 +1,9 @@
 ﻿@using Web.Utils.Helpers
 @using Web.Models.Auth
+@using Core.Services
+@using Microsoft.AspNetCore.Identity
+@using Core.Entities.Users
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="~/styles/css/responsive/auth.responsive.css">
 	@await RenderSectionAsync("Styles", false)
 </head>
-<body class="theme-dark">
+<body class=@($"theme-dark")>
 <div class="super_container">
 	<div class="header-spacer"></div>
 	<header class="header">

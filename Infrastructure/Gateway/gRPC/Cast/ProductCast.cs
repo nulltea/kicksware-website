@@ -4,6 +4,8 @@ using System.Linq;
 using Core.Entities.Products;
 using Core.Extension;
 using Core.Reference;
+using Google.Protobuf;
+using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;
 
 namespace Infrastructure.Gateway.gRPC
@@ -81,6 +83,14 @@ namespace Infrastructure.Gateway.gRPC
 				Europe = Convert.ToDouble(native.Europe),
 				UnitedStates = Convert.ToDouble(native.UnitedStates),
 				UnitedKingdom = Convert.ToDouble(native.UnitedKingdom),
+			};
+		}
+
+		public static MapField<string, ByteString> FromNative(this Dictionary<string, byte[]> data)
+		{
+			return new MapField<string, ByteString>
+			{
+				data.ToDictionary(kvp => kvp.Key, kvp => ByteString.CopyFrom(kvp.Value))
 			};
 		}
 	}

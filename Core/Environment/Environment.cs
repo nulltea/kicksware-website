@@ -1,6 +1,6 @@
-using System;
 using System.IO;
-using System.Text;
+using Core.Extension;
+using Core.Reference;
 
 namespace Core.Environment
 {
@@ -15,5 +15,8 @@ namespace Core.Environment
 		public static readonly string WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
 		public static readonly string ImagesPath = Path.Combine(WebRootPath, "images");
+
+		public static readonly DataProtocol DataProtocol = System.Environment.GetEnvironmentVariable("DATA_PROTOCOL")
+			.GetEnumByMemberValue<DataProtocol>();
 	}
 }

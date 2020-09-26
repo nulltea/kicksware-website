@@ -5,11 +5,15 @@ using Core.Entities.References;
 using Core.Entities.Users;
 using Core.Gateway;
 using Core.Model;
+using Core.Reference;
 using Core.Repositories;
 using Core.Services;
 using Core.Services.Interactive;
+using Elastic.Apm.NetCoreAll;
 using Infrastructure.Data;
+using Infrastructure.Gateway.gRPC.Builder;
 using Infrastructure.Gateway.REST;
+using Infrastructure.Gateway.REST.Builder;
 using Infrastructure.Gateway.REST.Client;
 using Infrastructure.Usecase;
 using Microsoft.AspNetCore.Authentication;
@@ -69,30 +73,52 @@ namespace Web
 
 			#region Dependency injection
 
-			services.AddTransient<IGatewayClient<IGatewayRestRequest>, RestfulClient>(ServiceFactory.ProvideRestClient);
+			if (Core.Environment.Environment.DataProtocol == DataProtocol.gRPC)
+			{
+				services.AddSingleton(ServiceFactory.ProvideGrpcChannel);
 
-			// services.AddSingleton(ServiceFactory.ProvideGrpcChannel);
-			// services.AddSingleton<Proto.UserService.UserServiceClient>();
-			// services.AddSingleton<Proto.ReferenceService.ReferenceServiceClient>();
-			// services.AddSingleton<Proto.ProductService.ProductServiceClient>();
-			// services.AddSingleton<Proto.SearchReferencesService.SearchReferencesServiceClient>();
-			// services.AddSingleton<Proto.SearchProductService.SearchProductServiceClient>();
-			// services.AddSingleton<Proto.AuthService.AuthServiceClient>();
-			// services.AddSingleton<Proto.MailService.MailServiceClient>();
-			// services.AddSingleton<Proto.InteractService.InteractServiceClient>();
+				services.AddSingleton<Proto.UserService.UserServiceClient>();
+				services.AddSingleton<Proto.ReferenceService.ReferenceServiceClient>();
+				services.AddSingleton<Proto.ProductService.ProductServiceClient>();
+				services.AddSingleton<Proto.SearchReferencesService.SearchReferencesServiceClient>();
+				services.AddSingleton<Proto.SearchProductService.SearchProductServiceClient>();
+				services.AddSingleton<Proto.AuthService.AuthServiceClient>();
+				services.AddSingleton<Proto.MailService.MailServiceClient>();
+				services.AddSingleton<Proto.InteractService.InteractServiceClient>();
 
-			services.AddTransient<ISneakerProductRepository, SneakerProductsRestRepository>();
-			services.AddTransient<ISneakerReferenceRepository, SneakerReferencesRestRepository>();
-			services.AddTransient<IUserRepository, UserRestRepository>();
+				services.AddTransient<ISneakerProductRepository, SneakerProductsGrpcRepository>();
+				services.AddTransient<ISneakerReferenceRepository, SneakerReferencesGrpcRepository>();
+				services.AddTransient<IUserRepository, UserGrpcRepository>();
 
-			services.AddTransient<ICommonService<SneakerReference>, SneakerReferenceService>();
-			services.AddTransient<ICommonService<SneakerProduct>, SneakerProductService>();
-			services.AddTransient<ISneakerReferenceService, SneakerReferenceService>();
-			services.AddTransient<ISneakerProductService, SneakerProductService>();
-			services.AddTransient<IReferenceSearchService, ReferenceSearchServiceREST>();
-			services.AddTransient<IMailService, MailServiceREST>();
-			services.AddTransient<ILikeService, InteractServiceREST>();
-			services.AddTransient<IUserService, UserService>();
+				services.AddSingleton<IAuthService, AuthServiceGRPC>();
+				services.AddTransient<IMailService, MailServiceGRPC>();
+				services.AddTransient<ILikeService, InteractServiceGRPC>();
+				services.AddTransient<IReferenceSearchService, ReferenceSearchServiceGRPC>();
+
+				services.AddSingleton<IQueryBuilder, QueryBuilderGRPC>();
+			}
+			else
+			{
+				services.AddTransient<IGatewayClient<IGatewayRestRequest>, RestfulClient>(ServiceFactory.ProvideRestClient);
+
+				services.AddTransient<ISneakerProductRepository, SneakerProductsRestRepository>();
+				services.AddTransient<ISneakerReferenceRepository, SneakerReferencesRestRepository>();
+				services.AddTransient<IUserRepository, UserRestRepository>();
+
+				services.AddSingleton<IAuthService, AuthServiceREST>();
+				services.AddTransient<IMailService, MailServiceREST>();
+				services.AddTransient<ILikeService, InteractServiceREST>();
+				services.AddTransient<IReferenceSearchService, ReferenceSearchServiceREST>();
+
+				services.AddSingleton<IQueryBuilder, QueryBuilderREST>();
+			}
+
+			// TODO REST -> Transient for RestfulClient
+			services.AddSingleton<ICommonService<SneakerReference>, SneakerReferenceService>();
+			services.AddSingleton<ICommonService<SneakerProduct>, SneakerProductService>();
+			services.AddSingleton<ISneakerReferenceService, SneakerReferenceService>();
+			services.AddSingleton<ISneakerProductService, SneakerProductService>();
+			services.AddSingleton<IUserService, UserService>();
 
 			services.AddTransient<FilterContentBuilder<SneakerReference>, ReferencesFilterContent>();
 			services.AddTransient<FilterContentBuilder<SneakerProduct>, ProductsFilterContent>();
@@ -112,7 +138,7 @@ namespace Web
 
 			services
 				.AddAuthentication(ConfigureAuthOptions)
-				.AddMiddlewareAuth<AuthServiceREST>(ConfigureAuthOptions)
+				.AddMiddlewareAuth(ConfigureAuthOptions)
 				.AddFacebook(facebookOptions =>
 				{
 					facebookOptions.AppId = Environment.GetEnvironmentVariable("AUTH_FACEBOOK_ID");
@@ -175,6 +201,8 @@ namespace Web
 				RequestPath = new PathString("/storage"),
 			});
 			app.UseStaticFiles();
+
+			app.UseAllElasticApm(Configuration);
 		}
 
 		#region Configuration handlers
