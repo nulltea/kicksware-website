@@ -22,9 +22,9 @@
 
 _**Kicksware web application**_ provides a publicly accessible visual user interface to interact with the Kicksware sneaker resale platform.
 
-It introduces a new, convenient, and visually satisfying way to both buy and sell new or used sneakers, create your own great wishlist and collaborate with other sneakerheads around the globe.
+It introduces a visually satisfying, convenient, new way to both buy and sell new or used sneakers, create your own great wishlist and collaborate with other sneakerheads around the globe.
 
-Sounds interesting? Consider visiting [**kicksware.com**][kicksware url] to see everything for yourself!
+Sounds interesting? Consider visiting [**kicksware.com**][kicksware url] to find out for yourself!
 
 ## Table of contents
 
@@ -38,27 +38,27 @@ Sounds interesting? Consider visiting [**kicksware.com**][kicksware url] to see 
 
 ## Back-end design
 
-Being a part of microservice based system brings flexibility into web application development process while eliminating vendor and technology lock-in.
+Being a part of microservice based it system brings flexibility into web application development process while eliminating vendor and technology lock-in.
 
-Globally Kicksware's back-end logic is written using Go programming language as a set of microservices. Unfortunately currently, Go isn't as great for front-end development as it is for back-end. Luckily MSA is designed to deal with such problems so your client and server-side logic can be implemented with different languages, in fact every service can be build with it own set of languages and technologies as long as it possible to maintain all of them.
+Globally Kicksware's back-end logic is written in Go programming language as a set of microservices. Unfortunately, Go isn't currently as great for front-end development as it is for back-end. Luckily, MSA is designed to deal with such problems so your client and server-side logic can be implemented with different languages. Moreover, every service can be build with its own set of languages and technologies as long as it's possible to maintain all of them.
 
-On these terms, Kicksware web app is developed using **C#** language with its native [**Asp.Net Core**][asp.net core], as it is a cross-platform, enterprise-ready, open-source framework for building modern, cloud-enabled, web apps.
+On these terms, Kicksware web app has been developed with the use of **C#** language with its native [**Asp.Net Core**][asp.net core], as it is a cross-platform, enterprise-ready, open-source framework for building modern, cloud-enabled, web apps.
 
-[Model-View-Controller (MVC)][mvc pattern] is a design pattern used for developing Kicksware user interfaces through dividing its program logic into three interconnected elements for defining data, visual markup and business-rules respectively.
+[Model-View-Controller (MVC)][mvc pattern] is a design pattern used for developing Kicksware user interfaces via dividing its program logic into three interconnected elements for defining data, visual markup and business-rules respectively.
 
 ## Front-end design
 
-What's tricky about doing front-end in a microservice architecture is the fact that users actually don’t care how good the backend is divided into atomic, loose coupled microservices. The question for them is how good it's integrated with theirs browser.
+What's tricky about doing front-end in a microservice architecture is the fact that users actually don’t care how well the backend is divided into atomic, loose coupled microservices. The question for them is how well it's integrated with their browser.
 
-To make your experience while surfing through tons of great designed sneaker models even better Kicksware relies on _client-side JavaScript, reusable APIs, and prebuilt Markup_. The term hiding in the names of these technologies is [_JAMstack_][jamstack]. It’s a new way of building web apps that delivers better performance, higher security, lower cost of scaling, and overall better developer experience.
+To make your experience of surfing through tons of great designed sneaker models even better, Kicksware relies on _client-side **J**avaScript, reusable **A**PIs, and prebuilt **M**arkup_. The term hiding in the names of these technologies, is [_**JAM**stack_][jamstack]. It’s a new way of building web apps that delivers better performance, higher security, lower cost of scaling, and overall better developer experience.
 
-The last but not the least is the visual design itself. To achieve a modern, appealing look while providing a user-friendly intuitive interface Kicksware adopts Google's Material design.
+The last but not the least is the visual design itself. To achieve a modern, appealing look while providing a user-friendly intuitive interface, Kicksware adopts Google's Material design.
 
 [![kicksware browser][]][Kicksware url]
 
 ## Requirements
 
-To ensure proper, full-fledge performance of Kicksware web application, all [Gateway][gateway repo], [Tool Stack][tool-stack repo] and [API][api repo] components must be deployed first. Otherwise, without [Traefik proxy][gateway repo] website's public accessibility will not be possible.
+To ensure proper, full-fledge performance of Kicksware web application, all [Gateway][gateway repo], [Tool Stack][tool-stack repo] and [API][api repo] components must be deployed first. Otherwise, the website's public accessibility will not be possible without [Traefik proxy][gateway repo].
 
 It's also worth noticing that the app will actually work without a dedicated [API][api repo] and [database][tool-stack repo], although in such conditions it will be useless.
 
@@ -90,9 +90,9 @@ Kicksware web app can be deployed using the following methods:
 
 **Kicksware web app** is a public exposure of a noncommercial, research project dedicated to showcasing the use of modern technologies in the context of the fashion industry.
 
-While being a part of a distributed, diverse microservice-based software infrastructure it exploits the flexibility and independence provided to it by the architecture.
+While being a part of a distributed, diverse, microservice-based software infrastructure, it exploits the flexibility and independence provided to it by the architecture.
 
-Although this website can not satisfy the potential buyer in a pair of new Nike's, it still tries to deliver the best usage experience with help of both innovative web frameworks and proven graphical design solutions.
+Although this website can't satisfy the potential buyer with a pair of new Nike's, it still tries to deliver the best usage experience with the help of both innovative web frameworks and proven graphical design solutions.
 
 ## License
 
