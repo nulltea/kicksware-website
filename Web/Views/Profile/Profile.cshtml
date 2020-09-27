@@ -1,5 +1,6 @@
 ﻿@using Web.Utils.Helpers
 @using Web.Utils
+@using Web.Utils.Bundle
 @model Core.Entities.Users.User
 
 @{
@@ -9,9 +10,7 @@
 
 @section Styles
 {
-	<link href="~/styles/css/profile/profile.css" rel="stylesheet"/>
-	<link href="~/styles/css/responsive/profile.responsive.css" rel="stylesheet"/>
-	<link href="~/styles/css/shop/results.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="@Bundle.GetAssetName("profile", "css")" asp-append-version="true" />
 }
 
 <div class="profile">
@@ -94,7 +93,7 @@
 
 @section Scripts
 {
-	<script src="~/scripts/profile/profile.js"></script>
+	<script src="@Bundle.GetAssetName("profile", "js")" asp-append-version="true"></script>
 	<script type="text/javascript">
 		initCustomDropDown();
 	</script>

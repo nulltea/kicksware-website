@@ -2,7 +2,14 @@
   "name": "web",
   "version": "1.0.0",
   "private": true,
-  "scripts": {},
+  "devDependencies": {
+    "less": "^3.12.2",
+    "parcel-bundler": "^1.12.4"
+  },
+  "scripts": {
+    "build": "parcel build assets/bundles/*.js --out-dir wwwroot/dist/",
+    "watch": "parcel watch assets/bundles/*.js --out-dir wwwroot/dist/"
+  },
   "dependencies": {
     "jquery": "^3.5.1",
     "jquery-validation": "^1.19.2",
@@ -13,6 +20,8 @@
     "gsap": "^3.5.1",
     "scrollax": "^1.0.0",
     "flickity": "^2.2.1",
-    "animate.css": "^4.1.0"
+    "animate.css": "^4.1.0",
+    "smooth-scrollbar": "^8.5.3",
+    "parallax-js": "^3.1.0"
   }
 }

@@ -1,4 +1,5 @@
 ﻿@using Core.Entities.References
+@using Web.Utils.Bundle
 @using Web.Utils.Helpers
 @model List<Web.Models.HomePageInfoViewModel>
 @{
@@ -9,13 +10,7 @@
 
 @section Styles
 {
-	<link href="~/plugins/owl.carousel/dist/assets/owl.carousel.css" rel="stylesheet">
-	<link href="~/plugins/owl.carousel/dist/assets/owl.theme.default.css" rel="stylesheet">
-	<link href="~/plugins/animate.css/animate.min.css" rel="stylesheet">
-	<link href="~/plugins/flickity/dist/flickity.min.css" rel="stylesheet"/>
-	<link href="~/styles/css/home/home.css" rel="stylesheet"/>
-	<link href="~/styles/css/shop/product-item.css" rel="stylesheet"/>
-	<link href="~/styles/css/responsive/home.responsive.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="@Bundle.GetAssetName("home", "css")" asp-append-version="true" />
 }
 
 <div class="home">
@@ -100,8 +95,5 @@
 
 @section Scripts
 {
-	<script src="~/plugins/flickity/dist/flickity.pkgd.min.js"></script>
-	<script src="~/plugins/owl.carousel/dist/owl.carousel.js"></script>
-	<script src="~/scripts/home/home.js"></script>
-	<script src="~/scripts/shop/productItem.js"></script>
+	<script src="@Bundle.GetAssetName("home", "js")" asp-append-version="true"></script>
 }

@@ -6,10 +6,6 @@
 	Layout = "~/Views/Sell/NewProduct.cshtml";
 }
 
-@section Styles
-{
-	<link rel="stylesheet" type="text/css" href="~/styles/css/sell/shipping.css"/>
-}
 
 <div class="shipping-content">
 	@foreach (var (country, info) in Model.ShippingInfo)

@@ -4,6 +4,7 @@
 @using Newtonsoft.Json
 @using Web.Handlers.Filter
 @using Web.Handlers.Sort
+@using Web.Utils.Bundle
 @using Web.Utils.Helpers
 @model Core.Model.IFilteredModel<Core.Entities.IBaseEntity>
 
@@ -15,10 +16,7 @@
 
 @section Styles
 {
-	<link rel="stylesheet" href="~/styles/css/shop/products.css"/>
-	<link rel="stylesheet" href="~/styles/css/shop/filter.css"/>
-	<link rel="stylesheet" href="~/styles/css/shop/results.css"/>
-	<link rel="stylesheet" href="~/styles/css/responsive/shop.responsive.css"/>
+	<link rel="stylesheet" href="@Bundle.GetAssetName("shop", "css")" asp-append-version="true" />
 }
 
 <div class="products">
@@ -177,12 +175,11 @@
 
 @section Scripts
 {
-	<script src="~/plugins/jquery/jquery.unobtrusive-ajax.js"></script>
-	<script src="~/scripts/shop/products.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function () {
-		initCustomDropDown();
-		autocompleteFilter("#brand-filter", @Html.Raw(JsonConvert.SerializeObject(@Model["Brand"])));
+
+		window.brands = @Html.Raw(JsonConvert.SerializeObject(@Model["Brand"]));
 	});
 	</script>
+	<script src="@Bundle.GetAssetName("shop", "js")" asp-append-version="true"></script>
 }

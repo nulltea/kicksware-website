@@ -62,10 +62,6 @@
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
-      <Content Update="Views\Checkout\Checkout.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
       <Content Update="Views\Contact\Contact.cshtml">
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -695,40 +691,470 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
-      <Content Update="wwwroot\scripts\common\mobile-detect.js">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
     </ItemGroup>
 
     <ItemGroup>
       <!-- JS plugins -->
-      <Content Include="node_modules\jquery\dist\jquery.min.js" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\jquery\dist\jquery.min.map" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\popper.js\dist\popper.min.js" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\popper.js\dist\popper.min.js.map" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\bootstrap\dist\js/bootstrap.min.js" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\bootstrap\dist\js/bootstrap.min.js.map" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\gsap\dist\EasePack.min.js" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\gsap\dist\EasePack.min.js.map" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\gsap\dist\ScrollToPlugin.min.js" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\gsap\dist\ScrollToPlugin.min.js.map" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\gsap\dist\gsap.min.js" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\gsap\dist\gsap.min.js.map" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\scrollmagic\scrollmagic\minified\ScrollMagic.min.js" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\scrollmagic\scrollmagic\minified\plugins\animation.gsap.min.js" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\scrollax\scrollax.min.js" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\jquery-validation\dist\jquery.validate.min.js" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\flickity\dist\flickity.pkgd.min.js" CopyToPublishDirectory="PreserveNewest" />
-      <!-- CSS plugins -->
-      <Content Include="node_modules\bootstrap\dist\css/bootstrap.min.css" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\bootstrap\dist\css/bootstrap.min.css.map" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\flickity\dist\flickity.min.css" CopyToPublishDirectory="PreserveNewest" />
-      <Content Include="node_modules\animate.css\animate.min.css" CopyToPublishDirectory="PreserveNewest" />
+      <Content Include="Assets\images\account.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\address.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\arrow.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\back.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\bookmark.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\box.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\buy.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\close.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\cloud_search.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\demo.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\details.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\facebook.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\favorite-bold.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\favorite.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\filter.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\filter_used.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\github.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\google.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\grid.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\hightop_sneakers.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\home_addidas_4d.jpg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\home_air_max_plus_3.jpg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\icon_1.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\icon_2.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\icon_3.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\instagram.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\linkedin.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\list.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\list_.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\logo-min.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\logout.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\mail.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\others.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\payment.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\photo.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\preview.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\reset-password.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\robo-air-max-90.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\robo-air-max-95.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\save.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\search.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\sell.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\settings.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\shipping.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\sneaker_not_found.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\tag.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\theme.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\upload.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\user.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\verified.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\verify.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\images\_photo.svg">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\bundles\layout.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\plugins\owl.carousel\dist\assets\ajax-loader.gif">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\plugins\owl.carousel\dist\assets\animate.css">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\plugins\owl.carousel\dist\assets\owl.carousel.css">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\plugins\owl.carousel\dist\assets\owl.theme.default.css">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\plugins\owl.carousel\dist\assets\owl.video.play.png">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\plugins\owl.carousel\dist\owl.carousel.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\about\about.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\common\common.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\common\mobile-detect.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\contact\contact.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\home\home.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\layout\header.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\layout\menu.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\layout\search.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\profile\profile.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\sell\payment.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\sell\search.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\shop\productItem.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\shop\products.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\scripts\user\auth.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Include="Assets\styles\about\about.less" />
+      <Content Include="Assets\styles\checkout\checkout.less" />
+      <Content Include="Assets\styles\common\common.less" />
+      <Content Include="Assets\styles\contact\contact.less" />
+      <Content Include="Assets\styles\home\home.less" />
+      <Content Include="Assets\styles\layout\footer.less" />
+      <Content Include="Assets\styles\layout\header.less" />
+      <Content Include="Assets\styles\layout\menu.less" />
+      <Content Include="Assets\styles\layout\search.less" />
+      <Content Include="Assets\styles\layout\social.less" />
+      <Content Include="Assets\styles\mixins\mixins.less" />
+      <Content Include="Assets\styles\policy\policy.less" />
+      <Content Include="Assets\styles\profile\profile.less" />
+      <Content Include="Assets\styles\properties\colors.less" />
+      <Content Include="Assets\styles\properties\fonts.less" />
+      <Content Include="Assets\styles\responsive\about.responsive.less" />
+      <Content Include="Assets\styles\responsive\auth.responsive.less" />
+      <Content Include="Assets\styles\responsive\checkout.responsive.less" />
+      <Content Include="Assets\styles\responsive\contact.responsive.less" />
+      <Content Include="Assets\styles\responsive\home.responsive.less" />
+      <Content Include="Assets\styles\responsive\layout.responsive.less" />
+      <Content Include="Assets\styles\responsive\profile.responsive.less" />
+      <Content Include="Assets\styles\responsive\search.responsive.less" />
+      <Content Include="Assets\styles\responsive\sell.responsive.less" />
+      <Content Include="Assets\styles\responsive\shop-item.responsive.less" />
+      <Content Include="Assets\styles\responsive\shop.responsive.less" />
+      <Content Include="Assets\styles\sell\details.less" />
+      <Content Include="Assets\styles\sell\payment.less" />
+      <Content Include="Assets\styles\sell\photos.less" />
+      <Content Include="Assets\styles\sell\preview.less" />
+      <Content Include="Assets\styles\sell\search.less" />
+      <Content Include="Assets\styles\sell\sell.less" />
+      <Content Include="Assets\styles\sell\shipping.less" />
+      <Content Include="Assets\styles\shop\filter.less" />
+      <Content Include="Assets\styles\shop\product-item.less" />
+      <Content Include="Assets\styles\shop\products.less" />
+      <Content Include="Assets\styles\shop\results.less" />
+      <Content Include="Assets\styles\user\modal.less" />
     </ItemGroup>
 
     <ItemGroup>
       <TypeScriptCompile Include="node_modules\ajv\lib\ajv.d.ts" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\about\about.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\about\about.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\checkout\checkout.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\checkout\checkout.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\common\common.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\common\common.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\contact\contact.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\contact\contact.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\home\home.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\home\home.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\layout\footer.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\layout\footer.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\layout\header.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\layout\header.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\layout\menu.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\layout\menu.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\layout\search.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\layout\search.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\layout\social.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\layout\social.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\policy\policy.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\policy\policy.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\profile\profile.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\profile\profile.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\about.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\about.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\auth.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\auth.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\checkout.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\checkout.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\contact.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\contact.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\home.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\home.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\layout.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\layout.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\product-item.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\product-item.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\products.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\products.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\profile.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\profile.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\search.responsice.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\search.responsice.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\search.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\search.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\sell.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\sell.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\shop-item.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\shop-item.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\shop.responsive.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\responsive\shop.responsive.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\details.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\details.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\payment.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\payment.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\photos.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\photos.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\preview.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\preview.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\search.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\search.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\sell.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\sell.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\shipping.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\sell\shipping.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\shop\filter.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\shop\filter.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\shop\product-item.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\shop\product-item.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\shop\products.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\shop\products.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\shop\results.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\shop\results.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\user\modal.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\css\user\modal.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\about\about.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\checkout\checkout.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\common\common.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\contact\contact.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\home\home.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\layout\footer.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\layout\header.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\layout\menu.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\layout\search.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\layout\social.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\mixins\mixins.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\policy\policy.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\profile\profile.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\properties\colors.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\properties\fonts.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\responsive\about.responsive.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\responsive\auth.responsive.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\responsive\checkout.responsive.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\responsive\contact.responsive.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\responsive\home.responsive.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\responsive\layout.responsive.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\responsive\profile.responsive.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\responsive\search.responsive.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\responsive\sell.responsive.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\responsive\shop-item.responsive.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\responsive\shop.responsive.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\sell\details.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\sell\payment.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\sell\photos.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\sell\preview.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\sell\search.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\sell\sell.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\sell\shipping.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\shop\filter.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\shop\product-item.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\shop\products.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\shop\results.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\styles\less\user\modal.less" />
+      <_ContentIncludedByDefault Remove="wwwroot\plugins\owl.carousel\dist\assets\ajax-loader.gif" />
+      <_ContentIncludedByDefault Remove="wwwroot\plugins\owl.carousel\dist\assets\animate.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\plugins\owl.carousel\dist\assets\owl.carousel.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\plugins\owl.carousel\dist\assets\owl.theme.default.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\plugins\owl.carousel\dist\assets\owl.video.play.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\plugins\owl.carousel\dist\owl.carousel.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\dist" />
     </ItemGroup>
 </Project>

@@ -36,8 +36,10 @@ msbuild.wrn
 
 # Compiled static scripts & stylesheets
 Web/wwwroot/styles/css
-Web/wwwroot/bundle/
+Web/wwwroot/dist/
 Web/wwwroot/storage/
 Web/node_modules
 
 /certs
+
+.cache

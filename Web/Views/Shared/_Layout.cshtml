@@ -11,17 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>@ViewBag.Title | Kicksware </title>
 	<link rel="icon" type="image/x-icon" href="https://kicksware.com/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="~/plugins/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="~/styles/css/common/common.css">
-	<link rel="stylesheet" type="text/css" href="~/styles/css/layout/header.css">
-	<link rel="stylesheet" type="text/css" href="~/styles/css/layout/search.css">
-	<link rel="stylesheet" type="text/css" href="~/styles/css/layout/menu.css">
-	<link rel="stylesheet" type="text/css" href="~/styles/css/layout/footer.css">
-	<link rel="stylesheet" type="text/css" href="~/styles/css/layout/social.css">
-	<link rel="stylesheet" type="text/css" href="~/styles/css/user/modal.css">
-	<link rel="stylesheet" type="text/css" href="~/styles/css/responsive/layout.responsive.css">
-	<link rel="stylesheet" type="text/css" href="~/styles/css/responsive/search.responsive.css">
-	<link rel="stylesheet" type="text/css" href="~/styles/css/responsive/auth.responsive.css">
+	<link rel="stylesheet" href="~/dist/layout.css" asp-append-version="true" />
 	@await RenderSectionAsync("Styles", false)
 </head>
 <body class=@($"theme-dark")>
@@ -116,31 +106,14 @@
 		</div>
 	</footer>
 </div>
-@* IMPORT PLUGINS *@
-<script src="~/plugins/jquery/dist/jquery.min.js"></script>
-<script src="~/plugins/popper.js/dist/popper.min.js"></script>
-<script src="~/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="~/plugins/gsap/dist/EasePack.min.js"></script>
-<script src="~/plugins/gsap/dist/ScrollToPlugin.min.js"></script>
-<script src="~/plugins/gsap/dist/gsap.min.js"></script>
-<script src="~/plugins/scrollmagic/scrollmagic/minified/ScrollMagic.min.js"></script>
-@* <script src="~/plugins/scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min.js"></script> *@
-<script src="~/plugins/scrollmagic/scrollmagic/minified/plugins/animation.gsap.min.js"></script>
-<script src="~/plugins/scrollax/scrollax.min.js"></script>
-@* IMPORT MAIN SCRIPTS *@
-<script src="~/scripts/common/common.js"></script>
-<script src="~/scripts/common/mobile-detect.js"></script>
-<script src="~/scripts/layout/header.js"></script>
-<script src="~/scripts/layout/menu.js"></script>
-<script src="~/scripts/layout/search.js"></script>
-<script src="~/scripts/user/auth.js"></script>
+<script src="~/dist/layout.js" asp-append-version="true"></script>
 @* RENDER BODY SCRIPTS *@
 @await RenderSectionAsync("Scripts", false)
 @{
 	await Html.RenderPartialAsync("_LockedHandlerPartial");
 }
 <script type="text/javascript">
-        $.Scrollax();
-    </script>
+	$.Scrollax();
+</script>
 </body>
 </html>

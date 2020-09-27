@@ -1,6 +1,7 @@
 ﻿@using Core.Entities.References
 @using Core.Entities.Users
 @using Microsoft.AspNetCore.Identity
+@using Web.Utils.Bundle
 @using Web.Utils.Helpers
 @model Core.Entities.References.SneakerReference
 @inject SignInManager<User> SignInManager
@@ -12,9 +13,7 @@
 
 @section Styles
 {
-	<link href="~/styles/css/shop/product-item.css" rel="stylesheet"/>
-	<link href="~/styles/css/responsive/shop-item.responsive.css" rel="stylesheet"/>
-	<link href="~/plugins/flickity/dist/flickity.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="@Bundle.GetAssetName("shop-item", "css")" asp-append-version="true" />
 }
 
 <!-- Reference Details -->
@@ -61,7 +60,7 @@
 				</div>
 				<div class="title-footer">
 					<button class="button">
-						<a asp-action="Checkout" asp-controller="Checkout">BUY NEW</a>
+						<a href="#todo">BUY NEW</a>
 					</button>
 					<button class="button">
 						<a asp-action="Products" asp-route-referenceId="@Model.UniqueID">BUY USED</a>
@@ -157,6 +156,5 @@
 
 @section Scripts
 {
-	<script src="~/scripts/shop/productItem.js"></script>
-	<script src="~/plugins/flickity/dist/flickity.pkgd.min.js"></script>
+	<script src="@Bundle.GetAssetName("shop-item", "js")" asp-append-version="true"></script>
 }

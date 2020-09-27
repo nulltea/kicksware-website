@@ -14,6 +14,8 @@ namespace Core.Environment
 
 		public static readonly string WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
+		public static readonly string BundlePath = Path.Combine(WebRootPath, "dist");
+
 		public static readonly string ImagesPath = Path.Combine(WebRootPath, "images");
 
 		public static readonly DataProtocol DataProtocol = System.Environment.GetEnvironmentVariable("DATA_PROTOCOL")

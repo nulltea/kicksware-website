@@ -8,11 +8,6 @@
 	Layout = "~/Views/Sell/NewProduct.cshtml";
 }
 
-@section Styles
-{
-	<link rel="stylesheet" type="text/css" href="~/styles/css/sell/payment.css"/>
-}
-
 <div class="payment-content">
 	<div class="row">
 		<div class="col-sm mx-3">
@@ -74,6 +69,6 @@
 	<script type="text/javascript">
         initCustomDropDown();
         CurrencySigns = @Html.Raw(JsonConvert.SerializeObject(Catalog.CurrencySigns));
+        initPaymentForm()
     </script>
-	<script src="~/scripts/sell/payment.js"></script>
 }

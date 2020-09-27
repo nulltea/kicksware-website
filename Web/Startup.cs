@@ -191,12 +191,6 @@ namespace Web
 			app.UseStaticFiles(new StaticFileOptions
 			{
 				FileProvider =
-					new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"node_modules")),
-				RequestPath = new PathString("/plugins"),
-			});
-			app.UseStaticFiles(new StaticFileOptions
-			{
-				FileProvider =
 					new PhysicalFileProvider(@"/source/storage"),
 				RequestPath = new PathString("/storage"),
 			});

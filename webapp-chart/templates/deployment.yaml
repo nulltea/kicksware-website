@@ -42,6 +42,10 @@ spec:
             - name: {{ .name }}
               mountPath: {{ .mountPath }}
             {{- end }}
+            {{- range .Values.secrets.mounts }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+            {{- end }}
           livenessProbe:
             httpGet:
               path: /health/live

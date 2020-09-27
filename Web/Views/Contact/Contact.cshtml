@@ -1,4 +1,5 @@
-﻿@model ContactViewModel
+﻿@using Web.Utils.Bundle
+@model ContactViewModel
 
 @{
 	ViewBag.Title = "Contact";
@@ -8,8 +9,7 @@
 
 @section Styles
 {
-	<link href="~/styles/css/contact/contact.css" rel="stylesheet"/>
-	<link href="~/styles/css/responsive/contact.responsive.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="@Bundle.GetAssetName("contact", "css")" asp-append-version="true" />
 }
 
 <div class="contact">
@@ -66,6 +66,6 @@
 
 @section Scripts
 {
-	<script src="~/scripts/contact/contact.js"></script>
+	<script src="@Bundle.GetAssetName("contact", "js")" asp-append-version="true"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJp297jnHOtfJz1mNLyH9dF67mDQJp8Fk&callback=mapInit"></script>
 }

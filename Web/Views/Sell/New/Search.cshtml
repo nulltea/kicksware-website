@@ -4,12 +4,6 @@
 	Layout = "~/Views/Sell/NewProduct.cshtml";
 }
 
-@section Styles
-{
-	<link rel="stylesheet" type="text/css" href="~/styles/css/sell/search.css"/>
-}
-
-
 <div class="search-content">
 	<ul class="tabs-control" role="tablist">
 		<li>
@@ -49,7 +43,6 @@
 
 @section Scripts
 {
-	<script src="~/scripts/sell/search.js"></script>
 	<script type="text/javascript">
 		initCustomDropDown();
 		initAutoSearch("@Url.Action("SearchAuto")");

@@ -1,5 +1,6 @@
 ﻿@using Web.Utils.Helpers
 @using Web.Wizards
+@using Web.Utils.Bundle
 @model SneakerProductViewModel
 @{
 	ViewBag.Title = "Sell";
@@ -9,8 +10,7 @@
 
 @section Styles
 {
-	<link rel="stylesheet" type="text/css" href="~/styles/css/sell/sell.css"/>
-	<link href="~/styles/css/responsive/sell.responsive.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="@Bundle.GetAssetName("sell", "css")" asp-append-version="true" />
 	@await RenderSectionAsync("Styles", required: false)
 }
 
@@ -64,6 +64,6 @@
 	@{
 		await Html.RenderPartialAsync("_ValidationScriptsPartial");
 	}
-	<script src="~/scripts/sell/sell.js"></script>
+	<script src="@Bundle.GetAssetName("sell", "js")" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", false)
 }
