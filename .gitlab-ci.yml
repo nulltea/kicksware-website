@@ -18,6 +18,8 @@ dependencies.resolve:
   tags:
     - k8s
     - web-app
+  variables:
+
   only:
     changes:
       - Core/**/*
@@ -31,9 +33,11 @@ dependencies.resolve:
     - apk add --update bash
     - apk add --update git
     - apk add --update make
+    - apk add --update lscpu
   script:
     - cd Web
     - npm install
+    - npm install --only=dev
     - npm run build
     - cd ..
   artifacts:
