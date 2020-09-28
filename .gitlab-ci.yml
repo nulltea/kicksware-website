@@ -33,17 +33,15 @@ dependencies.resolve:
     - apk add --update bash
     - apk add --update git
     - apk add --update make
-    - npm install -g lessc-each
   script:
     - cd Web &&
       npm install &&
       cd ..
-    - make styles --always-make
+    - npm run build
   artifacts:
     untracked: true
     paths:
-      - Web/node_modules
-      - Web/wwwroot/styles/css
+      - Web/wwwroot/dist
     expire_in: 10 mins
 
 web-app.build:
