@@ -6,7 +6,6 @@ using Core.Gateway;
 using Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using SmartBreadcrumbs.Attributes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;

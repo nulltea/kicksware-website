@@ -18,8 +18,6 @@ dependencies.resolve:
   tags:
     - k8s
     - web-app
-  variables:
-    NODE_ENV: production
   only:
     changes:
       - Core/**/*
@@ -36,7 +34,6 @@ dependencies.resolve:
   script:
     - cd Web
     - npm install
-    - npm install --only=dev
     - npm run build
     - cd ..
   artifacts:
