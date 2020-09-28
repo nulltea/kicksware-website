@@ -1,6 +1,9 @@
 ﻿import $ from "jquery";
 window.$ = window.jQuery = $
 
+import "smooth-parallax"
+
+
 function autocompleteInit(input, dataValues) {
 	let currentFocus;
 

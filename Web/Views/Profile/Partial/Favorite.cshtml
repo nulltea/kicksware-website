@@ -1,6 +1,7 @@
 ﻿@using Core.Services
 @using Infrastructure.Usecase.Models
 @using Core.Entities.References
+@using Core.Extension
 @using Core.Model
 @using Core.Model.Parameters
 @model Core.Entities.Users.User
@@ -15,7 +16,9 @@
 			var favoriteSneakers = new FilteredModel<SneakerReference>(Builder, Service);
 			favoriteSneakers.AddHiddenFilterGroup("uniqueid").AssignParameters(Model.Liked ?? new[] {"-"});
 			await favoriteSneakers.FetchPageAsync(1);
-			await Html.RenderPartialAsync("../Shop/Partial/ReferencesPartial", favoriteSneakers);
+			<div class="@($"products-view { Model.Settings.LayoutView.GetEnumMemberValue() }")">
+				@{ await Html.RenderPartialAsync("../Shop/Partial/ReferencesPartial", favoriteSneakers); }
+			</div>
 		}
 	}
 </div>

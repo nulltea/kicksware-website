@@ -26,6 +26,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using SmartBreadcrumbs.Extensions;
@@ -35,6 +36,7 @@ using Web.Handlers.Authentication;
 using Web.Handlers.Authorisation;
 using Web.Handlers.Filter;
 using Web.Handlers.Users;
+using Web.Utils.Extensions;
 
 namespace Web
 {
@@ -75,16 +77,16 @@ namespace Web
 
 			if (Core.Environment.Environment.DataProtocol == DataProtocol.gRPC)
 			{
-				services.AddSingleton(ServiceFactory.ProvideGrpcChannel);
+				services.AddGrpc();
 
-				services.AddSingleton<Proto.UserService.UserServiceClient>();
-				services.AddSingleton<Proto.ReferenceService.ReferenceServiceClient>();
-				services.AddSingleton<Proto.ProductService.ProductServiceClient>();
-				services.AddSingleton<Proto.SearchReferencesService.SearchReferencesServiceClient>();
-				services.AddSingleton<Proto.SearchProductService.SearchProductServiceClient>();
-				services.AddSingleton<Proto.AuthService.AuthServiceClient>();
-				services.AddSingleton<Proto.MailService.MailServiceClient>();
-				services.AddSingleton<Proto.InteractService.InteractServiceClient>();
+				services.AddSecureGrpcClient<Proto.UserService.UserServiceClient>();
+				services.AddSecureGrpcClient<Proto.ReferenceService.ReferenceServiceClient>();
+				services.AddSecureGrpcClient<Proto.ProductService.ProductServiceClient>();
+				services.AddSecureGrpcClient<Proto.SearchReferencesService.SearchReferencesServiceClient>();
+				services.AddSecureGrpcClient<Proto.SearchProductService.SearchProductServiceClient>();
+				services.AddSecureGrpcClient<Proto.AuthService.AuthServiceClient>();
+				services.AddSecureGrpcClient<Proto.MailService.MailServiceClient>();
+				services.AddSecureGrpcClient<Proto.InteractService.InteractServiceClient>();
 
 				services.AddTransient<ISneakerProductRepository, SneakerProductsGrpcRepository>();
 				services.AddTransient<ISneakerReferenceRepository, SneakerReferencesGrpcRepository>();
@@ -96,6 +98,8 @@ namespace Web
 				services.AddTransient<IReferenceSearchService, ReferenceSearchServiceGRPC>();
 
 				services.AddSingleton<IQueryBuilder, QueryBuilderGRPC>();
+
+				services.AddTransient<AuthTokenInterceptor>();
 			}
 			else
 			{

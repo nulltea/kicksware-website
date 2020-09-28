@@ -55,7 +55,7 @@ function fireThemeEvent() {
 function themeInit() {
 	let theme = $(".theme");
 	theme.click(changeTheme);
-	setTheme(getTheme());
+	// setTheme(getTheme());
 }
 
 function activePageInit(){

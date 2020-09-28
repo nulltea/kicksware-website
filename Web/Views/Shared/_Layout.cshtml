@@ -3,6 +3,8 @@
 @using Core.Services
 @using Microsoft.AspNetCore.Identity
 @using Core.Entities.Users
+@using Core.Extension
+@using Web.Controllers
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +16,7 @@
 	<link rel="stylesheet" href="~/dist/layout.css" asp-append-version="true" />
 	@await RenderSectionAsync("Styles", false)
 </head>
-<body class=@($"theme-dark")>
+<body class="@($"theme-{ProfileController.GetCookieTheme(Context.Request).GetEnumMemberValue()}")">
 <div class="super_container">
 	<div class="header-spacer"></div>
 	<header class="header">

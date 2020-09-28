@@ -35,7 +35,7 @@ namespace Core.Entities.Users
 
 		public string[] Liked { get; set; }
 
-		public Settings Settings { get; set; } = new Settings();
+		public UserSettings Settings { get; set; } = new UserSettings();
 
 		[JsonConverter(typeof(StringEnumConverter))]
 		public UserProvider Provider { get; set; }

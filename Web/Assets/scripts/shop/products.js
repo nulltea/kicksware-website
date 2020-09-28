@@ -1,4 +1,5 @@
 ﻿import {gsap, TweenMax, Elastic} from "gsap/dist/gsap"
+import $ from "jquery";
 
 function initFilterPanel() {
 	let filterMenu = $(".filter-sidebar");
@@ -254,7 +255,14 @@ function layoutToggleInit() {
 			productsView.toggleClass("grid").toggleClass("list");
 			productsView.toggleClass("changing");
 		}, 500);
+		saveLayoutSettings(this);
 	})
+}
+
+function saveLayoutSettings(layout) {
+	let mode = $(layout).is(":checked") ? "grid" : "list";
+	$.get(`/Profile/SetLayoutView?view=${mode}`)
+	localStorage.setItem("kicksware.layout_view", mode);
 }
 
 function filterNavigatorInit(){
@@ -270,7 +278,7 @@ function bindRequestUpdateEvent(element, page=1, event="change") {
 		toggleLoadOverlay();
 		$.post(`/${controller}/${entity}/requestUpdate/${entityID}`, {filterInputs: formFilterParameters(), page: page, sortBy: formSortParameter() }, function(response) {
 			window.scroll({top: 450, left: 0, behavior: "instant" });
-			$(".result-content").html(response["content"]);
+			$(".result-content .products-view").html(response["content"]);
 			$(".count span").text(`Showing ${(page - 1) * response["pageSize"]}-${Math.min(response["pageSize"], response["length"])} / ${response["length"]} results`);
 			setLayoutMode();
 			paginationInit();
@@ -309,9 +317,8 @@ function bindRequestUpdateEvent(element, page=1, event="change") {
 }
 
 function sortingInit(){
-	let sortSelector = $(".sort_type select");
-	bindRequestUpdateEvent(sortSelector, $("#page-current").val());
-
+	let sortSelector = $(".sort_type .select-items div");
+	bindRequestUpdateEvent(sortSelector, $("#page-current").val(), "click");
 	sortSelector.val(new URL(window.location.href).searchParams.get("sortBy") ?? "newest");
 }
 
@@ -357,14 +364,13 @@ $(document).ready(function () {
 	layoutToggleInit();
 
 	filterNavigatorInit();
-
-	sortingInit();
-
 	paginationInit();
 
 	favoriteInit();
 
 	initCustomDropDown();
+
+	sortingInit();
 
 	autocompleteFilter(window.brands);
 

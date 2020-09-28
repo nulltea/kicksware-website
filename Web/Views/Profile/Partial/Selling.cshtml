@@ -1,6 +1,7 @@
 ﻿@using Core.Services
 @using Infrastructure.Usecase.Models
 @using Core.Entities.Products
+@using Core.Extension
 @using Core.Model
 @model Core.Entities.Users.User
 @inject ISneakerProductService Service
@@ -14,7 +15,10 @@
 			var soldSneakers = new FilteredModel<SneakerProduct>(Builder, Service);
 			soldSneakers.AddHiddenFilterGroup("owner").AssignParameter(Model.UniqueID);
 			await soldSneakers.FetchPageAsync(1);
-			await Html.RenderPartialAsync("../Shop/Partial/ProductsPartial", soldSneakers);
+
+			<div class="@($"products-view { Model.Settings.LayoutView.GetEnumMemberValue() }")">
+				@{ await Html.RenderPartialAsync("../Shop/Partial/ProductsPartial", soldSneakers); }
+			</div>
 		}
 	}
 </div>

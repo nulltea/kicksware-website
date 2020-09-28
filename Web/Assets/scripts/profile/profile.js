@@ -1,4 +1,5 @@
 import {gsap, TweenMax, Elastic} from "gsap/dist/gsap"
+import $ from "jquery";
 
 function sidebarControlInit() {
 	$(".profile-sidebar input[type=button]").click(function () {
@@ -88,8 +89,10 @@ function loading(items){
 }
 
 function themeSettingInit(){
-	$("#theme-select").change(function () {
-		setTheme($(this).find("option:selected").text().toLowerCase());
+	$("#theme-select ~ .select-items div").click(function () {
+		let theme = $(this).text().toLowerCase()
+		$("body").removeClass("theme-light theme-dark").addClass(`theme-${theme}`);
+		$(".theme").removeClass("light dark").addClass(theme);
 	})
 }
 

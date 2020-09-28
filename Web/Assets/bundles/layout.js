@@ -35,4 +35,3 @@ import "../styles/responsive/layout.responsive";
 import "../styles/responsive/search.responsive";
 import "../styles/responsive/auth.responsive";
 
-$("hero-parallax").Parallax({imageSrc: '/storage/heroes/shop-hero.jpg'});

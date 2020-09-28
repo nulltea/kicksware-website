@@ -3,8 +3,10 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Core.Environment;
 using Core.Entities.Users;
+using Core.Extension;
 using Core.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SmartBreadcrumbs.Attributes;
@@ -26,6 +28,10 @@ namespace Web.Controllers
 
 		[ViewData]
 		public string HeroLogoPath { get; set; }
+
+		private const string ThemeCookieKey = "THEME_COOKIE";
+
+		private const string LayoutCookieKey = "LAYOUT_COOKIE";
 
 		private IUserService _service;
 
@@ -74,6 +80,9 @@ namespace Web.Controllers
 				? FormSubmitResult(SubmitResult.Success, "Great! Account information was successfully updated")
 				: FormSubmitResult(SubmitResult.Error, result.Errors.Select(err => err.Description).FirstOrDefault());
 
+			await SetTheme(user.Settings.Theme);
+			await SetLayoutView(user.Settings.LayoutView);
+
 			if (!result.Succeeded) return updateResult;
 
 			if (!string.IsNullOrWhiteSpace(user.NewPassword))
@@ -90,18 +99,19 @@ namespace Web.Controllers
 					: FormSubmitResult(SubmitResult.Error, result.Errors.FirstOrDefault()?.Description);
 			}
 
+
+
 			return updateResult;
 		}
 
 		public async Task<IActionResult> SetTheme(Theme theme)
 		{
-			var user = await _userManager.GetUserAsync(HttpContext.User);
+			Response.Cookies.Append(ThemeCookieKey, theme.GetEnumMemberValue());
 
-			if (user != null)
-			{
-				user.Settings.Theme = theme;
-				await _userManager.UpdateAsync(user);
-			}
+			var user = await _userManager.GetUserAsync(HttpContext.User);
+			if (user == null) return Json(new {Success = true});
+			user.Settings.Theme = theme;
+			await _userManager.UpdateAsync(user);
 
 			return Json(new {Success = true});
 		}
@@ -110,9 +120,34 @@ namespace Web.Controllers
 		{
 			var user = await _userManager.GetUserAsync(HttpContext.User);
 
-			if (user is null) return Json(new { Theme = "dark" });
+			return user is null ? Json(new { Theme = "dark" }) : Json(new { user.Settings.Theme });
+		}
 
-			return Json(new { user.Settings.Theme });
+		public static Theme GetCookieTheme(HttpRequest context) => context.Cookies[ThemeCookieKey]?.GetEnumByMemberValue<Theme>() ?? Theme.Dark;
+
+		public async Task<IActionResult> SetLayoutView(LayoutView view)
+		{
+			Response.Cookies.Append(LayoutCookieKey, view.GetEnumMemberValue());
+
+			var user = await _userManager.GetUserAsync(HttpContext.User);
+			if (user == null) return Json(new {Success = true});
+			user.Settings.LayoutView = view;
+			await _userManager.UpdateAsync(user);
+
+			return Json(new {Success = true});
+		}
+
+		public async Task<IActionResult> GetLayoutView()
+		{
+			var user = await _userManager.GetUserAsync(HttpContext.User);
+
+			return user is null ? Json(new { Theme = "grid" }) : Json(new { user.Settings.LayoutView });
+		}
+
+		public static LayoutView GetCookieLayoutView(HttpRequest context)
+		{
+			var view = context.Cookies[LayoutCookieKey]?.GetEnumByMemberValue<LayoutView>();
+			return view ?? LayoutView.Grid;
 		}
 
 		private JsonResult FormSubmitResult(SubmitResult result, string message) => Json(new
@@ -129,7 +164,5 @@ namespace Web.Controllers
 
 			Warning
 		}
-
-
 	}
 }

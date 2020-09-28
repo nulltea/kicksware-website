@@ -2,6 +2,10 @@
 using System.Linq;
 using Core.Entities.Users;
 using Core.Extension;
+using AddressInfo = Core.Entities.Users.AddressInfo;
+using PaymentInfo = Core.Entities.Users.PaymentInfo;
+using User = Core.Entities.Users.User;
+using YearMonth = Core.Entities.Users.YearMonth;
 
 namespace Infrastructure.Gateway.gRPC
 {
@@ -25,6 +29,7 @@ namespace Infrastructure.Gateway.gRPC
 				PaymentInfo = message.PaymentInfo.ToNative(),
 				Liked = message.Liked.ToArray(),
 				Confirmed = message.Confirmed,
+				Settings = message.Settings.ToNative(),
 				Role = message.Role.GetEnumByMemberValue<UserRole>(),
 				Provider = message.Provider.GetEnumByMemberValue<UserProvider>(),
 			};
@@ -43,11 +48,12 @@ namespace Infrastructure.Gateway.gRPC
 				FirstName = message.FirstName,
 				LastName = message.LastName,
 				PhoneNumber = message.PhoneNumber,
-				Avatar = message.Avatar,
-				Location = message.Location,
+				Avatar = message.Avatar ?? string.Empty,
+				Location = message.Location ?? string.Empty,
 				PaymentInfo = message.PaymentInfo.FromNative(),
 				Liked = {message.Liked},
 				Confirmed = message.Confirmed,
+				Settings = message.Settings.FromNative(),
 				Role = message.Role.GetEnumMemberValue(),
 				Provider = message.Provider.GetEnumMemberValue(),
 			};
@@ -78,9 +84,9 @@ namespace Infrastructure.Gateway.gRPC
 		{
 			return new Proto.PaymentInfo
 			{
-				CardNumber = native.CardNumber,
+				CardNumber = native.CardNumber ?? string.Empty,
 				Expires = new Proto.YearMonth {Year = native.Expires.Year, Month = native.Expires.Month},
-				CVV = native.CVV,
+				CVV = native.CVV ?? string.Empty,
 				BillingInfo = native.BillingInfo.FromNative(),
 			};
 		}
@@ -102,12 +108,30 @@ namespace Infrastructure.Gateway.gRPC
 		{
 			return new Proto.AddressInfo
 			{
-				City = native.City,
-				Country = native.Country,
-				Region = native.Region,
-				Address = native.Address,
-				Address2 = native.Address2,
-				PostalCode = native.PostalCode,
+				City = native.City  ?? string.Empty,
+				Country = native.Country  ?? string.Empty,
+				Region = native.Region  ?? string.Empty,
+				Address = native.Address  ?? string.Empty,
+				Address2 = native.Address2  ?? string.Empty,
+				PostalCode = native.PostalCode  ?? string.Empty,
+			};
+		}
+
+		public static UserSettings ToNative(this Proto.UserSettings message)
+		{
+			return new UserSettings
+			{
+				Theme = message.Theme.GetEnumByMemberValue<Theme>(),
+				LayoutView = message.LayoutView.GetEnumByMemberValue<LayoutView>()
+			};
+		}
+
+		public static Proto.UserSettings FromNative(this UserSettings native)
+		{
+			return new Proto.UserSettings
+			{
+				Theme = native.Theme.GetEnumMemberValue(),
+				LayoutView = native.LayoutView.GetEnumMemberValue()
 			};
 		}
 	}

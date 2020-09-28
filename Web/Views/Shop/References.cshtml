@@ -2,16 +2,19 @@
 @using Core.Extension
 @using Core.Reference
 @using Newtonsoft.Json
+@using Web.Controllers
 @using Web.Handlers.Filter
 @using Web.Handlers.Sort
 @using Web.Utils.Bundle
 @using Web.Utils.Helpers
+@using LayoutView = Core.Entities.Users.LayoutView
 @model Core.Model.IFilteredModel<Core.Entities.IBaseEntity>
 
 @{
 	ViewBag.Title = "Products";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	var entityValue = ViewContext.RouteData.Values["action"].ToString();
+	var layoutView = ProfileController.GetCookieLayoutView(Context.Request);
 }
 
 @section Styles
@@ -42,7 +45,7 @@
 					</select>
 				</div>
 				<div class="layout-toggle">
-					<input type="checkbox" checked/>
+					<input type="checkbox" checked="@(layoutView == LayoutView.Grid)"/>
 					@Html.VectorIconRender("list.svg", "is-unchecked")
 					@Html.VectorIconRender("grid.svg", "is-checked")
 				</div>
@@ -166,7 +169,9 @@
 					<div class="spacer"></div>
 				</div>
 				<div class="result-content" id="result-content">
-					@{ await Html.RenderPartialAsync($"Partial/{entityValue.ToTitleCase()}Partial", Model); }
+					<div class="@($"products-view { layoutView.GetEnumMemberValue() }")">
+						@{ await Html.RenderPartialAsync($"Partial/{entityValue.ToTitleCase()}Partial", Model); }
+					</div>
 				</div>
 			</div>
 		</div>
@@ -177,7 +182,6 @@
 {
 	<script type="text/javascript">
 	$(document).ready(function () {
-
 		window.brands = @Html.Raw(JsonConvert.SerializeObject(@Model["Brand"]));
 	});
 	</script>
