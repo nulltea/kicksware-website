@@ -34,10 +34,10 @@ dependencies.resolve:
     - apk add --update git
     - apk add --update make
   script:
-    - cd Web &&
-      npm install &&
-      cd ..
+    - cd Web
+    - npm install
     - npm run build
+    - cd ..
   artifacts:
     untracked: true
     paths:
