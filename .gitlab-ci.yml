@@ -36,6 +36,7 @@ dependencies.resolve:
   script:
     - cd Web
     - npm install
+    - npm install --only=dev
     - npm run build
     - cd ..
   artifacts:
