@@ -191,9 +191,14 @@ namespace Web
 
 			app.UseStaticFiles(new StaticFileOptions
 			{
-				FileProvider =
-					new PhysicalFileProvider(@"/source/storage"),
+				FileProvider = new PhysicalFileProvider("/source/storage"),
 				RequestPath = new PathString("/storage"),
+			});
+
+			app.UseStaticFiles(new StaticFileOptions
+			{
+				FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Assets/images")),
+				RequestPath = new PathString("/images"),
 			});
 			app.UseStaticFiles();
 
