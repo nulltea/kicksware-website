@@ -7,8 +7,8 @@
     "parcel-bundler": "^1.12.4"
   },
   "scripts": {
-    "build": "parcel build assets/bundles/*.js --out-dir wwwroot/dist/",
-    "watch": "parcel watch assets/bundles/*.js --out-dir wwwroot/dist/"
+    "build": "parcel build Assets/bundles/*.js --out-dir wwwroot/dist/",
+    "watch": "parcel watch Assets/bundles/*.js --out-dir wwwroot/dist/"
   },
   "dependencies": {
     "animate.css": "^4.1.0",

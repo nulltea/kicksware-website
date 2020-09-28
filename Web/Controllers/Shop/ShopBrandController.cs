@@ -2,7 +2,6 @@
 using Core.Entities.References;
 using Microsoft.AspNetCore.Mvc;
 using SmartBreadcrumbs.Attributes;
-using Web.Models;
 
 namespace Web.Controllers
 {
