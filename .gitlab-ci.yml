@@ -19,7 +19,8 @@ dependencies.resolve:
     - k8s
     - web-app
   variables:
-
+    NODE_ENV: production
+    PARCEL_WORKERS: 1
   only:
     changes:
       - Core/**/*
@@ -33,7 +34,6 @@ dependencies.resolve:
     - apk add --update bash
     - apk add --update git
     - apk add --update make
-    - apk add --update lscpu
   script:
     - cd Web
     - npm install

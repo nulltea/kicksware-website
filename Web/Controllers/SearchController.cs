@@ -6,7 +6,6 @@ using Core.Gateway;
 using Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
-using Web.Utils;
 using Web.Utils.Extensions;
 
 namespace Web.Controllers
