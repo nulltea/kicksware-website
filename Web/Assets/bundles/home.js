@@ -10,12 +10,12 @@ import "../scripts/home/home"
 import "../scripts/shop/productItem"
 
 // Styles
+import "../styles/properties/fonts.less"
 import "flickity/dist/flickity.css"
 
 import "../styles/home/home.less"
 import "../styles/shop/product-item.less"
 import "../styles/responsive/home.responsive.less"
-import "../styles/properties/fonts.less"
 
 
 
