@@ -5,9 +5,9 @@
 <div class="menu">
 	<nav class="icon-nav">
 		<ul>
-			<li class="theme dark">
-				@Html.VectorIconRender("theme.svg") @*TODO Nastya sunny easter egg*@
-			</li>
+		<li class="@($"theme {ViewBag.Theme}")">
+			@{ await Html.RenderPartialAsync("Header/_ThemePartial"); }
+		</li>
 			<li class="account">
 				@Html.VectorIconRender("user.svg")
 			</li>

@@ -42,7 +42,8 @@
 							<ul class="auto-slider-dots-list">
 								@for (var i = 1; i <= Model.Count; i++)
 								{
-									<li class="auto-slider-dot">@($"N{i.ToString().PadLeft(2, '0')}")</li>
+									var classes = new[] {"auto-slider-dot", i == 1 ? "active" : null};
+									<li class="@string.Join(' ', classes)">@($"N{i.ToString().PadLeft(2, '0')}")</li>
 								}
 							</ul>
 						</div>

@@ -9,14 +9,7 @@
 <nav class="icon-nav">
 	<ul>
 		<li class="@($"theme {ViewBag.Theme}")">
-			@if (IsSunny(User))
-			{
-				@Html.VectorIconRender("theme-sunny.svg", "sunny")
-			}
-			else
-			{
-				@Html.VectorIconRender("theme-sneaker.svg")
-			}
+			@{ await Html.RenderPartialAsync("Header/_ThemePartial"); }
 		</li>
 		<li class="account expandable">
 			@Html.VectorIconRender("user.svg")
