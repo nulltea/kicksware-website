@@ -1,5 +1,4 @@
-﻿
-function autoSliderInit() {
+﻿function autoSliderInit() {
 	let autoSlider = $(".home-auto-slider");
 	if (autoSlider.length) {
 		autoSlider.owlCarousel(

@@ -20,6 +20,7 @@
 			<div class="@($"products-view { Model.Settings.LayoutView.GetEnumMemberValue() }")">
 				@{ await Html.RenderPartialAsync("../Shop/Partial/ReferencesPartial", purchasedSneakers); }
 			</div>
+			await Html.RenderPartialAsync("_PagedPartial", purchasedSneakers);
 		}
 	}
 </div>

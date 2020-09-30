@@ -33,6 +33,15 @@
         <Protobuf Include="Gateway\gRPC\Protos\mail.proto" GrpcServices="Client" ProtoRoot="Gateway\gRPC\Protos">
             <Generator>MSBuild:Compile</Generator>
         </Protobuf>
+        <Protobuf Include="Gateway\gRPC\Protos\orders.proto">
+          <GrpcServices>Client</GrpcServices>
+          <Access>Public</Access>
+          <ProtoCompile>True</ProtoCompile>
+          <ProtoRoot>Gateway\gRPC\Protos</ProtoRoot>
+          <CompileOutputs>True</CompileOutputs>
+          <OutputDir>obj\Debug\netcoreapp3.1\</OutputDir>
+          <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
         <Protobuf Include="Gateway\gRPC\Protos\product.proto" GrpcServices="Client" ProtoRoot="Gateway\gRPC\Protos">
             <Generator>MSBuild:Compile</Generator>
         </Protobuf>

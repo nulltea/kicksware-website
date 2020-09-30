@@ -6,15 +6,15 @@ namespace Core.Reference
 {
 	public enum SortCriteria
 	{
-		[EnumMember(Value = "Popular")]
+		[EnumMember(Value = "popular")]
 		[Display(Name = "Popular", ShortName = "Popular")]
 		Popular,
 
-		[EnumMember(Value = "Newest")]
+		[EnumMember(Value = "newest")]
 		[Display(Name = "Newest", ShortName = "New")]
 		Newest,
 
-		[EnumMember(Value = "Featured")]
+		[EnumMember(Value = "featured")]
 		[Display(Name = "Featured", ShortName = "Featured")]
 		Featured,
 

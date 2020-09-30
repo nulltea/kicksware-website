@@ -108,7 +108,7 @@ namespace Web.Handlers.Authentication
 
 			if (!result.Succeeded) return ;
 
-			await _service.LogoutAsync(token);
+			//await _service.LogoutAsync(token);
 
 			RemoveCookieToken();
 

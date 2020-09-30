@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 import "common.proto";
 
-option go_package = ".;proto";
+option go_package = "github.com/timoth-y/kicksware-api/reference-service/api/gRPC/proto";
 option csharp_namespace = "Proto";
 
 message SneakerBrand {
@@ -42,10 +42,13 @@ message SneakerReference {
   repeated string materials = 13;
   repeated string categories = 14;
   google.protobuf.Timestamp releaseDate = 15;
+  string releaseDateStr = 24;
+  google.protobuf.Timestamp AddedDate = 25;
   double price = 16;
   string imageLink = 17;
   repeated string imageLinks = 18;
   string stadiumUrl = 19;
+  string goatUrl = 23;
   int64 likes = 20;
   bool liked = 21;
 }

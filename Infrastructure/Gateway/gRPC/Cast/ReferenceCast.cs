@@ -29,7 +29,10 @@ namespace Infrastructure.Gateway.gRPC
 				Price = Convert.ToDecimal(message.Price),
 				ImageLink = message.ImageLink,
 				ImageLinks = message.ImageLinks.ToList(),
+				GoatUrl = message.GoatUrl,
 				StadiumUrl = message.StadiumUrl,
+				Liked = message.Liked,
+				Likes = Convert.ToInt32(message.Likes)
 			};
 		}
 
@@ -53,6 +56,7 @@ namespace Infrastructure.Gateway.gRPC
 				ImageLink = native.ImageLink,
 				ImageLinks = { native.ImageLinks },
 				StadiumUrl = native.StadiumUrl,
+				GoatUrl = native.GoatUrl,
 			};
 		}
 

@@ -22,5 +22,8 @@ namespace Core.Environment
 
 		public static readonly DataProtocol DataProtocol = System.Environment.GetEnvironmentVariable("DATA_PROTOCOL")
 			.GetEnumByMemberValue<DataProtocol>();
+
+		public static readonly string SunnyUserIdPrefix =
+			System.Environment.GetEnvironmentVariable("SUNNY_USER_ID_PREFIX");
 	}
 }

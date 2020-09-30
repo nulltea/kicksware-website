@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Core.Environment;
 using Core.Entities.Users;

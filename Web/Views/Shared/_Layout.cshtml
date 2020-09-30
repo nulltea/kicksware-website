@@ -6,6 +6,10 @@
 @using Core.Extension
 @using Web.Controllers
 
+@{
+	ViewBag.Theme = ProfileController.GetCookieTheme(Context.Request).GetEnumMemberValue();
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +20,7 @@
 	<link rel="stylesheet" href="~/dist/layout.css" asp-append-version="true" />
 	@await RenderSectionAsync("Styles", false)
 </head>
-<body class="@($"theme-{ProfileController.GetCookieTheme(Context.Request).GetEnumMemberValue()}")">
+<body class="@($"theme-{ViewBag.Theme}")">
 <div class="super_container">
 	<div class="header-spacer"></div>
 	<header class="header">

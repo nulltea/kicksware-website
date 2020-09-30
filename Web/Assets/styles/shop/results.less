@@ -16,6 +16,7 @@
 .products-view {
 	width: inherit;
 	display: grid;
+	min-height: 350px;
 	grid-auto-rows: 1fr;
 	grid-gap: 15px;
 	margin-top: 0;
@@ -96,7 +97,12 @@
 			.elevation(2, @elevation);
 		});
 		z-index: 0;
-		.transition-properties(transform 300ms cubic-bezier(.155,1.105,.295,1.12), box-shadow 300ms, -webkit-transform 300ms cubic-bezier(.155,1.105,.295,1.12););
+		.transition-properties(
+			transform 300ms cubic-bezier(.155,1.105,.295,1.12),
+			-webkit-transform 300ms cubic-bezier(.155,1.105,.295,1.12),
+			-moz-transform 300ms cubic-bezier(.155,1.105,.295,1.12),
+			box-shadow 300ms;
+		);
 
 		.with-desktop({
 			&:hover,
@@ -458,6 +464,7 @@
 }
 
 .no-result-content {
+	position: absolute;
 	.flex-row(center, center);
 	width: 100%;
 	flex-direction: column;

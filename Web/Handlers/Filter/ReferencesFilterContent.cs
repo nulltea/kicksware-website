@@ -36,9 +36,9 @@ namespace Web.Handlers.Filter
 			model.AddFilterGroup("Price", "price", ExpressionType.And)
 				.AssignParameters(
 					new FilterParameter("Price (min)", 0, ExpressionType.GreaterThanOrEqual)
-						{Checked = true, ImmutableValue = false},
-					new FilterParameter("Price (max)", 1000, ExpressionType.LessThanOrEqual)
-						{Checked = true, ImmutableValue = false}
+						{Checked = false, ImmutableValue = false},
+					new FilterParameter("Price (max)", 0, ExpressionType.LessThanOrEqual)
+						{Checked = false, ImmutableValue = false}
 				);
 			model.AddForeignFilterGroup<SneakerProduct>("Condition", "condition")
 				.AssignParameters(typeof(SneakerCondition));
@@ -48,9 +48,9 @@ namespace Web.Handlers.Filter
 		{
 			model.AddSortParameters(criterion => criterion switch
 			{
-				SortCriteria.Popular => new SortParameter(criterion, ""),
+				SortCriteria.Popular => new SortParameter(criterion, "likes"),
 				SortCriteria.Newest => new SortParameter(criterion, "releasedate"),
-				SortCriteria.Featured => new SortParameter(criterion, ""),
+				SortCriteria.Featured => new SortParameter(criterion, "releasedate"),
 				SortCriteria.PriceFromLow => new SortParameter(criterion, "price", SortDirection.Ascending),
 				SortCriteria.PriceFromHigh => new SortParameter(criterion, "price"),
 				_ => throw new ArgumentException("No such sort criteria")

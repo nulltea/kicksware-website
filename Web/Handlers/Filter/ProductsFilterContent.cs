@@ -31,9 +31,9 @@ namespace Web.Handlers.Filter
 			model.AddFilterGroup("Price", "price", ExpressionType.And)
 				.AssignParameters(
 					new FilterParameter("Price (min)", 0, ExpressionType.GreaterThanOrEqual)
-						{Checked = true, ImmutableValue = false},
-					new FilterParameter("Price (max)", 1000, ExpressionType.LessThanOrEqual)
-						{Checked = true, ImmutableValue = false}
+						{Checked = false, ImmutableValue = false},
+					new FilterParameter("Price (max)", 0, ExpressionType.LessThanOrEqual)
+						{Checked = false, ImmutableValue = false}
 				);
 			model.AddFilterGroup("Condition", "condition")
 				.AssignParameters(typeof(SneakerCondition));

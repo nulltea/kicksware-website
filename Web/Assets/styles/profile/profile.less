@@ -154,6 +154,16 @@
 
 		.products-view {
 			margin: 15px;
+
+			&.list {
+				.product-cell {
+					margin-right: 20px;
+					&:hover,
+					&.selected {
+						.transform-properties(scale(1.05));
+					}
+				}
+			}
 		}
 
 		.pagination-control{

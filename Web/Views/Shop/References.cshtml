@@ -126,12 +126,12 @@
 									<div class="section-content">
 										<div class="price-range">
 											<div class="multi-range">
-												<input type="range" class="price-slider min" min="0" value="0" max="1000"/>
-												<input type="range" class="price-slider max" min="100" value="1000" max="1000"/>
+												<input type="range" class="price-slider min" min="0" value="0" max="10000"/>
+												<input type="range" class="price-slider max" min="100" value="1000" max="10000"/>
 											</div>
 											<div class="multi-input">
 												@filterGroup[0].RenderInput(new {type = "number", value = 100, @class = "filter-input price-input min"})
-												@filterGroup[1].RenderInput(new {type = "number", value = 1000, @class = "filter-input price-input max"})
+												@filterGroup[1].RenderInput(new {type = "number", value = 3000, @class = "filter-input price-input max"})
 											</div>
 										</div>
 									</div>
@@ -172,6 +172,7 @@
 					<div class="@($"products-view { layoutView.GetEnumMemberValue() }")">
 						@{ await Html.RenderPartialAsync($"Partial/{entityValue.ToTitleCase()}Partial", Model); }
 					</div>
+					@{ await Html.RenderPartialAsync("_PagedPartial", Model); }
 				</div>
 			</div>
 		</div>

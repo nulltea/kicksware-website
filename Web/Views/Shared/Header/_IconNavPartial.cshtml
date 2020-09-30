@@ -1,12 +1,22 @@
 ﻿@using Web.Utils.Helpers
 @using Microsoft.AspNetCore.Identity
 @using Core.Entities.Users
+@using System.Security.Claims
+@using Environment = Core.Environment.Environment
 @inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <nav class="icon-nav">
 	<ul>
-		<li class="theme dark">
-			@Html.VectorIconRender("theme.svg") @*TODO Nastya sunny easter egg*@
+		<li class="@($"theme {ViewBag.Theme}")">
+			@if (IsSunny(User))
+			{
+				@Html.VectorIconRender("theme-sunny.svg", "sunny")
+			}
+			else
+			{
+				@Html.VectorIconRender("theme-sneaker.svg")
+			}
 		</li>
 		<li class="account expandable">
 			@Html.VectorIconRender("user.svg")
@@ -32,3 +42,11 @@
 		</li>
 	</ul>
 </nav>
+
+@{
+	bool IsSunny(ClaimsPrincipal claims)
+	{
+		var userID = UserManager.GetUserId(claims);
+		return !string.IsNullOrEmpty(userID) && !string.IsNullOrEmpty(Environment.SunnyUserIdPrefix) && userID.StartsWith(Environment.SunnyUserIdPrefix);
+	}
+}

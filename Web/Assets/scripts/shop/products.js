@@ -277,9 +277,10 @@ function bindRequestUpdateEvent(element, page=1, event="change") {
 		let entityID = pathValues[3];
 		toggleLoadOverlay();
 		$.post(`/${controller}/${entity}/requestUpdate/${entityID}`, {filterInputs: formFilterParameters(), page: page, sortBy: formSortParameter() }, function(response) {
-			window.scroll({top: 450, left: 0, behavior: "instant" });
+			scrollTop();
 			$(".result-content .products-view").html(response["content"]);
 			$(".count span").text(`Showing ${(page - 1) * response["pageSize"]}-${Math.min(response["pageSize"], response["length"])} / ${response["length"]} results`);
+			renderPagination(response)
 			setLayoutMode();
 			paginationInit();
 			window.history.pushState("Kicksware", `(Page ${page})`, `?page=${page}&sortBy=${formSortParameter()}`);
@@ -295,10 +296,23 @@ function bindRequestUpdateEvent(element, page=1, event="change") {
 			let value = this.value;
 			if (this.type === "number" || this.type === "range") {
 				value = parseFloat(value)
+				if (value === 0) {
+					checked = false
+				}
 			}
 			filterInputs.push({RenderId: this.id, Checked: checked, ValueJson: JSON.stringify(value)})
 		});
 		return filterInputs;
+	}
+
+	function renderPagination(response) {
+		let control = $(".pagination-control");
+		let newControl = $.parseHTML(response["pagination"])
+		if (control.length) {
+			control.replaceWith(newControl)
+		} else {
+			$(".result-content").append(newControl)
+		}
 	}
 
 	function formSortParameter() {
@@ -314,12 +328,23 @@ function bindRequestUpdateEvent(element, page=1, event="change") {
 			view.removeClass("grid").addClass("list");
 		}
 	}
+
+	function scrollTop() {
+		window.scroll({
+			top: $(".hero-parallax").height() + 50,
+			left: 0,
+			behavior: "instant"
+		});
+	}
 }
 
 function sortingInit(){
-	let sortSelector = $(".sort_type .select-items div");
-	bindRequestUpdateEvent(sortSelector, $("#page-current").val(), "click");
-	sortSelector.val(new URL(window.location.href).searchParams.get("sortBy") ?? "newest");
+	$(".sort_type select").val(new URL(window.location.href).searchParams.get("sortBy") ?? "newest");
+}
+
+
+function sortingBind(){
+	bindRequestUpdateEvent($(".sort_type .select-items div"), $("#page-current").val(), "click");
 }
 
 function paginationInit() {
@@ -368,9 +393,11 @@ $(document).ready(function () {
 
 	favoriteInit();
 
+	sortingInit();
+
 	initCustomDropDown();
 
-	sortingInit();
+	sortingBind();
 
 	autocompleteFilter(window.brands);
 

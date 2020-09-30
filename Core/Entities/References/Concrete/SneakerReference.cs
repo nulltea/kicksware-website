@@ -83,6 +83,11 @@ namespace Core.Entities.References
 		[DataType(DataType.Url)]
 		public string StadiumUrl { get; set; }
 
+		[DataType(DataType.Url)]
+		public string GoatUrl { get; set; }
+
+		public string SourceURL => !string.IsNullOrEmpty(StadiumUrl) ? StadiumUrl : GoatUrl;
+
 		public int Likes { get; set; }
 
 		public bool Liked { get; set; }

@@ -1,5 +1,10 @@
 ﻿@model Core.Model.IPagedModel<Core.Entities.IBaseEntity>
 
+@if (Model is null || !Model.Any())
+{
+	return;
+}
+
 <div class="row pagination-control">
 	<nav>
 		<div class="left">

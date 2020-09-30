@@ -75,6 +75,7 @@ namespace Web.Controllers
 			return Json(new
 			{
 				content = await this.RenderViewAsync($"Partial/{entity.ToTitleCase()}Partial", handler, true),
+				pagination = await this.RenderViewAsync($"_PagedPartial", handler, true),
 				length = handler.CountTotal,
 				pageSize = handler.PageSize
 			});
