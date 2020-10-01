@@ -84,10 +84,12 @@ namespace Web
 				services.AddSecureGrpcClient<Proto.AuthService.AuthServiceClient>();
 				services.AddSecureGrpcClient<Proto.MailService.MailServiceClient>();
 				services.AddSecureGrpcClient<Proto.InteractService.InteractServiceClient>();
+				services.AddSecureGrpcClient<Proto.OrderService.OrderServiceClient>();
 
 				services.AddTransient<ISneakerProductRepository, SneakerProductsGrpcRepository>();
 				services.AddTransient<ISneakerReferenceRepository, SneakerReferencesGrpcRepository>();
 				services.AddTransient<IUserRepository, UserGrpcRepository>();
+				services.AddTransient<IOrderRepository, OrderGrpcRepository>();
 
 				services.AddSingleton<IAuthService, AuthServiceGRPC>();
 				services.AddTransient<IMailService, MailServiceGRPC>();
@@ -97,6 +99,13 @@ namespace Web
 				services.AddSingleton<IQueryBuilder, QueryBuilderGRPC>();
 
 				services.AddTransient<AuthTokenInterceptor>();
+
+				services.AddSingleton<ICommonService<SneakerReference>, SneakerReferenceService>();
+				services.AddSingleton<ICommonService<SneakerProduct>, SneakerProductService>();
+				services.AddSingleton<ISneakerReferenceService, SneakerReferenceService>();
+				services.AddSingleton<ISneakerProductService, SneakerProductService>();
+				services.AddSingleton<IUserService, UserService>();
+				services.AddSingleton<IOrderService, OrderService>();
 			}
 			else
 			{
@@ -105,6 +114,7 @@ namespace Web
 				services.AddTransient<ISneakerProductRepository, SneakerProductsRestRepository>();
 				services.AddTransient<ISneakerReferenceRepository, SneakerReferencesRestRepository>();
 				services.AddTransient<IUserRepository, UserRestRepository>();
+				services.AddTransient<IOrderRepository, OrderRestRepository>();
 
 				services.AddSingleton<IAuthService, AuthServiceREST>();
 				services.AddTransient<IMailService, MailServiceREST>();
@@ -112,14 +122,14 @@ namespace Web
 				services.AddTransient<IReferenceSearchService, ReferenceSearchServiceREST>();
 
 				services.AddSingleton<IQueryBuilder, QueryBuilderREST>();
-			}
 
-			// TODO REST -> Transient for RestfulClient
-			services.AddSingleton<ICommonService<SneakerReference>, SneakerReferenceService>();
-			services.AddSingleton<ICommonService<SneakerProduct>, SneakerProductService>();
-			services.AddSingleton<ISneakerReferenceService, SneakerReferenceService>();
-			services.AddSingleton<ISneakerProductService, SneakerProductService>();
-			services.AddSingleton<IUserService, UserService>();
+				services.AddTransient<ICommonService<SneakerReference>, SneakerReferenceService>();
+				services.AddTransient<ICommonService<SneakerProduct>, SneakerProductService>();
+				services.AddTransient<ISneakerReferenceService, SneakerReferenceService>();
+				services.AddTransient<ISneakerProductService, SneakerProductService>();
+				services.AddTransient<IUserService, UserService>();
+				services.AddTransient<IOrderService, OrderService>();
+			}
 
 			services.AddTransient<FilterContentBuilder<SneakerReference>, ReferencesFilterContent>();
 			services.AddTransient<FilterContentBuilder<SneakerProduct>, ProductsFilterContent>();

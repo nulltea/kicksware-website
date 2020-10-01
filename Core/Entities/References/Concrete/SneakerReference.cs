@@ -59,6 +59,8 @@ namespace Core.Entities.References
 
 		public string Designer { get; set; }
 
+		public string Technology { get; set; }
+
 		[DataType(DataType.ImageUrl)]
 		public string ImageLink { get; set; }
 
@@ -79,6 +81,13 @@ namespace Core.Entities.References
 		public List<string> OtherImages => ImageLinks?.Select(img => Path.Combine(Environment.Environment.FileStoragePath, "references", img)).ToList();
 
 		public DateTime ReleaseDate { get; set; }
+
+		public string ReleaseDateSTR { get; set; }
+
+		public string ReleaseDateView =>
+			!string.IsNullOrEmpty(ReleaseDateSTR) ? ReleaseDateSTR : ReleaseDate.ToShortDateString();
+
+		public DateTime AddedDate { get; set; }
 
 		[DataType(DataType.Url)]
 		public string StadiumUrl { get; set; }

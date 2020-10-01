@@ -6,7 +6,7 @@
 	})
 }
 
-function favoriteInit(){
+function favoriteInit() {
 	$(".title-header .favorite-product input[type=checkbox]").change(function () {
 		let id = window.location.pathname.split("/").slice(-1)
 		let checked = $(this).is(":checked");
@@ -21,10 +21,42 @@ function favoriteInit(){
 	})
 }
 
+function buyRedirectInit() {
+	$(".buy-redirect").click(function (){
+		$.get(`/Order/CommitOrder?referenceID=${$("#reference-id").val()}&productID=${$("#product-id").val() ?? ""}`, function(response) {
+			if (!localStorage.getItem("kicksware.redirect-popup-never-again") && response.success && response.content) {
+				$("#popup-dialog").html(response.content);
+				window.redirectURL = response["redirectUrl"];
+				showDialog();
+				modalInit();
+			}
+		});
+	})
+
+	function showDialog() {
+		$("#popup-modal").modal("show");
+	}
+
+	function closeDialog() {
+		$("#popup-modal").fadeOut("slow").modal("hide");
+	}
+
+	function modalInit() {
+		$(".never-show-again a").click(function (event){
+			localStorage.setItem("kicksware.redirect-popup-never-again", "true")
+			closeDialog();
+			event.stopPropagation();
+			event.preventDefault();
+		})
+	}
+}
+
 $(document).ready(function () {
 	"use strict";
 
 	initCarousels();
 
 	favoriteInit();
+
+	buyRedirectInit();
 });

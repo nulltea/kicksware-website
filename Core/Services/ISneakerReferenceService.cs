@@ -48,6 +48,10 @@ namespace Core.Services
 
 		Task<List<SneakerReference>> GetFeaturedAsync(IEnumerable<string> models, RequestParams requestParams = default);
 
+		List<SneakerReference> GetLatest(int limit);
+
+		Task<List<SneakerReference>> GetLatestAsync(int limit);
+
 		#endregion
 	}
 }

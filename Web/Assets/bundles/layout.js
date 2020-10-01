@@ -19,6 +19,7 @@ import "../scripts/layout/menu"
 import "../scripts/layout/search"
 
 import "../scripts/user/auth"
+import "../scripts/layout/popup"
 
 
 // Styles

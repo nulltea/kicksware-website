@@ -17,7 +17,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>@ViewBag.Title | Kicksware </title>
 	<link rel="icon" type="image/x-icon" href="https://kicksware.com/favicon.ico">
-	<link rel="stylesheet" href="~/dist/layout.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/dist/layout.css" asp-append-version="true"/>
 	@await RenderSectionAsync("Styles", false)
 </head>
 <body class="@($"theme-{ViewBag.Theme}")">
@@ -59,6 +59,9 @@
 		@{
 			await Html.RenderPartialAsync("../Auth/_AuthDialogPartial", new AuthCommonViewModel());
 		}
+	</div>
+	<div class="modal fade popup-modal" tabindex="-1" id="popup-modal" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog popup-dialog modal-lg" id="popup-dialog"></div>
 	</div>
 	<div class="modal fade preloader" tabindex="-1">
 		<ul class="loader">

@@ -13,7 +13,7 @@
 
 @section Styles
 {
-	<link rel="stylesheet" href="@Bundle.GetAssetName("shop-item", "css")" asp-append-version="true" />
+	<link rel="stylesheet" href="@Bundle.GetAssetName("shop-item", "css")" asp-append-version="true"/>
 }
 
 <!-- Reference Details -->
@@ -34,6 +34,7 @@
 			<!-- Reference Content -->
 			<div class="col-sm product-title">
 				<div class="title-header">
+					<div class="price-title">@Html.DisplayFor(model => Model.Price)</div>
 					@if (SignInManager.IsSignedIn(Context.User))
 					{
 						<div class="favorite-product">
@@ -60,7 +61,7 @@
 				</div>
 				<div class="title-footer">
 					<button class="button">
-						<a href="@Model.SourceURL" target="_blank">BUY NEW</a>
+						<a class="buy-redirect" href="@Model.SourceURL" target="_blank">BUY NEW</a>
 					</button>
 					<button class="button">
 						<a asp-action="Products" asp-route-referenceId="@Model.UniqueID">BUY USED</a>
@@ -73,59 +74,75 @@
 			<div class="carousel-wrapper js-flickity" data-flickity-options='{ "wrapAround": true }'>
 				<div class="carousel-cell">
 					<div class="details-caption">BRAND</div>
-					<a class="underline details-info">@Model.BrandName</a>
+					<a class="underline details-info" asp-controller="Shop" asp-action="Brand" asp-route-brandID="@Model.BrandName">
+						@Model.BrandName
+					</a>
 				</div>
-				@if (Model.ReleaseDate != DateTime.MinValue)
+				@if (!string.IsNullOrEmpty(Model.BaseModel))
+				{
+					<div class="carousel-cell">
+						<div class="details-caption">BASE MODEL</div>
+						<a class="underline details-info" asp-controller="Shop" asp-action="Model" asp-route-modelID="@Model.BaseModel?.CompositeID">
+							@Model.BaseModelName
+						</a>
+					</div>
+				}
+				@if (!string.IsNullOrEmpty(Model.ReleaseDateView))
 				{
 					<div class="carousel-cell">
 						<div class="details-caption">RELEASE DATE</div>
-						<a class="underline details-info">@Model.ReleaseDate.ToShortDateString()</a>
+						<p class="underline details-info">@Model.ReleaseDateView</p>
 					</div>
 				}
 				<div class="carousel-cell">
 					<div class="details-caption">SKU</div>
-					<a class="underline details-info">@Model.ManufactureSku</a>
+					<p class="underline details-info">@Model.ManufactureSku</p>
 				</div>
 				@if (!string.IsNullOrEmpty(Model.Nickname))
 				{
 					<div class="carousel-cell">
 						<div class="details-caption">NICKNAME</div>
-						<a class="underline details-info">@Model.Nickname</a>
+						<p class="details-info">@Model.Nickname</p>
 					</div>
 				}
 				<div class="carousel-cell">
 					<div class="details-caption">MAIN COLOR</div>
-					<a class="underline details-info">@Model.Color?.Split("/")[0]</a>
+					<p class="underline details-info">@Model.Color?.Split("/")[0]</p>
 				</div>
 				<div class="carousel-cell">
 					<div class="details-caption">COLORWAY</div>
-					<a class="underline details-info">@Model.Color</a>
+					<p class="underline details-info">@Model.Color</p>
 				</div>
 				<div class="carousel-cell">
 					<div class="details-caption">GENDER</div>
-					<a class="underline details-info">@Model.Gender</a>
+					<p class="underline details-info">@Model.Gender</p>
 				</div>
+				@if (!string.IsNullOrEmpty(Model.Designer))
+				{
+					<div class="carousel-cell">
+						<div class="details-caption">DESIGNER</div>
+						<p class="underline details-info">@Model.Designer</p>
+					</div>
+				}
+				@if (!string.IsNullOrEmpty(Model.Technology))
+				{
 				<div class="carousel-cell">
-					<div class="details-caption">DESIGNER</div>
-					<a class="underline details-info">@Model.BrandName</a>
-				</div>
-				@*<div class="carousel-cell">
 					<div class="details-caption">TECHNOLOGY</div>
-					<a class="underline details-info">Model.Technology</a>
-				</div>*@
+					<p class="underline details-info">@Model.Technology</p>
+				</div>
+				}
 				@if (Model.Materials != null && Model.Materials.Any())
 				{
 					<div class="carousel-cell">
 						<div class="details-caption">MATERIALS</div>
-						<a class="underline details-info">@string.Join(", ", Model.Materials)</a>
+						<p class="underline details-info">@string.Join(", ", Model.Materials)</p>
 					</div>
 				}
 				@if (Model.Categories != null && Model.Categories.Any())
 				{
-
 					<div class="carousel-cell">
 						<div class="details-caption">CATEGORY</div>
-						<a class="underline details-info">@string.Join(", ", Model.Categories.Take(3))</a>
+						<p class="underline details-info">@string.Join(", ", Model.Categories.Take(3))</p>
 					</div>
 				}
 			</div>
@@ -151,6 +168,7 @@
 			</section>
 		}
 	</div>
+	@Html.HiddenFor(model => model.UniqueID, new {id = "reference-id"})
 </div>
 
 

@@ -1,4 +1,4 @@
-﻿@using Core.Environment
+﻿@using Web.Utils.Bundle
 @using Web.Utils.Helpers
 @model SneakerProductViewModel
 @{
@@ -9,9 +9,7 @@
 
 @section Styles
 {
-	<link rel="stylesheet" type="text/css" href="~/styles/css/shop/product-item.css"/>
-	<link href="~/styles/css/responsive/product-item.responsive.css" rel="stylesheet"/>
-	<link href="~/plugins/flickity/dist/flickity.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="@Bundle.GetAssetName("shop-item", "css")" asp-append-version="true"/>
 }
 
 <div class="product-item">
@@ -55,33 +53,34 @@
 			<div class="carousel-wrapper js-flickity" data-flickity-options='{ "wrapAround": true }'>
 				<div class="carousel-cell">
 					<div class="details-caption">BRAND</div>
-					<a class="underline details-info">@Model.BrandName</a>
+					<a class="underline details-info" asp-controller="Shop" asp-action="Brand" asp-route-brandID="@Model.Brand?.Name">
+						@Model.BrandName
+					</a>
 				</div>
 				<div class="carousel-cell">
 					<div class="details-caption">SKU</div>
-					<a class="underline details-info">@Model.ModelSKU</a>
+					<p class="underline details-info">@Model.ModelSKU</p>
 				</div>
 				<div class="carousel-cell">
 					<div class="details-caption">SIZE</div>
-					<a class="underline details-info">@Model.Size.ToString()</a>
+					<p class="underline details-info">@Model.Size.ToString()</p>
 				</div>
 				<div class="carousel-cell">
 					<div class="details-caption">CONDITION</div>
-					<a class="underline details-info">@Model.Condition</a>
+					<p class="underline details-info">@Model.Condition</p>
 				</div>
 				<div class="carousel-cell">
 					<div class="details-caption">COLORWAY</div>
-					<a class="underline details-info">@Model.Color</a>
+					<p class="underline details-info">@Model.Color</p>
 				</div>
 				<div class="carousel-cell">
 					<div class="details-caption">TYPE</div>
-					<a class="underline details-info">@Model.Type</a>
+					<p class="underline details-info">@Model.Type</p>
 				</div>
 				<div class="carousel-cell">
 					<div class="details-caption">DESIGNER</div>
-					<a class="underline details-info">@Model.BrandName</a>
+					<p class="underline details-info">@Model.BrandName</p>
 				</div>
-
 				<div class="carousel-cell">
 					<div class="details-caption">ADDED DATE</div>
 					<a class="underline details-info">@DateTime.Today.ToShortDateString()</a>
@@ -134,10 +133,11 @@
 			</section>
 		}
 	</div>
+	@Html.HiddenFor(model => model.UniqueID, new {id = "product-id"})
+	@Html.HiddenFor(model => model.ReferenceID, new {id = "reference-id"})
 </div>
 
 @section Scripts
 {
-	<script src="~/scripts/shop/productItem.js"></script>
-	<script src="~/plugins/flickity/dist/flickity.pkgd.min.js"></script>
+	<script src="@Bundle.GetAssetName("shop-item", "js")" asp-append-version="true"></script>
 }

@@ -8,6 +8,7 @@ function sidebarControlInit() {
 			$(".profile-section.active").toggleClass("active");
 			newActive.toggleClass("active");
 			let mode = newActive.attr("name")
+			if (window.history)
 			window.history.replaceState("Kicksware", `(Page ${mode})`, `/profile/${mode}`);
 		}
 	})
@@ -16,6 +17,12 @@ function sidebarControlInit() {
 		$(".profile-section.active").toggleClass("active");
 		$(`section[name=${mode}]`).toggleClass("active");
 	}
+	$(".profile-sidebar nav li").click(function (){
+		$(this).find("label").click();
+	})
+	$(".profile-sidebar nav svg").click(function (){
+		$(this).find("~ label").click();
+	})
 }
 
 function profileFormInit(){

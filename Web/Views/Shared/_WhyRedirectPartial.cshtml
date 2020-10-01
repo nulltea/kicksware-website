@@ -1,0 +1,34 @@
+@using Web.Utils.Helpers
+@using Environment = Core.Environment.Environment
+@using IO = System.IO.Path
+
+<div class="modal-content why-redirect">
+	<div class="modal-header">
+		<h4>WONDERING WHY WAS YOU REDIRECTED TO ANOTHER WEBSITE?</h4>
+	</div>
+	<div class="modal-body">
+		<div class="illustration">
+			<a href="https://kicksware.com">
+			@Html.VectorIconRenderFromPath(IO.Combine(Environment.LocalStoragePath, "logos", "kicksware.svg"), "logo", "kicksware")
+			</a>
+			@Html.VectorIconRender("redirect.svg", "redirect")
+			<a href="https://www.stadiumgoods.com">
+				@Html.VectorIconRenderFromPath(IO.Combine(Environment.LocalStoragePath, "logos", "stadium-goods.svg"), "logo", "stadium")
+			</a>
+
+		</div>
+
+		<p>
+			<span class="kicksware">Kicksware</span> is actually a noncommercial, research project
+			dedicated to showcasing the use of modern technologies in the context of the fashion industry.
+		</p>
+		<p>
+			Consider visiting <a asp-action="About" asp-controller="About">About page</a> to find out more..
+		</p>
+	</div>
+	<div class="modal-footer">
+		<p class="never-show-again">
+			Got it, <a>never show this again.</a>
+		</p>
+	</div>
+</div>

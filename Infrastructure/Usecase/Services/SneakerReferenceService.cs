@@ -181,7 +181,7 @@ namespace Infrastructure.Usecase
 
 			if (requestParams?.SortBy is null)
 			{
-				(requestParams ??= new RequestParams()).SortBy = "price";
+				(requestParams ??= new RequestParams()).SortBy = "releasedate";
 				requestParams.SortDirection = SortDirection.Descending;
 			}
 			return Fetch(query, requestParams);
@@ -191,16 +191,21 @@ namespace Infrastructure.Usecase
 		{
 			var query = _builder
 				.Reset()
-				.SetQueryArguments("modelname", ExpressionType.And, models.Select(model => new FilterParameter(model, ExpressionType.Regex)).ToArray())
+				.SetQueryArguments("modelname", ExpressionType.Or, models.Select(model => new FilterParameter(model, ExpressionType.Regex)).ToArray())
 				.Build();
 
 			if (requestParams?.SortBy is null)
 			{
-				(requestParams ??= new RequestParams()).SortBy = "price";
+				(requestParams ??= new RequestParams()).SortBy = "releasedate";
 				requestParams.SortDirection = SortDirection.Descending;
 			}
 			return await FetchAsync(query, requestParams);
 		}
+
+		public List<SneakerReference> GetLatest(int limit) => Fetch(new RequestParams {Limit = limit, SortBy = "releasedate", SortDirection = SortDirection.Descending});
+
+		public Task<List<SneakerReference>> GetLatestAsync(int limit) => FetchAsync(new RequestParams {Limit = limit, SortBy = "releasedate", SortDirection = SortDirection.Descending});
+
 		#endregion
 	}
 }

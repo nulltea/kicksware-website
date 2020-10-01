@@ -6,11 +6,14 @@
 	ViewBag.Title = "Home";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	var featuredReferences = ViewBag.FeaturedReferences as List<SneakerReference>;
+	var latestReferences = ViewBag.LatestReferences as List<SneakerReference>;
 }
 
 @section Styles
 {
-	<link rel="stylesheet" href="@Bundle.GetAssetName("home", "css")" asp-append-version="true" />
+	<link rel="stylesheet" href="@Bundle.GetAssetName("home", "css")" asp-append-version="true"/>
+	<link href="https://fonts.googleapis.com/css?family=Oxanium:300,400,500,600,700,800,900" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Audiowide:300,400,500,600,700,800,900" rel="stylesheet" type="text/css">
 }
 
 <div class="home">
@@ -61,6 +64,16 @@
 			<h3 class="carousel-title">FEATURED MODELS</h3>
 			@{
 				await Html.RenderPartialAsync("_ReferenceCarouselPartial", featuredReferences);
+			}
+		</section>
+	}
+
+	@if (latestReferences != null && latestReferences.Any())
+	{
+		<section class="carousel reference-carousel">
+			<h3 class="carousel-title">LATEST ARRIVALS</h3>
+			@{
+				await Html.RenderPartialAsync("_ReferenceCarouselPartial", latestReferences);
 			}
 		</section>
 	}

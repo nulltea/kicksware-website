@@ -11,11 +11,16 @@ namespace Web.Utils.Extensions
 {
 	public static class ControllerExtensions
 	{
-		public static async Task<string> RenderViewAsync<TModel>(this Controller controller, string viewName, TModel model, bool isPartial = false)
+		public static Task<string> RenderViewAsync<TModel>(this Controller controller, string viewName, TModel model, bool isPartial = false)
+		{
+			controller.ViewData.Model = model;
+
+			return controller.RenderViewAsync(viewName, isPartial);
+		}
+
+		public static async Task<string> RenderViewAsync(this Controller controller, string viewName, bool isPartial = false)
 		{
 			if (string.IsNullOrEmpty(viewName)) viewName = controller.ControllerContext.ActionDescriptor.ActionName;
-
-			controller.ViewData.Model = model;
 
 			await using var writer = new StringWriter();
 			var viewEngine = controller.HttpContext.RequestServices

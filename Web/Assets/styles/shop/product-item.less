@@ -258,7 +258,6 @@
 				.favorite-product {
 					opacity: 0;
 				}
-			;
 			}
 		}
 
@@ -273,10 +272,9 @@
 }
 
 .favorite-product {
-	position: absolute;
 	align-self: flex-end;
 	cursor: pointer;
-	top: 50%;
+	top: 0;
 	.transition-properties(all 300ms ease, opacity 100ms ease;);
 
 	input[type=checkbox] {
@@ -410,7 +408,7 @@
 
 				.title-header {
 					width: 100%;
-					.flex-row(flex-end, center);
+					.flex-row(space-between, center);
 
 					.favorite-product {
 						input[type=checkbox] {
@@ -478,6 +476,7 @@
 
 						a {
 							line-height: 43px;
+							width: 100%;
 						}
 
 						&:first-child {
@@ -505,6 +504,7 @@
 				.details-caption {
 					font-size: 12px;
 					font-weight: 600;
+					margin-bottom: 5px;
 					.with-theme({
 						color: fade(@secondary, 50%);
 					})
@@ -514,9 +514,14 @@
 					font-size: 20px;
 					font-weight: 500;
 					text-align: center;
+					line-height: 25px;
 					.with-theme({
 						color: @secondary;
-					})
+					});
+				}
+
+				a {
+					cursor: pointer;
 				}
 			}
 		}

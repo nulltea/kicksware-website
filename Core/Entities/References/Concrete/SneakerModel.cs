@@ -11,6 +11,8 @@ namespace Core.Entities.References
 		[Key]
 		public string UniqueID { get; }
 
+		public string CompositeID => $"{Brand?.Name?.ToFormattedID()}_{Name?.ToFormattedID()}";
+
 		public string Name { get; set; }
 
 		public SneakerBrand Brand { get; set; }
@@ -27,7 +29,7 @@ namespace Core.Entities.References
 
 		public static implicit operator SneakerModel(string field) => new SneakerModel(field);
 
-		public static implicit operator string(SneakerModel property) => property.Name;
+		public static implicit operator string(SneakerModel property) => property?.Name;
 
 		public SneakerModel(string name)
 		{

@@ -29,7 +29,7 @@ namespace Core.Entities.References
 
 		public static implicit operator SneakerBrand(string field) => new SneakerBrand(field);
 
-		public static implicit operator string(SneakerBrand property) => property.Name;
+		public static implicit operator string(SneakerBrand property) => property?.Name;
 
 		public SneakerBrand(string name)
 		{
