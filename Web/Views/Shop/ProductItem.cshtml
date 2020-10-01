@@ -1,4 +1,5 @@
 ﻿@using Web.Utils.Bundle
+@using Web.Utils.Extensions
 @using Web.Utils.Helpers
 @model SneakerProductViewModel
 @{
@@ -30,7 +31,7 @@
 			<!-- Reference Content -->
 			<div class="col-sm product-title">
 				<div class="title-header">
-					<div class="price-title">@Html.DisplayFor(model => Model.Price)</div>
+					<div class="price-title">@Model.Price.FormatCurrency()</div>
 				</div>
 				<div class="title-body">
 					<div class="brand-title">@Html.DisplayFor(model => Model.BrandName)</div>

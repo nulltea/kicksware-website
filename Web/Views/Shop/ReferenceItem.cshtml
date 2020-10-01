@@ -2,6 +2,7 @@
 @using Core.Entities.Users
 @using Microsoft.AspNetCore.Identity
 @using Web.Utils.Bundle
+@using Web.Utils.Extensions
 @using Web.Utils.Helpers
 @model Core.Entities.References.SneakerReference
 @inject SignInManager<User> SignInManager
@@ -34,7 +35,7 @@
 			<!-- Reference Content -->
 			<div class="col-sm product-title">
 				<div class="title-header">
-					<div class="price-title">@Html.DisplayFor(model => Model.Price)</div>
+					<div class="price-title">@Model.Price.FormatCurrency()</div>
 					@if (SignInManager.IsSignedIn(Context.User))
 					{
 						<div class="favorite-product">
