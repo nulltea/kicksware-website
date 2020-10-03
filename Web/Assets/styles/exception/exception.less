@@ -1,0 +1,97 @@
+// COLORS //
+@import "../properties/colors";
+
+// FONTS //
+@import "../properties/fonts";
+
+// MIXINS
+@import "../mixins/mixins";
+
+.exception {
+	.flex-row(@align: stretch);
+	height: 100vh;
+
+	main, aside {
+		width: 50%;
+	}
+
+	main {
+		.flex-col(center, center);
+		align-items: center;
+		background: @theme-dark-hint;
+		color: @theme-dark-secondary;
+		font-family: "Oxanium", sans-serif;
+
+		.error-code {
+			font-family: Audiowide, sans-serif;
+			font-size: 150px;
+			.text-light-elevation(black);
+		}
+
+		.controls {
+			.flex-row(space-between);
+			width: 375px;
+		}
+
+		.button {
+			position: relative;
+			width: 150px;
+			height: 40px;
+			border: none;
+			border-radius: 6px;
+			background: @theme-dark-secondary;
+			color: @theme-dark-primary;
+			.elevation(1, fade(black, 20%));
+
+			&:active {
+				.elevation(0);
+			}
+
+			span, a {
+				position: relative;
+				display: block;
+				height: 100%;
+				line-height: 40px;
+				font-size: 16px;
+				font-weight: 600;
+				z-index: 2;
+				.transition-properties(all 200ms ease);
+				color: @theme-dark-primary;
+			}
+
+			svg {
+				width: 20px;
+				height: 20px;
+				fill: @theme-dark-primary;
+			}
+
+			&:hover {
+				&::after {
+					background: @theme-dark-primary;
+				}
+				span, a {
+					color: @theme-dark-secondary;
+				}
+
+				svg {
+					z-index: 1;
+					fill: @theme-dark-primary;
+				}
+			}
+		}
+	}
+
+	aside {
+		background: @theme-light-primary;
+		align-items: center;
+		.flex-row(center, center);
+
+		img {
+			display: block;
+			max-height: 75%;
+			width: auto;
+			height: auto;
+			filter: drop-shadow(-5px 5px 8px grey);
+		}
+	}
+}

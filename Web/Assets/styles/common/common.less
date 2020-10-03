@@ -962,6 +962,38 @@ input[type="checkbox"].regular_checkbox {
 	}
 }
 
+.under-development {
+	.flex-col(center, center);
+
+	h2 {
+		font-size: 30px;
+	}
+
+	svg {
+		width: 200px;
+		height: 200px;
+		margin: 20px;
+		.with-theme({
+			fill: @secondary !important;
+		});
+		.with-mobile({
+			width: 100%;
+		})
+	}
+	ul {
+		list-style-type: square;
+	}
+
+	p, li, a {
+		text-align: left;
+		font-size: 20px;
+		font-weight: 500;
+		.with-theme({
+			color: @secondary;
+		});
+	}
+}
+
 
 
 // THEME TAGS //

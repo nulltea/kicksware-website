@@ -35,7 +35,9 @@
 			<input type="radio" name="tabs" id="tab2"/>
 			<label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Photo</label>
 			<div id="tab-content2" class="tab-content photo-tab" role="tabpanel" aria-labelledby="specification" aria-hidden="true">
-				@*TODO Image Search*@
+				@{
+					await Html.RenderPartialAsync("_UnderDevelopmentPartial");
+				}
 			</div>
 		</li>
 	</ul>

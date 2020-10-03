@@ -5,6 +5,7 @@ import "../scripts/sell/payment"
 import "../scripts/shop/productItem"
 
 // Styles
+import "../styles/properties/fonts.less"
 import "flickity/dist/flickity.css"
 import "../styles/sell/sell.less"
 import "../styles/sell/search.less"

@@ -1,0 +1,39 @@
+@using Web.Utils.Bundle
+@model Exception
+
+@{
+	ViewBag.Title = "Internal error: 500";
+	Layout = "_EmptyLayout";
+}
+
+@section Styles
+{
+	<link rel="stylesheet" href="@Bundle.GetAssetName("exception", "css")" asp-append-version="true"/>
+}
+
+<div class="exception" id="internal-error">
+	<aside>
+		<img src="/storage/assets/exception/500.png" alt/>
+	</aside>
+	<main>
+		<h1 class="error-code">500</h1>
+		<div class="error-content">
+			<p>
+				Something go wrong on that side of internet
+			</p>
+		</div>
+		<div class="controls">
+			<button class="button">
+				<a asp-controller="Home" asp-action="Index">Try again</a>
+			</button>
+			<button class="button">
+				<a asp-controller="Home" asp-action="Index">Go back</a>
+			</button>
+		</div>
+	</main>
+</div>
+
+@section Scripts
+{
+	<script src="@Bundle.GetAssetName("exception", "js")" asp-append-version="true"></script>
+}

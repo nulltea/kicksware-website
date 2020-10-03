@@ -1,0 +1,40 @@
+@using Web.Utils.Bundle
+@model Exception
+
+@{
+	ViewBag.Title = "Timeout: 408";
+	Layout = "_EmptyLayout";
+}
+
+@section Styles
+{
+	<link rel="stylesheet" href="@Bundle.GetAssetName("exception", "css")" asp-append-version="true"/>
+}
+
+<div class="exception" id="timeout">
+	<aside>
+		<img src="/storage/assets/exception/408.png" alt/>
+	</aside>
+	<main>
+		<h1 class="error-code">408</h1>
+		<div class="error-content">
+			<p>
+				Microservices have taken too much time to respond
+			</p>
+		</div>
+		<div class="controls">
+			<button class="button">
+				<a asp-controller="Home" asp-action="Index">Try again</a>
+			</button>
+			<button class="button">
+				<a asp-controller="Home" asp-action="Index">Go back</a>
+			</button>
+		</div>
+	</main>
+</div>
+
+@section Scripts
+{
+
+	<script src="@Bundle.GetAssetName("exception", "js")" asp-append-version="true"></script>
+}

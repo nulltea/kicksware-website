@@ -1,0 +1,35 @@
+@using Web.Utils.Helpers
+@using Web.Utils.Bundle
+@model Exception
+
+@{
+	ViewBag.Title = "Timeout: 408";
+	Layout = "_EmptyLayout";
+}
+
+@section Styles
+{
+	<link rel="stylesheet" href="@Bundle.GetAssetName("exception", "css")" asp-append-version="true"/>
+}
+
+<div class="exception" id="not-found">
+	<aside>
+		<img src="/storage/assets/exception/404.png" alt/>
+	</aside>
+	<main>
+		<h1 class="error-code">404</h1>
+		<div class="error-content">
+			<p>
+				The page you're looking for does not exists
+			</p>
+		</div>
+		<button class="button">
+			<a asp-controller="Home" asp-action="Index">Go Home</a>
+		</button>
+	</main>
+</div>
+
+@section Scripts
+{
+	<script src="@Bundle.GetAssetName("exception", "js")" asp-append-version="true"></script>
+}

@@ -179,9 +179,10 @@ namespace Web
 			}
 			else
 			{
-				app.UseExceptionHandler("/Home/Error");
+				app.UseExceptionHandler("/exception");
 				app.UseHsts();
 			}
+			app.UseStatusCodePagesWithReExecute("/exception");
 			app.UseHttpsRedirection();
 
 			app.UseRouting();
