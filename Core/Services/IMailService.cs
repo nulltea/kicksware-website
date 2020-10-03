@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Core.Model.Responses;
 
 namespace Core.Services
 {
@@ -10,10 +11,18 @@ namespace Core.Services
 
 		bool SendResetPasswordEmail(string userID, string callbackUrl);
 
+		CommonResponse Subscribe(string email);
+
+		CommonResponse Unsubscribe(string email);
+
 		Task<bool> SendResetPasswordEmailAsync(string userID, string callbackUrl);
 
-		public bool SendNotification(string userID, string msg);
+		bool SendNotification(string userID, string msg);
 
-		public Task<bool> SendNotificationAsync(string userID, string msg);
+		Task<bool> SendNotificationAsync(string userID, string msg);
+
+		Task<CommonResponse> SubscribeAsync(string email);
+
+		Task<CommonResponse> UnsubscribeAsync(string email);
 	}
 }

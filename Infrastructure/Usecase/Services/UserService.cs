@@ -5,6 +5,7 @@ using Core.Entities.Users;
 using Core.Extension;
 using Core.Gateway;
 using Core.Model.Parameters;
+using Core.Model.Responses;
 using Core.Repositories;
 using Core.Services;
 
@@ -83,6 +84,10 @@ namespace Infrastructure.Usecase
 		public bool SendResetPasswordEmail(string userID, string callbackUrl) =>
 			_mailClient.SendResetPasswordEmail(userID, callbackUrl);
 
+		public CommonResponse Subscribe(string email) => _mailClient.Subscribe(email);
+
+		public CommonResponse Unsubscribe(string email) => _mailClient.Unsubscribe(email);
+
 		public Task<bool> SendResetPasswordEmailAsync(string userID, string callbackUrl) =>
 			_mailClient.SendResetPasswordEmailAsync(userID, callbackUrl);
 
@@ -91,6 +96,10 @@ namespace Infrastructure.Usecase
 
 		public Task<bool> SendNotificationAsync(string userID, string msg) =>
 			_mailClient.SendNotificationAsync(userID, msg);
+
+		public Task<CommonResponse> SubscribeAsync(string email) => _mailClient.SubscribeAsync(email);
+
+		public Task<CommonResponse> UnsubscribeAsync(string email) => _mailClient.UnsubscribeAsync(email);
 
 		public Theme GetTheme(string userID) => _repository.GetTheme(userID).GetEnumByMemberValue<Theme>();
 

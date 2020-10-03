@@ -61,6 +61,16 @@
 	}
 }
 
+function newsletterInit() {
+	let form = $(".newsletter_form");
+	form.submit(function (event) {
+		event.preventDefault();
+		$.get(`${form.attr("action")}?email=${form.find("input[type=email]").val()}`, function (response) {
+			sendNotification(response.message, status=response.result);
+		});
+	})
+}
+
 function mobileHandle() {
 	if (!isMobile()) return;
 
@@ -76,4 +86,6 @@ $(document).ready(function () {
 	autoSliderInit();
 
 	mobileHandle();
+
+	newsletterInit();
 });

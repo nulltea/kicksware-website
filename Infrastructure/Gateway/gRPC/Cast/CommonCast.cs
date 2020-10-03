@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Extension;
 using Core.Gateway;
+using Core.Model.Responses;
 using Core.Reference;
 using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;
@@ -30,6 +32,24 @@ namespace Infrastructure.Gateway.gRPC
 				Offset = native.Offset ?? 0,
 				SortBy = native.SortBy,
 				SortDirection = native.SortDirection?.GetEnumMemberValue(),
+			};
+		}
+
+		public static CommonResponse ToNative(this Proto.CommonResponse message)
+		{
+			return new CommonResponse
+			{
+				Success = message.Success,
+				Message = message.Message,
+			};
+		}
+
+		public static Proto.CommonResponse FromNative(this CommonResponse native)
+		{
+			return new Proto.CommonResponse
+			{
+				Success = native.Success,
+				Message = native.Message,
 			};
 		}
 

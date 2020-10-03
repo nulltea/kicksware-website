@@ -33,6 +33,7 @@ body {
 	font-family: Oxanium, sans-serif;
 	font-size: 18px;
 	font-weight: 400;
+	text-rendering: optimizeLegibility;
 	// overflow-y: overlay;
 
 	&.theme-light {
@@ -1005,6 +1006,136 @@ input[type="checkbox"].regular_checkbox {
 	.with-theme({
 		background-color: @secondary;
 	})
+}
+
+.notification {
+	position: fixed;
+	z-index: 1000;
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	max-width: 500px;
+	padding: 15px 20px;
+	margin: 10px;
+	color: @theme-dark-primary;
+	line-height: 1.3;
+	border-radius: 6px;
+	font-weight: 500;
+	.elevation(6);
+
+	&.top-left {
+		top: 0;
+		left: 0;
+		-webkit-transform: translateX(-600px);
+		transform: translateX(-600px);
+		&.show {
+			animation: slide-in-left 1s cubic-bezier(.1,1,.9,1.2) forwards, slide-in-left 1s ease-in-out reverse forwards 5s;
+		}
+	}
+
+	&.top-right {
+		margin: 20px;
+		top: 0;
+		right: 0;
+		&.show {
+			animation: slide-in-right 1s cubic-bezier(.1,1,.9,1.2) forwards, slide-in-right 1s ease-in-out reverse forwards 5s;
+		}
+	}
+
+	&.bottom-left {
+		bottom: 0;
+		left: 0;
+		&.show {
+			animation: fade-in 1s ease-in-out forwards, fade-in 1s ease-in-out reverse forwards 3s;
+		}
+	}
+
+	&.bottom-right {
+		bottom: 0;
+		right: 0;
+		-webkit-transform: translateX(600px);
+		transform: translateX(600px);
+		&.show {
+			animation: fade-in 1s ease-in-out forwards, fade-in 1s ease-in-out reverse forwards 3s;
+		}
+
+
+		@keyframes fade-in {
+			from {
+				visibility: hidden;
+				opacity: 0;
+			}
+
+			to {
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+
+		@keyframes slide-show {
+			from {
+				visibility: hidden;
+				opacity: 0;
+			}
+
+			to {
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes slide-in-left {
+			from {
+				transform: translateX(-600px);
+				-webkit-transform: translateX(-600px);
+			}
+
+			to {
+				transform: translateX(0);
+				-webkit-transform: translateX(0);
+			}
+		}
+
+		@keyframes slide-in-right{
+			from {
+				transform: translateX(600px);
+				-webkit-transform: translateX(600px);
+			}
+
+			to {
+				transform: translateX(0);
+				-webkit-transform: translateX(0);
+			}
+		}
+
+	}
+
+
+	.with-theme({
+		&[data-notification-status="warning"] {
+			background-color: @warning;
+		}
+		&[data-notification-status="error"] {
+			background-color: @error;
+		}
+		&[data-notification-status="success"] {
+			background-color: @success;
+		}
+		&[data-notification-status="question"] {
+			background-color: @accent;
+		}
+		&[data-notification-status="plain"] {
+			background-color: @hint;
+		}
+	});
+
+
+
+	object {
+		margin-left: 5px;
+		margin-right: 25px;
+		width: 30px;
+		height: 30px;
+	}
 }
 
 

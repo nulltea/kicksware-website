@@ -93,8 +93,8 @@
 							<p>Subscribe to our newsletter and stay updated on the latest developments and newset features!</p>
 						</div>
 						<div class="newsletter_form_container">
-							<form action="#" id="newsletter_form" class="newsletter_form">
-								<input type="email" class="newsletter_input" required="required">
+							<form asp-controller="Profile" asp-action="Subscribe" id="newsletter_form" class="newsletter_form">
+								<input asp-route="email" type="email" class="newsletter_input" required="required">
 								<button class="button">
 									<span>Subscribe</span>
 								</button>

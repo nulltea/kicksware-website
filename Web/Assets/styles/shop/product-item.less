@@ -256,6 +256,9 @@
 				}
 
 				.favorite-product {
+					position: absolute;
+					bottom: 0;
+					top: unset;
 					opacity: 0;
 				}
 			}
@@ -272,9 +275,9 @@
 }
 
 .favorite-product {
+	top: 0;
 	align-self: flex-end;
 	cursor: pointer;
-	top: 0;
 	.transition-properties(all 300ms ease, opacity 100ms ease;);
 
 	input[type=checkbox] {

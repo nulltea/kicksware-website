@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Core.Environment;
 using Core.Entities.Users;
@@ -149,6 +148,33 @@ namespace Web.Controllers
 			var view = context.Cookies[LayoutCookieKey]?.GetEnumByMemberValue<LayoutView>();
 			return view ?? LayoutView.Grid;
 		}
+
+		#region Newsletter
+
+		[Route("mail/subscribe")]
+		public async Task<IActionResult> Subscribe(string email)
+		{
+			try
+			{
+				await _service.SubscribeAsync(email);
+			}
+			catch
+			{
+				return FormSubmitResult(SubmitResult.Warning,
+					"Either you are already subscribed or something went wrong while performing your subscription, if so consider trying again soon");
+			}
+			return FormSubmitResult(SubmitResult.Success,
+				"Thank you! You are successfully subscribed to the Kicksware newsletter. We won't spam");
+		}
+
+		[Route("mail/unsubscribe")]
+		public IActionResult Unsubscribe(string email)
+		{
+			_service.UnsubscribeAsync(email);
+			return Ok();
+		}
+
+		#endregion
 
 		private JsonResult FormSubmitResult(SubmitResult result, string message) => Json(new
 		{

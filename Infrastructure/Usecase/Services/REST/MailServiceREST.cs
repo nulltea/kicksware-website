@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Core.Gateway;
+using Core.Model.Responses;
 using Core.Services;
 using Infrastructure.Gateway.REST;
 using Infrastructure.Gateway.REST.Mail;
@@ -21,11 +22,18 @@ namespace Infrastructure.Usecase
 		public bool SendResetPasswordEmail(string userID, string callbackUrl) =>
 			_client.Request(new PostPasswordResetRequest(userID, callbackUrl));
 
+		public CommonResponse Subscribe(string email) => throw new System.NotImplementedException();
+
+		public CommonResponse Unsubscribe(string email) => throw new System.NotImplementedException();
+
 		public Task<bool> SendResetPasswordEmailAsync(string userID, string callbackUrl) =>
 			_client.RequestAsync(new PostPasswordResetRequest(userID, callbackUrl));
 
 		public bool SendNotification(string userID, string callbackUrl) => throw new System.NotImplementedException();
 
 		public Task<bool> SendNotificationAsync(string userID, string callbackUrl) => throw new System.NotImplementedException();
+		public Task<CommonResponse> SubscribeAsync(string email) => throw new System.NotImplementedException();
+
+		public Task<CommonResponse> UnsubscribeAsync(string email) => throw new System.NotImplementedException();
 	}
 }

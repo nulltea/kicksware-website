@@ -187,3 +187,21 @@ function toggleLoadOverlay() {
 	}
 }
 window.toggleLoadOverlay = toggleLoadOverlay;
+
+
+function sendNotification(content, status = "success", style = "top-right") {
+	let existing = $(".notification");
+	let notification = $(`<div class='notification'><span>${content}</span></div>`);
+	let icon = $(`<object data="/storage/icons/${status}.svg" type="image/svg+xml"></object>`);
+	if (!existing.length) {
+		$("body").append(notification);
+	} else {
+		existing.replaceWith(notification)
+	}
+	notification.prepend(icon);
+	notification
+		.attr('data-notification-status', status)
+		.addClass(style)
+		.addClass("show");
+}
+window.sendNotification = sendNotification;
