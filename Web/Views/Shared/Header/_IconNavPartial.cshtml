@@ -35,11 +35,3 @@
 		</li>
 	</ul>
 </nav>
-
-@{
-	bool IsSunny(ClaimsPrincipal claims)
-	{
-		var userID = UserManager.GetUserId(claims);
-		return !string.IsNullOrEmpty(userID) && !string.IsNullOrEmpty(Environment.SunnyUserIdPrefix) && userID.StartsWith(Environment.SunnyUserIdPrefix);
-	}
-}

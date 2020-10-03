@@ -54,7 +54,7 @@ namespace Web.Wizards
 		public IHtmlContent RenderStep()
 		{
 			var span = new TagBuilder("span");
-			span.InnerHtml.AppendHtml(File.ReadAllText(Path.Combine(Environment.ImagesPath, Icon)));
+			span.InnerHtml.AppendHtml(File.ReadAllText(Path.Combine(Environment.IconsPath, Icon)));
 
 			var stepListItem = new TagBuilder("li");
 			var stepListClass = Passed ? "passed" : Active ? "active" : string.Empty;

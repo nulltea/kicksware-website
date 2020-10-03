@@ -13,7 +13,7 @@
 			</div>
 			<div class="thumb">
 				<a class="underline" asp-action="ReferenceItem" asp-route-referenceId="@reference.UniqueID" asp-controller="Shop">
-					<img src="@reference.ImagePath" alt="">
+					<img src="@reference.ImagePath" alt="" onerror="this.className='image-missing'">
 				</a>
 			</div>
 			<div class="info-footer">

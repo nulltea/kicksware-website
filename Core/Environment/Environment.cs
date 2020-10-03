@@ -10,7 +10,7 @@ namespace Core.Environment
 
 		public static readonly string FileStoragePath = System.Environment.GetEnvironmentVariable("STORAGE_PATH");
 
-		public static readonly string LocalStoragePath = System.Environment.GetEnvironmentVariable("LOCAL_STORAGE_PATH"); //TODO handle it differently
+		public static readonly string LocalStoragePath = System.Environment.GetEnvironmentVariable("LOCAL_STORAGE_PATH");
 
 		public static readonly string WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
@@ -18,7 +18,7 @@ namespace Core.Environment
 
 		public static readonly string BundlePath = Path.Combine(WebRootPath, "dist");
 
-		public static readonly string ImagesPath = Path.Combine(AssetsPath, "images");
+		public static readonly string IconsPath = Path.Combine(LocalStoragePath, "icons");
 
 		public static readonly DataProtocol DataProtocol = System.Environment.GetEnvironmentVariable("DATA_PROTOCOL")
 			.GetEnumByMemberValue<DataProtocol>();

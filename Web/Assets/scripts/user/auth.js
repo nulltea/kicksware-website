@@ -297,6 +297,7 @@ function lock(redirectURL){
 		})
 	})
 }
+window.lock = lock;
 
 $(document).ready(function () {
 	"use strict";

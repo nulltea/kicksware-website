@@ -194,8 +194,8 @@ namespace Web
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(
-					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}"
+					"default",
+					"{controller=Home}/{action=Index}/{id?}"
 				);
 				endpoints.MapRazorPages();
 			});
@@ -204,12 +204,6 @@ namespace Web
 			{
 				FileProvider = new PhysicalFileProvider("/source/storage"),
 				RequestPath = new PathString("/storage"),
-			});
-
-			app.UseStaticFiles(new StaticFileOptions
-			{
-				FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Assets/images")),
-				RequestPath = new PathString("/images"),
 			});
 			app.UseStaticFiles();
 

@@ -27,12 +27,12 @@ namespace Web.Utils.Helpers
 
 		public static IHtmlContent VectorIconRender(this IHtmlHelper helper, string icon)
 		{
-			return helper.VectorIconRenderFromPath(Path.Combine(Environment.ImagesPath, icon));
+			return helper.VectorIconRenderFromPath(Path.Combine(Environment.IconsPath, icon));
 		}
 
 		public static IHtmlContent VectorIconRender(this IHtmlHelper helper, string icon, params string[] classes)
 		{
-			return helper.VectorIconRenderFromPath(Path.Combine(Environment.ImagesPath, icon), classes);
+			return helper.VectorIconRenderFromPath(Path.Combine(Environment.IconsPath, icon), classes);
 		}
 	}
 }
