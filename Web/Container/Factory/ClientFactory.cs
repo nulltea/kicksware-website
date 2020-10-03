@@ -50,6 +50,16 @@ namespace Web.Container.Factory
 				.ConfigureChannel(ConfigureGrpcChannel);
 		}
 
+		public static IHttpClientBuilder AddMockGrpcClient<TClient>(this IServiceCollection services, string mockURL = "https://localhost:8080", bool secure = true)
+			where TClient : class
+		{
+			var client = services
+				.AddGrpcClient<TClient>(options => options.Address = new Uri(mockURL))
+				.AddInterceptor<AuthTokenInterceptor>();
+			if (secure) client.ConfigureChannel(ConfigureGrpcChannel);
+			return client;
+		}
+
 		public static void ConfigureGrpcChannel(GrpcChannelOptions options)
 		{
 			var rootCertFile = System.Environment.GetEnvironmentVariable("TLS_CERT_FILE");

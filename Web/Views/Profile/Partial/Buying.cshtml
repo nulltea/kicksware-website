@@ -15,8 +15,9 @@
 		if (Model?.UniqueID != null)
 		{
 			var purchasedSneakers = new FilteredModel<SneakerReference>(Builder, Service);
-			// purchasedSneakers.AddHiddenFilterGroup<Order>("user_id", ExpressionType.Equal).AssignParameter(Model.UniqueID);
-			// await purchasedSneakers.FetchPageAsync(1); TODO orders foreign key filtering
+			purchasedSneakers.AddHiddenFilterGroup<Order>("user_id", ExpressionType.Equal)
+				.AssignParameter(Model.UniqueID);
+			await purchasedSneakers.FetchPageAsync(1);
 			<div class="@($"products-view { Model.Settings.LayoutView.GetEnumMemberValue() }")">
 				@{ await Html.RenderPartialAsync("../Shop/Partial/ReferencesPartial", purchasedSneakers); }
 			</div>
