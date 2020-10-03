@@ -174,20 +174,29 @@ function isDescendant(parent, child) {
 }
 window.isDescendant = isDescendant;
 
-function toggleLoadOverlay() {
+function startLoadingOverlay() {
 	let preloader = $(".preloader")
-	$('.modal-backdrop').toggleClass("show");
-	if (preloader.is(":visible")) {
-		preloader.modal("hide");
-		preloader.hide();
-		$('body').removeClass("modal-open");
-	} else {
-		preloader.show();
-		preloader.modal("show");
-	}
+	preloader.show();
+	preloader.modal("show");
+	window.loadingTimeout = setTimeout(function () {
+		if (preloader.is(":visible")) {
+			stopLoadingOverlay();
+			sendNotification("It seems like dedicated microservices are busy right now. Please reload the page or try again later", "error");
+		}
+	}, 15000);
+	$('.modal-backdrop').addClass("show");
 }
-window.toggleLoadOverlay = toggleLoadOverlay;
+window.startLoadingOverlay = startLoadingOverlay;
 
+function stopLoadingOverlay() {
+	let preloader = $(".preloader");
+	preloader.modal("hide");
+	preloader.hide();
+	$('body').removeClass("modal-open");
+	$('.modal-backdrop').removeClass("show");
+	clearTimeout(window.loadingTimeout);
+}
+window.stopLoadingOverlay = stopLoadingOverlay;
 
 function sendNotification(content, status = "success", style = "top-right") {
 	let existing = $(".notification");

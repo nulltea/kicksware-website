@@ -13,7 +13,8 @@ namespace Web.Controllers
 			_service = service;
 		}
 
-		[Route("mail/subscribe")]
+		[HttpGet]
+		[Route("news/subscribe")]
 		public async Task<IActionResult> Subscribe(string email)
 		{
 			try
@@ -29,7 +30,8 @@ namespace Web.Controllers
 				"Thank you! You are successfully subscribed to the Kicksware newsletter. We won't spam");
 		}
 
-		[Route("mail/unsubscribe")]
+		[HttpGet]
+		[Route("news/unsubscribe")]
 		public IActionResult Unsubscribe(string email)
 		{
 			_service.UnsubscribeAsync(email);

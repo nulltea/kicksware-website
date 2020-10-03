@@ -275,7 +275,7 @@ function bindRequestUpdateEvent(element, page=1, event="change") {
 		let controller = pathValues[1];
 		let entity = pathValues[2];
 		let entityID = pathValues[3];
-		toggleLoadOverlay();
+		startLoadingOverlay();
 		$.post(`/${controller}/${entity}/requestUpdate/${entityID}`, {filterInputs: formFilterParameters(), page: page, sortBy: formSortParameter() }, function(response) {
 			scrollTop();
 			$(".result-content .products-view").html(response["content"]);
@@ -284,7 +284,7 @@ function bindRequestUpdateEvent(element, page=1, event="change") {
 			setLayoutMode();
 			paginationInit();
 			window.history.pushState("Kicksware", `(Page ${page})`, `?page=${page}&sortBy=${formSortParameter()}`);
-			toggleLoadOverlay();
+			stopLoadingOverlay();
 			loading($(".product-cell"))
 		});
 	});
