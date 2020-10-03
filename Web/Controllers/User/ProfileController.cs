@@ -76,8 +76,8 @@ namespace Web.Controllers
 			var result = await _userManager.UpdateAsync(user);
 
 			var updateResult = result.Succeeded
-				? FormSubmitResult(SubmitResult.Success, "Great! Account information was successfully updated")
-				: FormSubmitResult(SubmitResult.Error, result.Errors.Select(err => err.Description).FirstOrDefault());
+				? Controllers.FormSubmitResult(Controllers.SubmitResult.Success, "Great! Account information was successfully updated")
+				: Controllers.FormSubmitResult(Controllers.SubmitResult.Error, result.Errors.Select(err => err.Description).FirstOrDefault());
 
 			await SetTheme(user.Settings.Theme);
 			await SetLayoutView(user.Settings.LayoutView);
@@ -88,14 +88,14 @@ namespace Web.Controllers
 			{
 				if (!user.NewPassword.Equals(user.ConfirmPassword))
 				{
-					return FormSubmitResult(SubmitResult.Error, "Password confirmation and Password must match");
+					return Controllers.FormSubmitResult(Controllers.SubmitResult.Error, "Password confirmation and Password must match");
 				}
 
 				result = await _userManager.ChangePasswordAsync(user, user.CurrentPassword, user.NewPassword);
 
 				return result.Succeeded
-					? FormSubmitResult(SubmitResult.Success, "Nice! Got yourself a new secret password")
-					: FormSubmitResult(SubmitResult.Error, result.Errors.FirstOrDefault()?.Description);
+					? Controllers.FormSubmitResult(Controllers.SubmitResult.Success, "Nice! Got yourself a new secret password")
+					: Controllers.FormSubmitResult(Controllers.SubmitResult.Error, result.Errors.FirstOrDefault()?.Description);
 			}
 
 
@@ -147,48 +147,6 @@ namespace Web.Controllers
 		{
 			var view = context.Cookies[LayoutCookieKey]?.GetEnumByMemberValue<LayoutView>();
 			return view ?? LayoutView.Grid;
-		}
-
-		#region Newsletter
-
-		[Route("mail/subscribe")]
-		public async Task<IActionResult> Subscribe(string email)
-		{
-			try
-			{
-				await _service.SubscribeAsync(email);
-			}
-			catch
-			{
-				return FormSubmitResult(SubmitResult.Warning,
-					"Either you are already subscribed or something went wrong while performing your subscription, if so consider trying again soon");
-			}
-			return FormSubmitResult(SubmitResult.Success,
-				"Thank you! You are successfully subscribed to the Kicksware newsletter. We won't spam");
-		}
-
-		[Route("mail/unsubscribe")]
-		public IActionResult Unsubscribe(string email)
-		{
-			_service.UnsubscribeAsync(email);
-			return Ok();
-		}
-
-		#endregion
-
-		private JsonResult FormSubmitResult(SubmitResult result, string message) => Json(new
-		{
-			Result = result.ToString().ToLower(),
-			Message = message
-		});
-
-		private enum SubmitResult
-		{
-			Success,
-
-			Error,
-
-			Warning
 		}
 	}
 }
