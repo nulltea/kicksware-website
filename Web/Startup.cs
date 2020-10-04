@@ -162,6 +162,11 @@ namespace Web
 					options.ClientId = Environment.GetEnvironmentVariable("AUTH_GOOGLE_ID");
 					options.ClientSecret = Environment.GetEnvironmentVariable("AUTH_GOOGLE_SECRET");
 				});
+				// .AddGitHub(options =>
+				// {
+				// 	options.ClientId = Environment.GetEnvironmentVariable("AUTH_GITHUB_ID");
+				// 	options.ClientSecret = Environment.GetEnvironmentVariable("AUTH_GITHUB_SECRET");
+				// });
 
 			services.AddAuthorization(ConfigureAuthOptions);
 
@@ -208,6 +213,15 @@ namespace Web
 				RequestPath = new PathString("/storage"),
 			});
 			app.UseStaticFiles();
+
+			app.Use((context, next) =>
+			{
+				if (context.Request.Headers["x-forwarded-proto"] == "https")
+				{
+					context.Request.Scheme = "https";
+				}
+				return next();
+			});
 
 			app.UseAllElasticApm(Configuration);
 		}
