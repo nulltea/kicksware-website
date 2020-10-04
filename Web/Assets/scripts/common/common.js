@@ -174,10 +174,16 @@ function isDescendant(parent, child) {
 }
 window.isDescendant = isDescendant;
 
-function startLoadingOverlay() {
+function startLoadingOverlay(animate = true) {
 	let preloader = $(".preloader")
+	let animation = preloader.find(".loader")
 	preloader.show();
 	preloader.modal("show");
+	if (!animate) {
+		animation.hide();
+	} else {
+		animation.show();
+	}
 	window.loadingTimeout = setTimeout(function () {
 		if (preloader.is(":visible")) {
 			stopLoadingOverlay();

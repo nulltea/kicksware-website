@@ -1142,6 +1142,37 @@ input[type="checkbox"].regular_checkbox {
 	}
 }
 
+.cc-banner {
+	font-family: Oxanium, sans-serif;
+	font-weight: 500;
+	.elevation(12);
+
+	.cc-message {
+		font-weight: 500;
+
+		.cc-link {
+			font-weight: 600;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.cc-btn:last-child, .cc-allow {
+		.elevation(3);
+
+
+		&:hover {
+			.elevation(6);
+		}
+
+		&:active {
+			.elevation(0);
+		}
+	}
+}
+
 
 
 // THEME TAGS //

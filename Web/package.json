@@ -22,6 +22,6 @@
     "scrollax": "^1.0.0",
     "scrollmagic": "^2.0.7",
     "smooth-parallax": "^1.1.2",
-    "smooth-scrollbar": "^8.5.3"
+    "cookieconsent": "^3.1.1"
   }
 }

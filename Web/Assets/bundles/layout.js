@@ -3,10 +3,11 @@ import "popper.js"
 import "bootstrap"
 import "bootstrap/dist/css/bootstrap"
 import "gsap"
+import "cookieconsent"
+import "cookieconsent/build/cookieconsent.min.css"
 
 
 import "scrollax"
-import Scrollbar from "smooth-scrollbar"
 import "jquery-validation"
 import "jquery-validation-unobtrusive"
 

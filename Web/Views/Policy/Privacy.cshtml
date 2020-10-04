@@ -1,11 +1,12 @@
-﻿@{
+﻿@using Web.Utils.Bundle
+@{
 	ViewBag.Title = "Privacy";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles
 {
-	<link href="~/styles/css/policy/policy.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="@Bundle.GetAssetName("policy", "css")" asp-append-version="true" />
 }
 
 <div class="policy">

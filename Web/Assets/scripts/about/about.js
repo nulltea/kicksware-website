@@ -1,5 +1,4 @@
 import ScrollMagic from "scrollmagic"
-import "scrollax"
 
 function handAssetsInit(){
 	const controller = new ScrollMagic.Controller();
@@ -31,6 +30,5 @@ $(document).ready(function () {
 	handAssetsInit();
 
 	creatorWindowInit();
-
 });
 
