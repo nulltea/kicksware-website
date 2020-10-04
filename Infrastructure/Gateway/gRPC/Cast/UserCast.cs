@@ -32,6 +32,10 @@ namespace Infrastructure.Gateway.gRPC
 				Settings = message.Settings.ToNative(),
 				Role = message.Role.GetEnumByMemberValue<UserRole>(),
 				Provider = message.Provider.GetEnumByMemberValue<UserProvider>(),
+				ConnectedProviders = message.ConnectedProviders.ToDictionary(
+					kvp => kvp.Key.GetEnumByMemberValue<UserProvider>(),
+					kvp => kvp.Value
+				)
 			};
 		}
 
@@ -55,6 +59,10 @@ namespace Infrastructure.Gateway.gRPC
 				Settings = message.Settings.FromNative(),
 				Role = message.Role.GetEnumMemberValue(),
 				Provider = message.Provider.GetEnumMemberValue(),
+				ConnectedProviders = { message.ConnectedProviders.ToDictionary(
+					kvp => kvp.Key.GetEnumMemberValue(),
+					kvp => kvp.Value
+				) }
 			};
 		}
 

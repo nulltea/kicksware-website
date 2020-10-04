@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -161,18 +162,29 @@ namespace Web
 				{
 					options.ClientId = Environment.GetEnvironmentVariable("AUTH_GOOGLE_ID");
 					options.ClientSecret = Environment.GetEnvironmentVariable("AUTH_GOOGLE_SECRET");
+					options.CallbackPath = "/signin-google";
+					options.CorrelationCookie.SameSite = SameSiteMode.Lax;
+				})
+				.AddGitHub(options =>
+				{
+					options.ClientId = Environment.GetEnvironmentVariable("AUTH_GITHUB_ID");
+					options.ClientSecret = Environment.GetEnvironmentVariable("AUTH_GITHUB_SECRET");
+					options.CallbackPath = "/signin-github";
+					options.CorrelationCookie.SameSite = SameSiteMode.Lax;
 				});
-				// .AddGitHub(options =>
-				// {
-				// 	options.ClientId = Environment.GetEnvironmentVariable("AUTH_GITHUB_ID");
-				// 	options.ClientSecret = Environment.GetEnvironmentVariable("AUTH_GITHUB_SECRET");
-				// });
 
 			services.AddAuthorization(ConfigureAuthOptions);
 
 			services.AddDataProtection()
 				.PersistKeysToFileSystem(new DirectoryInfo(@"/keys"))
 				.SetApplicationName("kicksware");
+
+			services.Configure<ForwardedHeadersOptions>(options =>
+			{
+				options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+				options.KnownNetworks.Clear();
+				options.KnownProxies.Clear();
+			});
 
 			#endregion
 		}
@@ -198,6 +210,8 @@ namespace Web
 			app.UseAuthentication();
 			app.UseAuthorization();
 
+			app.UseForwardedHeaders();
+
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(
@@ -207,21 +221,19 @@ namespace Web
 				endpoints.MapRazorPages();
 			});
 
+			app.Use((context, next) =>
+			{
+				if (context.Request.Headers["x-forwarded-proto"] == "https") context.Request.Scheme = "https";
+				return next();
+			});
+
+
 			app.UseStaticFiles(new StaticFileOptions
 			{
 				FileProvider = new PhysicalFileProvider("/source/storage"),
 				RequestPath = new PathString("/storage"),
 			});
 			app.UseStaticFiles();
-
-			app.Use((context, next) =>
-			{
-				if (context.Request.Headers["x-forwarded-proto"] == "https")
-				{
-					context.Request.Scheme = "https";
-				}
-				return next();
-			});
 
 			app.UseAllElasticApm(Configuration);
 		}

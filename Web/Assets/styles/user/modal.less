@@ -116,6 +116,7 @@
 					}
 
 					&:hover {
+						border-bottom-width: 4px;
 						span{
 							color: @primary;
 						}
@@ -212,25 +213,31 @@
 						display: flex;
 						justify-content: center;
 						align-items: center;
-						.with-theme({
-							color: @theme-light-primary;
-						});
+						color: @theme-light-primary;
 						background: @facebook-color;
-						border: 2.8px solid @facebook-color;
+						border: 3px solid @facebook-color;
 						margin-bottom: 10px;
+
+						&:after {
+							.with-theme({
+								background: @primary;
+							})
+						}
+
+						&:hover {
+							span, a {
+								color: @facebook-color;
+							}
+
+							.facebook-logo path {
+								fill: @facebook-color;
+							}
+						}
 
 						.facebook-logo {
 							position: relative;
 							z-index: 1;
 							margin-right: 5px;
-						}
-
-						&:hover span, &:hover a {
-							color: @facebook-color;
-						}
-
-						&:hover path {
-							fill: @facebook-color;
 						}
 					}
 
@@ -238,33 +245,79 @@
 						display: flex;
 						justify-content: center;
 						align-items: center;
-						color: @google-red-color;
-						border: 2.8px solid @google-red-color;
-						.with-theme({
-							background: @hint;
-						});
+						margin-bottom: 10px;
+						color: @theme-light-primary;
+						border: 3px solid @google-red-color;
+						background: @google-red-color;
+
+						&:after {
+							.with-theme({
+								background: @primary;
+							})
+						}
+
+						&:hover {
+							.with-dark-theme({
+								//border: 4px solid @theme-light-primary;
+							});
+
+							span, a {
+								color: @google-red-color;
+							}
+
+							.google-logo path {
+								fill: @google-red-color;
+							}
+						}
 
 						.google-logo {
 							position: relative;
 							z-index: 1;
 							margin-right: 5px;
+
+							path {
+								fill: @theme-light-primary;
+							}
 						}
+					}
+
+					&.github {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						color: @theme-light-primary;
+						background: @github-color;
+						border: 3px solid @github-color;
 
 						&:after {
-							background: @google-red-color;
+							background: @theme-light-primary;
 						}
 
-						&:hover span, &:hover a {
-							.with-theme({
-								color: @theme-light-primary;
+						&:hover {
+							.with-dark-theme({
+								border: 4px solid @theme-light-primary;
 							});
+
+							span, a {
+								color: @github-color;
+							}
+
+							.github-logo {
+								fill: @github-color;
+							}
 						}
 
-						&:hover path {
-							.with-theme({
-								fill: @theme-light-primary;
-							});
+						.github-logo {
+							position: relative;
+							z-index: 1;
+							margin-right: 5px;
+							fill: @theme-light-primary;
 						}
+					}
+
+					svg {
+						width: 20px;
+						height: 20px;
 					}
 				}
 

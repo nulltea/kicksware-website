@@ -531,20 +531,20 @@
 			font-weight: 700;
 			.with-theme({
 				color: @secondary;
-			});
-			.with-theme({
 				background: @primary;
-			});
-			.with-theme({
 				border: 2px solid @secondary;
 			});
 
-			&:hover span {
-				position: relative;
-				z-index: 1;
-				.with-theme({
-					color: @primary;
-				});
+			&:hover {
+				border-width: 4px;
+				span {
+					margin-top: -3px;
+					position: relative;
+					z-index: 1;
+					.with-theme({
+						color: @primary;
+					});
+				}
 			}
 
 			&:after {

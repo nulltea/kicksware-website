@@ -16,6 +16,9 @@ namespace Core.Entities.Users
 		[EnumMember(Value = "google")]
 		Google,
 
+		[EnumMember(Value = "github")]
+		GitHub,
+
 		[EnumMember(Value = "apple")]
 		Apple
 	}

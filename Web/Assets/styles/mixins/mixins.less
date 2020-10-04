@@ -78,6 +78,7 @@
 				@wrn: ~'theme-@{themeName}-warning';
 				@err: ~'theme-@{themeName}-error';
 				@elv: ~'theme-@{themeName}-elevation';
+				@ctr: ~'theme-@{themeName}-contrast';
 
 				@primary: @@prm;
 				@primary_variant: @@prv;
@@ -89,6 +90,7 @@
 				@error: @@err;
 				@warning: @@wrn;
 				@elevation: @@elv;
+				@contrast: @@ctr;
 
 				@rules();
 			}
@@ -97,6 +99,18 @@
 		}
 	}
 	.--;
+}
+
+.with-dark-theme(@rules) {
+	body.theme-dark & {
+		@rules();
+	}
+}
+
+.with-light-theme(@rules) {
+	body.theme-light & {
+		@rules();
+	}
 }
 
 /*----MOBILE----*/

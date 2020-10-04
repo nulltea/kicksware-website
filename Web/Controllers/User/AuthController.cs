@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNet.Security.OAuth.GitHub;
 using Core.Entities.Users;
 using Core.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -152,6 +153,12 @@ namespace Web.Controllers
 		{
 			var authProperties = new AuthenticationProperties {RedirectUri = Url.Action("Profile", "Profile")};
 			return Challenge(authProperties, GoogleDefaults.AuthenticationScheme);
+		}
+
+		public IActionResult GitHub()
+		{
+			var authProperties = new AuthenticationProperties {RedirectUri = Url.Action("Profile", "Profile")};
+			return Challenge(authProperties, GitHubAuthenticationDefaults.AuthenticationScheme);
 		}
 
 		public async Task<IActionResult> Logout()

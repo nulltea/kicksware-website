@@ -405,7 +405,7 @@ a.underline {
 	text-align: center;
 	.with-theme({
 		background: @hint;
-		border: 2.8px solid @secondary;
+		border: 3px solid @secondary;
 	});
 	overflow: hidden;
 	cursor: pointer;
@@ -431,16 +431,21 @@ a.underline {
 		z-index: 1;
 	}
 
-	&:hover a {
-		.with-theme({
-			color: @primary;
-		});
-	}
+	&:hover {
+		border-width: 4px;
 
-	&:hover span {
-		.with-theme({
-			color: @primary;
-		});
+		&::after {
+			opacity: 1;
+			.transform-properties(rotate3d(0, 0, 1, 0deg));
+			-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+			transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+		}
+
+		a, span {
+			.with-theme({
+				color: @primary;
+			});
+		}
 	}
 
 	&::after {
@@ -460,13 +465,6 @@ a.underline {
 			transform 300ms opacity 300ms background 300ms
 		);
 		.transform-origin-properties(0 100%);
-	}
-
-	&:hover::after {
-		opacity: 1;
-		.transform-properties(rotate3d(0, 0, 1, 0deg));
-		-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-		transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 	}
 }
 
@@ -928,6 +926,12 @@ input[type="checkbox"].regular_checkbox {
 
 		&.linkedin-link svg {
 			fill: @linkedin-color;
+		}
+
+		&.github-link {
+			.with-theme({
+				fill: @contrast;
+			});
 		}
 
 		&.linkedin-link svg {

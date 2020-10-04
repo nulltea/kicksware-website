@@ -24,6 +24,7 @@ function loginOAuthInit() {
 	$("#login-header-msg").text("Log in to your account to buy, sell, comment, and more.");
 	$("#facebook-btn-caption").text("Continue with Facebook");
 	$("#google-btn-caption").text("Continue with Google");
+	$("#github-btn-caption").text("Continue with GitHub");
 	$("#email-btn-caption").text("Log in with Email");
 	$("#login-footer-msg").html("Don't have an account? <a id='sing-up'>Sing Up</a>");
 	$("#login-privacy").hide();
@@ -39,6 +40,7 @@ function singUpOAuthInit() {
 	$("#login-header-msg").text("By creating an account you'll be able to buy, sell, comment, and more");
 	$("#facebook-btn-caption").text("Sign up with Facebook");
 	$("#google-btn-caption").text("Sign up with Google");
+	$("#github-btn-caption").text("Sign up with GitHub");
 	$("#email-btn-caption").text("Sign up with Email");
 	$("#login-footer-msg").html("Already have an account? <a id='login'>Log in</a>");
 	$("#login-privacy").show();
