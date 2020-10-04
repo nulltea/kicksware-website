@@ -29,8 +29,8 @@ ingress:
       middlewares: []
       services:
         - name: web-app
-          port: 80
-          scheme: http
+          port: 443
+          scheme: https
 
 volumes:
   - name: storage
