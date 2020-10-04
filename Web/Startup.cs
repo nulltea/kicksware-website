@@ -179,13 +179,6 @@ namespace Web
 				.PersistKeysToFileSystem(new DirectoryInfo(@"/keys"))
 				.SetApplicationName("kicksware");
 
-			services.Configure<ForwardedHeadersOptions>(options =>
-			{
-				options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-				options.KnownNetworks.Clear();
-				options.KnownProxies.Clear();
-			});
-
 			#endregion
 		}
 
@@ -210,8 +203,6 @@ namespace Web
 			app.UseAuthentication();
 			app.UseAuthorization();
 
-			app.UseForwardedHeaders();
-
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(
@@ -220,13 +211,6 @@ namespace Web
 				);
 				endpoints.MapRazorPages();
 			});
-
-			app.Use((context, next) =>
-			{
-				if (context.Request.Headers["x-forwarded-proto"] == "https") context.Request.Scheme = "https";
-				return next();
-			});
-
 
 			app.UseStaticFiles(new StaticFileOptions
 			{
