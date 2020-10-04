@@ -150,10 +150,12 @@ namespace Web
 			services
 				.AddAuthentication(ConfigureAuthOptions)
 				.AddMiddlewareAuth(ConfigureAuthOptions)
-				.AddFacebook(facebookOptions =>
+				.AddFacebook(options =>
 				{
-					facebookOptions.AppId = Environment.GetEnvironmentVariable("AUTH_FACEBOOK_ID");
-					facebookOptions.AppSecret = Environment.GetEnvironmentVariable("AUTH_FACEBOOK_SECRET");
+					options.AppId = Environment.GetEnvironmentVariable("AUTH_FACEBOOK_ID");
+					options.AppSecret = Environment.GetEnvironmentVariable("AUTH_FACEBOOK_SECRET");
+					options.CallbackPath = "/signin-facebook";
+					options.CorrelationCookie.SameSite = SameSiteMode.Lax;
 				})
 				.AddGoogle(options =>
 				{
