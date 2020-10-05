@@ -156,6 +156,7 @@ namespace Web
 					options.AppId = Environment.GetEnvironmentVariable("AUTH_FACEBOOK_ID");
 					options.AppSecret = Environment.GetEnvironmentVariable("AUTH_FACEBOOK_SECRET");
 					options.CallbackPath = "/signin-facebook";
+					options.ForwardSignIn = "https";
 					options.CorrelationCookie.SameSite = SameSiteMode.Lax;
 				})
 				.AddGoogle(options =>

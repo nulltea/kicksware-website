@@ -1,4 +1,7 @@
-﻿function initCarousels() {
+﻿import Viewer from "viewerjs"
+import "viewerjs/dist/viewer.css"
+
+function initCarousels() {
 	$(".carousel-wrapper").each(function () {
 		let carousel = $(this);
 		carousel.find(".flickity-button").appendTo($(this));
@@ -51,6 +54,16 @@ function buyRedirectInit() {
 	}
 }
 
+function photoGalleryInit() {
+	new Viewer($(".image-carousel")[0], {
+		toolbar: false,
+		title: false,
+		tooltip: false,
+		minZoomRatio: 1,
+		maxZoomRatio: 3,
+	});
+}
+
 $(document).ready(function () {
 	"use strict";
 
@@ -59,4 +72,6 @@ $(document).ready(function () {
 	favoriteInit();
 
 	buyRedirectInit();
+
+	photoGalleryInit();
 });

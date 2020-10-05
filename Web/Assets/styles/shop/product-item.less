@@ -410,10 +410,13 @@
 				padding: 20px;
 
 				.title-header {
+					min-height: 25px;
 					width: 100%;
 					.flex-row(space-between, center);
 
 					.favorite-product {
+						position: absolute;
+						right: 0;
 						input[type=checkbox] {
 							z-index: 1;
 						}
@@ -596,4 +599,8 @@
 			}
 		}
 	}
+}
+
+.viewer-backdrop{
+	background: fade(black, 80%);
 }

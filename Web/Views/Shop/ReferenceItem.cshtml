@@ -27,7 +27,7 @@
 					{
 						<picture>
 							<source srcset="@imageLink" media="(min-width: 600px)">
-							<img src="@imageLink" alt="">
+							<img src="@imageLink" alt>
 						</picture>
 					}
 				</div>
@@ -35,7 +35,10 @@
 			<!-- Reference Content -->
 			<div class="col-sm product-title">
 				<div class="title-header">
-					<div class="price-title">@Model.Price.FormatCurrency()</div>
+					@if (@Model.Price > 0)
+					{
+						<div class="price-title">@Model.Price.FormatCurrency()</div>
+					}
 					@if (SignInManager.IsSignedIn(Context.User))
 					{
 						<div class="favorite-product">
@@ -127,10 +130,10 @@
 				}
 				@if (!string.IsNullOrEmpty(Model.Technology))
 				{
-				<div class="carousel-cell">
-					<div class="details-caption">TECHNOLOGY</div>
-					<p class="underline details-info">@Model.Technology</p>
-				</div>
+					<div class="carousel-cell">
+						<div class="details-caption">TECHNOLOGY</div>
+						<p class="underline details-info">@Model.Technology</p>
+					</div>
 				}
 				@if (Model.Materials != null && Model.Materials.Any())
 				{
