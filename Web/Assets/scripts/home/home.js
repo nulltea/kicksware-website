@@ -72,12 +72,12 @@ function newsletterInit() {
 }
 
 function mobileHandle() {
-	if (!isMobile()) return;
-
-	$(".auto-slider-item .home_button").each(function() {
-		let target = $(this).closest(".auto-slider-item");
-		$(this).detach().appendTo(target);
-	})
+	if (isMobile() && window.matchMedia("(max-width: 870px)").matches){
+		$(".auto-slider-item .home_button").each(function() {
+			let target = $(this).closest(".auto-slider-item");
+			$(this).detach().appendTo(target);
+		})
+	}
 }
 
 $(document).ready(function () {

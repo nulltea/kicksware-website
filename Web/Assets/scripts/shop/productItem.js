@@ -1,5 +1,5 @@
 ﻿import Viewer from "viewerjs"
-import "viewerjs/dist/viewer.css"
+
 
 function initCarousels() {
 	$(".carousel-wrapper").each(function () {
@@ -55,7 +55,16 @@ function buyRedirectInit() {
 }
 
 function photoGalleryInit() {
-	new Viewer($(".image-carousel")[0], {
+	if (window.isMobile()) {
+		new Viewer($(".mobile-gallery .carousel-wrapper")[0], {
+			toolbar: false,
+			title: false,
+			tooltip: false,
+			minZoomRatio: 1,
+			maxZoomRatio: 3,
+		});
+	}
+	new Viewer($(".desktop-gallery .image-carousel")[0], {
 		toolbar: false,
 		title: false,
 		tooltip: false,

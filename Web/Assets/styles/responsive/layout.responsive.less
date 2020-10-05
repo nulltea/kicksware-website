@@ -129,13 +129,29 @@
 				.sub-bread {
 					font-size: 18px;
 				}
+
+				.sean-go {
+					bottom: 20%;
+					svg {
+						width: 75px;
+						height: 75px;
+					}
+				}
 			}
 		}
 	})
 }
 
 @media only screen and (max-width: 768px) {
-
+	.with-mobile({
+		.hero-parallax {
+			.hero-content {
+				.sean-go {
+					bottom: 12%;
+				}
+			}
+		}
+	})
 }
 
 @media only screen and (max-width: 767px) {
@@ -182,6 +198,15 @@
 	.button a {
 		font-size: 13px;
 		line-height: 37px;
+	}
+
+	.hero-parallax {
+		.hero-content {
+			.sean-go svg {
+				width: 55px !important;
+				height: 55px !important;
+			}
+		}
 	}
 
 	.copyright {

@@ -69,24 +69,70 @@
 @media only screen and (max-width: 870px) {
 	.home {
 		section.main-carousel {
-			height: 100vw;
-
-			.auto-slider-title {
-				font-size: 30px;
-			}
 
 
-			.auto-slider-dots {
-				right: 15px;
-				left: unset;
-			}
 		}
 
 		.carousel {
 			min-height: 350px;
+
 			.carousel-cell {
 				width: calc(~"100% - 20px");
 				min-height: 350px
+			}
+		}
+
+		.main-carousel {
+			height: 100vw;
+			.auto-slider-item {
+				flex-direction: row;
+				justify-content: unset;
+
+				.auto-slider-content {
+					margin: 20px;
+					padding: 15px;
+					width: 100%;
+					height: min-content;
+					max-height: 50%;
+					overflow: hidden;
+
+					.auto-slider-title {
+						font-size: 30px;
+					}
+
+					.auto-slider-subtitle {
+						font-size: 11px;
+					}
+				}
+
+				.home_button {
+					position: absolute;
+					left: 15px;
+					bottom: 15px;
+					border-width: 3px;
+					.elevation(8);
+					.with-theme({
+						background: @secondary;
+						border-color: @secondary;
+					});
+
+
+					a {
+						font-weight: 600;
+					}
+
+				}
+			}
+			.auto-slider-dots_container {
+				.auto-slider-dots {
+					right: 15px;
+					left: unset;
+
+					.auto-slider-dots-list {
+						display: flex;
+						justify-content: flex-end;
+					}
+				}
 			}
 		}
 	}
@@ -97,55 +143,21 @@
 }
 
 @media only screen and (max-width: 767px) {
-	.home .main-carousel {
-		.auto-slider-item {
-			flex-direction: row;
-			justify-content: unset;
-
-			.auto-slider-content {
-				margin: 20px 10px;
-				padding: 15px;
-				width: 100%;
-				height: min-content;
-				max-height: 50%;
-				overflow: hidden;
-
-				.auto-slider-title {
-					font-size: 20px;
-				}
-
-				.auto-slider-subtitle {
-					font-size: 11px;
-				}
-			}
-			.home_button {
-				position: absolute;
-				left: 15px;
-				bottom: 15px;
-				border-width: 3px;
-				.elevation(8);
-				.with-theme({
-					background: @secondary;
-					border-color: @secondary;
-				});
-
-
-				a {
-					font-weight: 600;
-				}
-
-			}
-		}
-
-		.auto-slider-dots_container{
-			display: none;
-		}
-	}
-
 
 }
 
+
 @media only screen and (max-width: 575px) {
+	.home .main-carousel {
+		.auto-slider-item .auto-slider-content {
+			.auto-slider-title {
+				font-size: 20px;
+			}
+		}
+		.auto-slider-dots_container {
+			display: none;
+		}
+	}
 
 	.main-carousel {
 		padding: 0;
