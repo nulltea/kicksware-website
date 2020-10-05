@@ -87,11 +87,14 @@
 			<div class="hero-content" data-scrollax="properties: { 'top': '75%'}">
 				@if (!string.IsNullOrEmpty(heroLogoPath))
 				{
-					@Html.VectorIconRender(heroLogoPath, "logo")
+					@Html.VectorIconRenderFromPath(heroLogoPath, "logo")
 				}
 				<span class="bread">@heroBreadTitle?.ToUpper()</span>
 				<span class="sub-bread">@heroBreadSubTitle?.ToUpper()</span>
 				<breadcrumb></breadcrumb>
+				<a class="sean-go" href="https://seango.ca" target="_blank">
+					@Html.VectorIconRender("sean-go.svg")
+				</a>
 			</div>
 		</div>
 	}

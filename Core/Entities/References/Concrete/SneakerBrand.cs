@@ -19,7 +19,7 @@ namespace Core.Entities.References
 
 		public string Logo { get; set; }
 
-		public string LogoPath => $"{Environment.Environment.FileStoragePath}/logos/{Logo ?? $"{UniqueID.ToLower()}-logo.svg"}";
+		public string LogoPath => $"{Environment.Environment.LocalStoragePath}/logos/{Logo ?? $"{UniqueID.ToLower()}-logo.svg"}";
 
 		public string Hero { get; set; }
 
