@@ -11,7 +11,7 @@ function locomotiveScrollInit() {
 	const locoScroll = new LocomotiveScroll({
 		el: document.querySelector("[data-scroll-container]"),
 		smooth: true,
-		smoothMobile: true
+		smoothMobile: false
 	});
 	locoScroll.on("scroll", ScrollTrigger.update);
 	ScrollTrigger.scrollerProxy("[data-scroll-container]", {
