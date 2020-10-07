@@ -104,7 +104,7 @@ function parallaxInit() {
 			const depth = layer.dataset.depth;
 			const movement = innerHeight * depth;
 			let isMobileFigure = isMobile && layer.className === "figure" && window.matchMedia("(max-width: 870px)").matches;
-			let verticalIndex = isMobileFigure ? 5 : 1;
+			let verticalIndex = isMobileFigure ? layer.dataset.mobile_speed : 1;
 			tl.to(layer, {
 				y: movement * verticalIndex,
 				ease: "none",
@@ -178,7 +178,7 @@ function parallaxInit() {
 			});
 
 			gsap.to(rectangle, {
-				translateX: "200vw",
+				translateX: "185vw",
 				ease: "none",
 				scrollTrigger: {
 					trigger: this,

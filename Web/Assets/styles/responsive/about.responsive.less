@@ -4,31 +4,25 @@
 // MIXINS
 @import "../mixins/mixins";
 
-@media only screen and (max-width: 1600px)
-{
+@media only screen and (max-width: 1600px) {
 }
 
-@media only screen and (max-width: 1440px)
-{
-
-}
-
-@media only screen and (max-width: 1380px)
-{
+@media only screen and (max-width: 1440px) {
 
 }
 
-@media only screen and (max-width: 1280px)
-{
+@media only screen and (max-width: 1380px) {
 
 }
 
-@media only screen and (max-width: 1199px)
-{
+@media only screen and (max-width: 1280px) {
+
 }
 
-@media only screen and (max-width: 1100px)
-{
+@media only screen and (max-width: 1199px) {
+}
+
+@media only screen and (max-width: 1100px) {
 	.hero-parallax, .title-section {
 		picture {
 			height: 100%;
@@ -36,8 +30,7 @@
 	}
 }
 
-@media only screen and (max-width: 1024px)
-{
+@media only screen and (max-width: 1024px) {
 	section.about-section {
 		&.info-section {
 			.section-content {
@@ -46,6 +39,7 @@
 
 				.hand-wrapper {
 					margin-bottom: 80vh;
+
 					img.hand-asset {
 						max-width: 90vw;
 					}
@@ -110,34 +104,25 @@
 	}
 }
 
-@media only screen and (max-width: 991px)
-{
+@media only screen and (max-width: 991px) {
 	section.about-section.contact-section {
 		height: calc(~"85vh + 115px");
 	}
 }
 
-@media only screen and (max-width: 959px)
-{
+@media only screen and (max-width: 959px) {
 
 }
 
-@media only screen and (max-width: 880px)
-{
+@media only screen and (max-width: 880px) {
 
 }
 
-@media only screen and (max-width: 768px)
-{
-
-}
-
-@media only screen and (max-width: 767px)
-{
-	.about {
-		.hero-parallax {
+@media only screen and (max-width: 768px) {
+	.with-mobile({
+		.hero-parallax .hero-content {
 			.sean-go {
-				bottom: 40%;
+				bottom: 30% !important;
 
 				svg {
 					width: 75px !important;
@@ -145,29 +130,39 @@
 				}
 			}
 		}
+	});
+}
 
-	}
+@media only screen and (max-width: 767px) {
 
 }
 
-@media only screen and (max-width: 575px)
-{
+@media only screen and (max-width: 575px) {
+	.with-mobile({
+		.hero-parallax .hero-content {
+			.sean-go {
+				bottom: 30% !important;
+
+				svg {
+					width: 75px !important;
+					height: 75px !important;
+				}
+			}
+		}
+	});
 }
 
-@media only screen and (max-width: 539px)
-{
+@media only screen and (max-width: 539px) {
 
 }
 
-@media only screen and (max-width: 480px)
-{
+@media only screen and (max-width: 480px) {
 }
 
 @media only screen and (max-width: 479px) {
 
 }
 
-@media only screen and (max-width: 400px)
-{
+@media only screen and (max-width: 400px) {
 
 }
