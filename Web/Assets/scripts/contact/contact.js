@@ -315,13 +315,15 @@ function mapDarkTheme() {
 				{
 					"color": "#4e6d70",
 				},
-			],
+			]
 		},
 	];
 }
 
 $(document).ready(function () {
 	"use strict";
+
+	window.heroParallaxInit();
 
 	mapInit();
 });

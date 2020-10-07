@@ -1,21 +1,28 @@
+import ScrollMagic from "scrollmagic"
+import "scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min"
 import gsap from "gsap/dist/gsap"
 import ScrollTrigger from "gsap/dist/ScrollTrigger"
 import LocomotiveScroll from "locomotive-scroll"
 
 const isMobile = window.isMobile();
-const scroller = !isMobile ? "[data-scroll-container]" : "";
+const isMobileLocomotive = isMobile && requestScrollSetting();
+const isLocomotive = !isMobile || isMobileLocomotive;
+const scroller = isLocomotive ? "[data-scroll-container]" : "";
+
+console.log("isLocomotive", isLocomotive)
+console.log("isMobileLocomotive", isMobileLocomotive)
 
 gsap.registerPlugin(ScrollTrigger)
 
 function locomotiveScrollInit() {
-	if (isMobile) {
+	if (!isLocomotive) {
 		return
 	}
-
+	console.log("locomotiveScrollInit", isMobileLocomotive)
 	const locoScroll = new LocomotiveScroll({
 		el: document.querySelector("[data-scroll-container]"),
 		smooth: true,
-		smoothMobile: false
+		smoothMobile: isMobileLocomotive
 	});
 	locoScroll.on("scroll", ScrollTrigger.update);
 	ScrollTrigger.scrollerProxy("[data-scroll-container]", {
@@ -33,6 +40,10 @@ function locomotiveScrollInit() {
 }
 
 function headerCorrectionInit() {
+	if (isLocomotive === false) {
+		return
+	}
+
 	let header = $("header")[0]
 
 	gsap.to(header, {
@@ -49,6 +60,10 @@ function headerCorrectionInit() {
 }
 
 function parallaxInit() {
+	if (isLocomotive === false) {
+		return
+	}
+	console.log("parallaxInit", isMobileLocomotive)
 	$(".title-section").each(function () {
 		let cover = $(this).find(".section-cover")[0];
 		let content = $(this).find(".section-content")[0];
@@ -177,6 +192,39 @@ function parallaxInit() {
 	}, 1000)
 }
 
+function requestScrollSetting() {
+	return window.getCookie("EXPERIMENTAL_SCROLL_COOKIE") === "True";
+}
+
+function mobileParallaxInit() {
+	if (isLocomotive) {
+		return
+	}
+
+	$(".mobile.square").css("margin-top", "65vh");
+	$(".contact-section").css("height", "85vh");
+
+	const controller = new ScrollMagic.Controller();
+
+	$(".info-section").each(function () {
+		let hand = $(this).find(".hand-wrapper")
+		let trigger = $(this).find("article p:last-child")
+		new ScrollMagic.Scene({
+			triggerElement: trigger[0],
+			offset: trigger.height(),
+		}).setClassToggle(hand[0], "pushed")
+			.addTo(controller);
+		hand.css("margin-bottom", 0)
+	})
+
+	new ScrollMagic.Scene({
+		triggerElement: "#mobile-bio-trigger",
+	}).setClassToggle("#creator-window", "active")
+		.addTo(controller);
+
+	window.heroParallaxInit();
+}
+
 $(document).ready(function () {
 	"use strict";
 
@@ -185,5 +233,7 @@ $(document).ready(function () {
 	headerCorrectionInit();
 
 	parallaxInit();
+
+	mobileParallaxInit();
 });
 

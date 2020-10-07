@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
-using Core.Environment;
 using Core.Entities.Users;
 using Core.Extension;
 using Core.Services;
@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SmartBreadcrumbs.Attributes;
 using Web.Models;
+using Environment = Core.Environment.Environment;
 
 namespace Web.Controllers
 {
@@ -31,6 +32,8 @@ namespace Web.Controllers
 		private const string ThemeCookieKey = "THEME_COOKIE";
 
 		private const string LayoutCookieKey = "LAYOUT_COOKIE";
+
+		private const string ScrollCookieKey = "EXPERIMENTAL_SCROLL_COOKIE";
 
 		private IUserService _service;
 
@@ -66,6 +69,8 @@ namespace Web.Controllers
 
 			if (!string.IsNullOrEmpty(user.Avatar)) HeroLogoPath = user.Avatar;
 
+			user.Settings.MobileExperimentalScrollEnabled = IsExperimentalScrollEnabled(Request);
+
 			return View(user);
 		}
 
@@ -81,6 +86,7 @@ namespace Web.Controllers
 
 			await SetTheme(user.Settings.Theme);
 			await SetLayoutView(user.Settings.LayoutView);
+			SetExperimentalScroll(user.Settings.MobileExperimentalScrollEnabled);
 
 			if (!result.Succeeded) return updateResult;
 
@@ -148,5 +154,20 @@ namespace Web.Controllers
 			var view = context.Cookies[LayoutCookieKey]?.GetEnumByMemberValue<LayoutView>();
 			return view ?? LayoutView.Grid;
 		}
+
+		public IActionResult SetExperimentalScroll(bool enabled)
+		{
+			Response.Cookies.Append(ScrollCookieKey, enabled.ToString());
+
+			return Json(new {Success = true});
+		}
+
+		[Route("profile/settings/experimental-scroll-enabled")]
+		public IActionResult GetExperimentalScroll() => Json(new
+		{
+			Enabled = IsExperimentalScrollEnabled(Request)
+		});
+
+		public static bool IsExperimentalScrollEnabled(HttpRequest context) => Convert.ToBoolean(context.Cookies[ScrollCookieKey]);
 	}
 }

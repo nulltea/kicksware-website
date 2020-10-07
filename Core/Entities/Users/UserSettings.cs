@@ -11,6 +11,8 @@ namespace Core.Entities.Users
 
 		[JsonConverter(typeof(StringEnumConverter))]
 		public LayoutView LayoutView { get; set; } = LayoutView.Grid;
+
+		public bool MobileExperimentalScrollEnabled { get; set; } = false;
 	}
 
 	[JsonConverter(typeof(StringEnumConverter))]

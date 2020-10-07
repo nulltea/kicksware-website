@@ -83,6 +83,8 @@ function photoGalleryInit() {
 $(document).ready(function () {
 	"use strict";
 
+	window.heroParallaxInit();
+
 	initCarousels();
 
 	favoriteInit();

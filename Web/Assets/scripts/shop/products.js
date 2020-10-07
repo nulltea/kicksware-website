@@ -380,6 +380,8 @@ function mobileResponsivePerform(){
 
 $(document).ready(function () {
 	"use strict";
+	window.heroParallaxInit();
+
 	initFilterPanel();
 
 	priceRangeInit();

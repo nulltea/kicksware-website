@@ -65,5 +65,8 @@
 		await Html.RenderPartialAsync("_ValidationScriptsPartial");
 	}
 	<script src="@Bundle.GetAssetName("sell", "js")" asp-append-version="true"></script>
+	<script type="application/javascript">
+		window.heroParallaxInit();
+	</script>
 	@await RenderSectionAsync("Scripts", false)
 }

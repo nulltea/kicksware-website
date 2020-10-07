@@ -106,6 +106,8 @@ function themeSettingInit(){
 $(document).ready(function () {
 	"use strict";
 
+	window.heroParallaxInit();
+
 	sidebarControlInit();
 
 	profileFormInit();

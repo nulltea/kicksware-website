@@ -82,6 +82,11 @@ section.about-section {
 					align-self: flex-end;
 					margin-left: unset;
 					margin-right: -630px;
+					.transition-properties(margin-right 800ms ease);
+
+					&.pushed {
+						margin-right: -30px;
+					}
 
 					.hand-asset {
 						margin-left: unset;
@@ -120,6 +125,11 @@ section.about-section {
 				margin-left: -630px;
 				margin-top: 50px;
 				margin-bottom: 50vh;
+				.transition-properties(margin-left 800ms ease);
+
+				&.pushed {
+					margin-left: -30px;
+				}
 
 				img.hand-asset {
 					max-width: 600px;
@@ -186,6 +196,13 @@ section.about-section {
 				left: -60vw;
 				max-width: 350px;
 				z-index: 3;
+				.transition-properties(left 600ms ease, top 600ms ease;);
+
+				&.active {
+					left: 50%;
+					top: 25%;
+				}
+
 			}
 		}
 	}

@@ -1,21 +1,28 @@
 ﻿@using Web.Utils.Helpers
-@using Core.Environment
 @using Web.Utils.Bundle
 @using Environment = Core.Environment.Environment
+@using Web.Controllers
 @model List<string>
 @{
 	ViewBag.Title = "About us";
 	Layout = "~/Views/Shared/_Layout.cshtml";
+
+	const string coverParallax = "{ 'translateY': '50%', 'opacity': 0.5}";
+	const string contentParallax = "{ 'top': '75%', 'opacity': 0.5 }";
+	const string titleParallax = "{ 'top': '75%', 'opacity': 0.5 }";
+	const string windowAssetParallax = "{ 'translateY': '50%' }";
+	const string figureParallax = "{'translateY': '100%'}";
+	const string mobileFigureParallax = "{'top': '100%'}";
 }
 
 @section Styles
 {
 	<link rel="stylesheet" href="@Bundle.GetAssetName("about", "css")" asp-append-version="true"/>
 }
-
-<section class="about-section title-section hero-parallax">
-	<div class="section-cover" style="background-image: url(@Model[0])"></div>
-	<div class="hero-content section-content">
+<input type="hidden" value="@ProfileController.IsExperimentalScrollEnabled(Context.Request)" id="experemental">
+<section class="about-section title-section hero-parallax" data-scrollax-parent="true">
+	<div class="section-cover" style="background-image: url(@Model[0])" data-scrollax="properties: @coverParallax"></div>
+	<div class="hero-content section-content" data-scrollax="properties: @titleParallax">
 		<span class="bread">ABOUT US</span>
 		<span class="sub-bread">GET TO KNOW US BETTER</span>
 		<breadcrumb></breadcrumb>
@@ -24,17 +31,17 @@
 		</a>
 	</div>
 </section>
-<section class="about-section title-section">
-	<div class="section-cover" style="background-image: url(@Model[4])"></div>
-	<div class="section-content">
+<section class="about-section title-section" data-scrollax-parent="true">
+	<div class="section-cover" style="background-image: url(@Model[4])" data-scrollax="properties: @coverParallax"></div>
+	<div class="section-content" data-scrollax="properties: @titleParallax">
 		<h1 class="section-title">WHAT?</h1>
 		<hr/>
 		<h4 class="section-subtitle">NOT WHAT YOU THINK IT IS (YET)</h4>
 	</div>
 </section>
-<section class="about-section info-section">
-	<figure class="figure" data-scroll data-depth="0.7"></figure>
-	<div class="section-content" data-scroll data-depth="1.2">
+<section class="about-section info-section" data-scrollax-parent="true">
+	<figure class="figure" data-scroll data-depth="0.7" data-scrollax="properties: @figureParallax"></figure>
+	<div class="section-content" data-scroll data-depth="1.2" data-scrollax="properties: @contentParallax">
 		<article class="section-article">
 			<p>
 				<span class="kicksware">Kicksware</span> <em>can</em> become an all-in-one modular end-to-end platform designed <b>by and for</b> the sneakerheads around the globe as part of the luxury fashion worldwide ecosystem.
@@ -56,20 +63,20 @@
 				src=@($"{Environment.FileStoragePath}/assets/hand-air-max-90-3.png") alt/>
 		</div>
 	</div>
-	<img class="window-asset" data-scroll data-depth="1.5"
+	<img class="window-asset" data-scroll data-depth="1.5" data-scrollax="properties: @windowAssetParallax"
 		src=@($"{Environment.FileStoragePath}/assets/window-air-max-97.png") alt/>
 </section>
-<section class="about-section title-section">
-	<div class="section-cover" style="background-image: url(@Model[1])"></div>
-	<div class="section-content">
+<section class="about-section title-section" data-scrollax-parent="true">
+	<div class="section-cover" style="background-image: url(@Model[1])" data-scrollax="properties: @coverParallax"></div>
+	<div class="section-content" data-scrollax="properties: @titleParallax">
 		<h1 class="section-title">WHO?</h1>
 		<hr/>
 		<h4 class="section-subtitle">«THE ONE»</h4>
 	</div>
 </section>
-<section class="about-section info-section">
-	<figure class="figure" data-scroll data-depth="0.7"></figure>
-	<div class="section-content" data-scroll data-depth="1.2">
+<section class="about-section info-section" data-scrollax-parent="true">
+	<figure class="figure" data-scroll data-depth="0.7" data-scrollax="properties: @figureParallax"></figure>
+	<div class="section-content" data-scroll data-depth="1.2" data-scrollax="properties: @contentParallax">
 		<article class="section-article">
 			<div id="mobile-bio-trigger" style="position: absolute; top: -300px;"></div>
 			<p>
@@ -95,24 +102,24 @@
 			<img class="hand-asset" src=@($"{Environment.FileStoragePath}/assets/hand-air-max-90-1.png") alt/>
 		</div>
 	</div>
-	<div class="asset-wrapper" data-scroll data-depth="1.5">
+	<div class="asset-wrapper" data-scroll data-depth="1.5" data-scrollax="properties: @windowAssetParallax">
 		<img class="window-asset"
 			src=@($"{Environment.FileStoragePath}/assets/window-react-element.png") alt/>
 		<img class="window-asset" id="creator-window"
 			src=@($"{Environment.FileStoragePath}/assets/window-creator.png") alt/>
 	</div>
 </section>
-<section class="about-section title-section">
-	<div class="section-cover" style="background-image: url(@Model[2])"></div>
-	<div class="section-content">
+<section class="about-section title-section" data-scrollax-parent="true">
+	<div class="section-cover" style="background-image: url(@Model[2])" data-scrollax="properties: @coverParallax"></div>
+	<div class="section-content" data-scrollax="properties: @titleParallax">
 		<h1 class="section-title">WHY?</h1>
 		<hr/>
 		<h4 class="section-subtitle">THE SHORT STORY LONG</h4>
 	</div>
 </section>
-<section class="about-section info-section">
-	<figure class="figure" data-scroll data-depth="0.7"></figure>
-	<div class="section-content" data-scroll data-depth="1.2">
+<section class="about-section info-section" data-scrollax-parent="true">
+	<figure class="figure" data-scroll data-depth="0.7" data-scrollax="properties: @figureParallax"></figure>
+	<div class="section-content" data-scroll data-depth="1.2" data-scrollax="properties: @contentParallax">
 		<article class="section-article">
 			<p>
 				Same as any other new thing it all started as an idea (project idea) - building an app using microservice architecture.
@@ -147,20 +154,20 @@
 			<img class="hand-asset" src=@($"{Environment.FileStoragePath}/assets/hand-air-max-90-5.png") alt/>
 		</div>
 	</div>
-	<img class="window-asset" data-scroll data-depth="1.3"
+	<img class="window-asset" data-scroll data-depth="1.3" data-scrollax="properties: @windowAssetParallax"
 		src=@($"{Environment.FileStoragePath}/assets/window-air-max-97-vapormax.png") alt/>
 </section>
-<section class="about-section title-section">
-	<div class="section-cover" style="background-image: url(@Model[3])" data-speed=".1"></div>
-	<div class="section-content">
+<section class="about-section title-section" data-scrollax-parent="true">
+	<div class="section-cover" style="background-image: url(@Model[3])" data-scrollax="properties: @coverParallax"></div>
+	<div class="section-content" data-scrollax="properties: @titleParallax">
 		<h1 class="section-title">NEXT</h1>
 		<hr/>
 		<h4 class="section-subtitle">HINT: YOU</h4>
 	</div>
 </section>
-<section class="about-section info-section">
-	<figure class="figure" data-scroll data-depth="0.7"></figure>
-	<div class="section-content" data-scroll data-depth="1.2">
+<section class="about-section info-section" data-scrollax-parent="true">
+	<figure class="figure" data-scroll data-depth="0.7" data-scrollax="properties: @figureParallax"></figure>
+	<div class="section-content" data-scroll data-depth="1.2" data-scrollax="properties: @contentParallax">>
 		<article class="section-article">
 			<p>
 				The original goal of this campaign is actually already successfully achieved.
@@ -184,14 +191,14 @@
 			<img class="hand-asset" src=@($"{Environment.FileStoragePath}/assets/hand-air-max-90-4.png") alt/>
 		</div>
 	</div>
-	<img class="window-asset" data-scroll data-depth="1.4"
+	<img class="window-asset" data-scroll data-depth="1.4" data-scrollax="properties: @windowAssetParallax"
 		src=@($"{Environment.FileStoragePath}/assets/window-air-max-93.png") alt/>
 </section>
-<section class="about-section contact-section">
+<section class="about-section contact-section" data-scrollax-parent="true">
 	<figure class="rectangle"></figure>
 	<figure class="circle"></figure>
-	<figure class="square mobile"></figure>
-	<figure class="square mobile"></figure>
+	<figure class="square mobile" data-scrollax="properties: @mobileFigureParallax"></figure>
+	<figure class="square mobile" data-scrollax="properties: @mobileFigureParallax"></figure>
 	<div class="section-caption">
 		<h1>LET'S COLLAB</h1>
 		<hr/>
