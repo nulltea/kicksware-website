@@ -10,6 +10,7 @@
 .exception {
 	.flex-row(@align: stretch);
 	height: 100vh;
+	overflow: auto;
 
 	main, aside {
 		width: 50%;
@@ -26,6 +27,15 @@
 			font-family: Audiowide, sans-serif;
 			font-size: 150px;
 			.text-light-elevation(black);
+		}
+
+		.error-content {
+			margin-bottom: 25px;
+
+			p {
+				font-size: 20px;
+				font-weight: 500;
+			}
 		}
 
 		.controls {
@@ -91,7 +101,7 @@
 			max-height: 75%;
 			width: auto;
 			height: auto;
-			filter: drop-shadow(-5px 5px 8px grey);
+			filter: drop-shadow(3px 3px 3px rgba(0,0,0,.5));
 		}
 	}
 }

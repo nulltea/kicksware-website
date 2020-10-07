@@ -157,6 +157,45 @@
 }
 
 @media only screen and (max-width: 480px) {
+	section.about-section.contact-section {
+		align-items: center;
+		justify-content: flex-start;
+
+		.section-caption {
+			h1 {
+				margin-top: 15px;
+				font-size: 28px;
+			}
+
+			hr {
+				width: 100% !important;
+				height: 3px !important;
+			}
+		}
+
+		.contact-info .contact-col {
+			flex-direction: column;
+			width: 100%;
+
+			h3 {
+				font-size: 15px;
+			}
+
+			a {
+				font-size: 18px;
+			}
+
+			.social-links {
+				grid-gap: 30px;
+
+				a {
+					height: 30px;
+					width: 30px;
+				}
+			}
+		}
+	}
+
 }
 
 @media only screen and (max-width: 479px) {
