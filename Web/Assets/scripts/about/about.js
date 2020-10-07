@@ -131,8 +131,10 @@ function parallaxInit() {
 		if (creatorWidow) {
 
 			gsap.to(creatorWidow, {
-				left: "50%",
-				top: isMobile ? "25%" : "50%",
+				x: isMobile ? "60vw" : undefined,
+				y: isMobile ? "-100vh" : undefined,
+				left: !isMobile ? "50%" : undefined,
+				top: !isMobile ? "50%" : undefined,
 				ease: "none",
 				scrollTrigger: {
 					trigger: isMobile ? "#mobile-bio-trigger" : "#bio-trigger",
