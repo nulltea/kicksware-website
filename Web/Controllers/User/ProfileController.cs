@@ -51,7 +51,7 @@ namespace Web.Controllers
 		[HttpGet]
 		[Authorize]
 		[Route("profile/{mode?}")]
-		[Breadcrumb("Shop", FromAction = "Index", FromController = typeof(HomeController))]
+		[Breadcrumb("Profile", FromAction = "Index", FromController = typeof(HomeController))]
 		public async Task<IActionResult> Profile()
 		{
 			var user = await _userManager.GetUserAsync(HttpContext.User);

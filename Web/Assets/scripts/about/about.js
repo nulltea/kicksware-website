@@ -43,19 +43,15 @@ function headerCorrectionInit() {
 		return
 	}
 
-	let header = $("header")[0]
+	let header = $("header");
 
-	gsap.to(header, {
-		scrollTrigger: {
-			trigger: "header",
-			toggleClass: "scrolled",
-			start: "+=210",
-			endTrigger:"html",
-			end:"bottom top",
-			scroller: scroller,
-			scrub: true,
-		}
-	})
+	const controller = new ScrollMagic.Controller();
+	new ScrollMagic.Scene({
+		triggerElement: ".hero-content .bread",
+		triggerHook: 0,
+		offset: -300
+	}).setClassToggle(".header", "scrolled")
+		.addTo(controller);
 }
 
 function parallaxInit() {
@@ -149,6 +145,16 @@ function parallaxInit() {
 	});
 
 	$(".contact-section").each(function (){
+		gsap.to(this, {
+			scrollTrigger: {
+				trigger: this,
+				scroller: scroller,
+				start: "-=600",
+				scrub: true,
+				once: true,
+				toggleClass: "higher"
+			}
+		})
 
 		if (window.isMobile()) {
 			let squares = $(this).find(".mobile.square");
@@ -188,9 +194,9 @@ function parallaxInit() {
 			});
 		}
 	});
-	setTimeout(function (){
-		$(".contact-section").css("height", "85vh");
-	}, 1000)
+	// setTimeout(function (){
+	// 	$(".contact-section").css("height", "85vh");
+	// }, 2000)
 }
 
 function requestScrollSetting() {
