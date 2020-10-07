@@ -74,6 +74,8 @@ web-app.build:
     - docker-compose push
   dependencies:
     - dependencies.resolve
+  allow_failure: true
+
 
 # test stage steps:
 

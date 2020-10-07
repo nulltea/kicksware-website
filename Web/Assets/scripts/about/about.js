@@ -9,8 +9,7 @@ const isMobileLocomotive = isMobile && requestScrollSetting();
 const isLocomotive = !isMobile || isMobileLocomotive;
 const scroller = isLocomotive ? "[data-scroll-container]" : "";
 
-console.log("isLocomotive", isLocomotive)
-console.log("isMobileLocomotive", isMobileLocomotive)
+
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -18,7 +17,7 @@ function locomotiveScrollInit() {
 	if (!isLocomotive) {
 		return
 	}
-	console.log("locomotiveScrollInit", isMobileLocomotive)
+
 	const locoScroll = new LocomotiveScroll({
 		el: document.querySelector("[data-scroll-container]"),
 		smooth: true,
@@ -63,7 +62,7 @@ function parallaxInit() {
 	if (isLocomotive === false) {
 		return
 	}
-	console.log("parallaxInit", isMobileLocomotive)
+
 	$(".title-section").each(function () {
 		let cover = $(this).find(".section-cover")[0];
 		let content = $(this).find(".section-content")[0];
@@ -203,6 +202,7 @@ function mobileParallaxInit() {
 
 	$(".mobile.square").css("margin-top", "65vh");
 	$(".contact-section").css("height", "85vh");
+	$(".section-content").css("top", 0);
 
 	const controller = new ScrollMagic.Controller();
 

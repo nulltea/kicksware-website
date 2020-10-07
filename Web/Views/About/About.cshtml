@@ -8,8 +8,7 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 
 	const string coverParallax = "{ 'translateY': '50%', 'opacity': 0.5}";
-	const string contentParallax = "{ 'top': '75%', 'opacity': 0.5 }";
-	const string titleParallax = "{ 'top': '75%', 'opacity': 0.5 }";
+	const string titleParallax = "{ 'translateY': '75%', 'opacity': 0.5 }";
 	const string windowAssetParallax = "{ 'translateY': '50%' }";
 	const string figureParallax = "{'translateY': '100%'}";
 	const string mobileFigureParallax = "{'top': '100%'}";
@@ -19,7 +18,7 @@
 {
 	<link rel="stylesheet" href="@Bundle.GetAssetName("about", "css")" asp-append-version="true"/>
 }
-<input type="hidden" value="@ProfileController.IsExperimentalScrollEnabled(Context.Request)" id="experemental">
+
 <section class="about-section title-section hero-parallax" data-scrollax-parent="true">
 	<div class="section-cover" style="background-image: url(@Model[0])" data-scrollax="properties: @coverParallax"></div>
 	<div class="hero-content section-content" data-scrollax="properties: @titleParallax">
@@ -41,7 +40,7 @@
 </section>
 <section class="about-section info-section" data-scrollax-parent="true">
 	<figure class="figure" data-scroll data-depth="0.7" data-scrollax="properties: @figureParallax"></figure>
-	<div class="section-content" data-scroll data-depth="1.2" data-scrollax="properties: @contentParallax">
+	<div class="section-content" data-scroll data-depth="1.2">
 		<article class="section-article">
 			<p>
 				<span class="kicksware">Kicksware</span> <em>can</em> become an all-in-one modular end-to-end platform designed <b>by and for</b> the sneakerheads around the globe as part of the luxury fashion worldwide ecosystem.
@@ -76,7 +75,7 @@
 </section>
 <section class="about-section info-section" data-scrollax-parent="true">
 	<figure class="figure" data-scroll data-depth="0.7" data-scrollax="properties: @figureParallax"></figure>
-	<div class="section-content" data-scroll data-depth="1.2" data-scrollax="properties: @contentParallax">
+	<div class="section-content" data-scroll data-depth="1.2">
 		<article class="section-article">
 			<div id="mobile-bio-trigger" style="position: absolute; top: -300px;"></div>
 			<p>
@@ -119,7 +118,7 @@
 </section>
 <section class="about-section info-section" data-scrollax-parent="true">
 	<figure class="figure" data-scroll data-depth="0.7" data-scrollax="properties: @figureParallax"></figure>
-	<div class="section-content" data-scroll data-depth="1.2" data-scrollax="properties: @contentParallax">
+	<div class="section-content" data-scroll data-depth="1.2">
 		<article class="section-article">
 			<p>
 				Same as any other new thing it all started as an idea (project idea) - building an app using microservice architecture.
@@ -167,7 +166,7 @@
 </section>
 <section class="about-section info-section" data-scrollax-parent="true">
 	<figure class="figure" data-scroll data-depth="0.7" data-scrollax="properties: @figureParallax"></figure>
-	<div class="section-content" data-scroll data-depth="1.2" data-scrollax="properties: @contentParallax">>
+	<div class="section-content" data-scroll data-depth="1.2">>
 		<article class="section-article">
 			<p>
 				The original goal of this campaign is actually already successfully achieved.
