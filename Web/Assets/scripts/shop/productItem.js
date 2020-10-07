@@ -56,21 +56,28 @@ function buyRedirectInit() {
 
 function photoGalleryInit() {
 	if (window.isMobile()) {
-		new Viewer($(".mobile-gallery .carousel-wrapper")[0], {
-			toolbar: false,
-			title: false,
-			tooltip: false,
-			minZoomRatio: 1,
-			maxZoomRatio: 3,
-		});
+		let gallery = $(".mobile-gallery .carousel-wrapper")[0];
+		if (gallery) {
+			new Viewer(gallery, {
+				toolbar: false,
+				title: false,
+				tooltip: false,
+				minZoomRatio: 1,
+				maxZoomRatio: 3,
+			});
+		}
+	} else {
+		let gallery = $(".desktop-gallery .image-carousel")[0];
+		if (gallery) {
+			new Viewer(gallery, {
+				toolbar: false,
+				title: false,
+				tooltip: false,
+				minZoomRatio: 1,
+				maxZoomRatio: 3,
+			});
+		}
 	}
-	new Viewer($(".desktop-gallery .image-carousel")[0], {
-		toolbar: false,
-		title: false,
-		tooltip: false,
-		minZoomRatio: 1,
-		maxZoomRatio: 3,
-	});
 }
 
 $(document).ready(function () {
