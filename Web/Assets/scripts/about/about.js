@@ -1,13 +1,17 @@
 import gsap from "gsap/dist/gsap"
 import ScrollTrigger from "gsap/dist/ScrollTrigger"
 import LocomotiveScroll from "locomotive-scroll"
-import "locomotive-scroll/dist/locomotive-scroll.css"
 
 const isMobile = window.isMobile();
+const scroller = !isMobile ? "[data-scroll-container]" : "";
 
 gsap.registerPlugin(ScrollTrigger)
 
 function locomotiveScrollInit() {
+	if (isMobile) {
+		return
+	}
+
 	const locoScroll = new LocomotiveScroll({
 		el: document.querySelector("[data-scroll-container]"),
 		smooth: true,
@@ -38,7 +42,7 @@ function headerCorrectionInit() {
 			start: "+=210",
 			endTrigger:"html",
 			end:"bottom top",
-			scroller: "[data-scroll-container]",
+			scroller: scroller,
 			scrub: true,
 		}
 	})
@@ -55,7 +59,7 @@ function parallaxInit() {
 			ease: "none",
 			scrollTrigger: {
 				trigger: this,
-				scroller: "[data-scroll-container]",
+				scroller: scroller,
 				scrub: true,
 			},
 		});
@@ -64,7 +68,7 @@ function parallaxInit() {
 			y: `100%`,
 			ease: "none",
 			scrollTrigger: {
-				scroller: "[data-scroll-container]",
+				scroller: scroller,
 				scrub: true,
 				trigger: this,
 			}
@@ -75,7 +79,7 @@ function parallaxInit() {
 		let tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: this,
-				scroller: "[data-scroll-container]",
+				scroller: scroller,
 				start: "top top",
 				end: "bottom top",
 				scrub: true,
@@ -99,7 +103,7 @@ function parallaxInit() {
 				ease: "none",
 				scrollTrigger: {
 					trigger: hand,
-					scroller: "[data-scroll-container]",
+					scroller: scroller,
 					start: "bottom bottom",
 					end: isMobile ? "" : "top top",
 					duration: {min: 1, max: 3},
@@ -118,7 +122,7 @@ function parallaxInit() {
 				ease: "none",
 				scrollTrigger: {
 					trigger: isMobile ? "#mobile-bio-trigger" : "#bio-trigger",
-					scroller: "[data-scroll-container]",
+					scroller: scroller,
 					start: "top center",
 					duration: {min: 3, max: 6},
 					end: "top 100px",
@@ -138,7 +142,7 @@ function parallaxInit() {
 					ease: "none",
 					scrollTrigger: {
 						trigger: this,
-						scroller: "[data-scroll-container]",
+						scroller: scroller,
 						scrub: true,
 					}
 				});
@@ -152,7 +156,7 @@ function parallaxInit() {
 				ease: "none",
 				scrollTrigger: {
 					trigger: this,
-					scroller: "[data-scroll-container]",
+					scroller: scroller,
 					scrub: true,
 				}
 			});
@@ -162,7 +166,7 @@ function parallaxInit() {
 				ease: "none",
 				scrollTrigger: {
 					trigger: this,
-					scroller: "[data-scroll-container]",
+					scroller: scroller,
 					scrub: true,
 				}
 			});
