@@ -50,11 +50,16 @@
 		height: 200px;
 		margin-right: 15px;
 		counter-increment: carousel-cell;
-		//border-radius: 10px;
 		.with-theme({
 			background: @hint;
 			.elevation(6, @elevation);
-		})
+		});
+		.transition-properties(
+				transform 300ms cubic-bezier(.155,1.105,.295,1.12),
+				-webkit-transform 300ms cubic-bezier(.155,1.105,.295,1.12),
+				-moz-transform 300ms cubic-bezier(.155,1.105,.295,1.12),
+				box-shadow 300ms;
+		);
 	}
 
 	.flickity-page-dots {
@@ -330,7 +335,7 @@
 	width: 100%;
 	background: transparent;
 	z-index: 2;
-	margin: 20px 0;
+	padding: 20px 0;
 
 	.product-content {
 		.flex-col();

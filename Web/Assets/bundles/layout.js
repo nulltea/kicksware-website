@@ -7,7 +7,6 @@ import "cookieconsent"
 import "cookieconsent/build/cookieconsent.min.css"
 
 
-import "scrollax"
 import "jquery-validation"
 import "jquery-validation-unobtrusive"
 

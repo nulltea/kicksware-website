@@ -38,40 +38,28 @@
 
 @media only screen and (max-width: 1024px)
 {
-
-}
-
-@media only screen and (max-width: 991px)
-{
-}
-
-@media only screen and (max-width: 959px)
-{
-
-}
-
-@media only screen and (max-width: 880px)
-{
 	section.about-section {
 		&.info-section {
-			article {
+			.section-content {
 				width: 100%;
 				margin-top: 75%;
+
+				.hand-wrapper {
+					margin-bottom: 80vh;
+					img.hand-asset {
+						max-width: 90vw;
+					}
+				}
 			}
 
-			img.window-asset, img.hand-asset {
+			img.window-asset,
+			.asset-wrapper img.window-asset {
 				max-width: 90vw;
 			}
 
-			img.hand-asset {
-				bottom: 0;
-			}
-
-			#creator-window {
-				top: -50%;
-				left: unset;
-				right: -50%;
-				bottom: unset;
+			.asset-wrapper #creator-window {
+				top: -25vh;
+				left: 100vw;
 				max-width: 50vw;
 				transition: top 600ms ease, right 600ms ease;
 
@@ -85,7 +73,6 @@
 		}
 
 		&.contact-section {
-			height: 85vh;
 			align-items: center;
 			justify-content: flex-start;
 
@@ -123,6 +110,23 @@
 	}
 }
 
+@media only screen and (max-width: 991px)
+{
+	section.about-section.contact-section {
+		height: calc(~"85vh + 115px");
+	}
+}
+
+@media only screen and (max-width: 959px)
+{
+
+}
+
+@media only screen and (max-width: 880px)
+{
+
+}
+
 @media only screen and (max-width: 768px)
 {
 
@@ -133,7 +137,7 @@
 	.about {
 		.hero-parallax {
 			.sean-go {
-				bottom: 25%;
+				bottom: 40%;
 
 				svg {
 					width: 75px !important;

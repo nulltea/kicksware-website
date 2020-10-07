@@ -92,31 +92,33 @@
 				<span class="bread">@heroBreadTitle?.ToUpper()</span>
 				<span class="sub-bread">@heroBreadSubTitle?.ToUpper()</span>
 				<breadcrumb></breadcrumb>
-				<a class="sean-go" href="https://seango.ca" target="_blank">
+				<a class="sean-go" href="https://seango.ca" target="_blank" data-tooltip="Check out more amazing sneaker photos by Sean Go!">
 					@Html.VectorIconRender("sean-go.svg")
 				</a>
 			</div>
 		</div>
 	}
-	<div class="page-content">
-		@RenderBody()
-	</div>
-	<div class="footer_overlay"></div>
-	<footer class="footer">
-		<div class="footer_content">
-			<div class="footer_logo">
-				<a asp-action="Index" asp-controller="Home">KICKSWARE</a>
-			</div>
-			<div class="copyright">
-				Copyright &copy; @Convert.ToString(DateTime.Today.Year) All rights reserved
-			</div>
-			<div class="menu-social">
-				@{
-					await Html.RenderPartialAsync("_SocialPartial");
-				}
-			</div>
+	<div class="scroll-container" data-scroll-container>
+		<div class="page-content" data-scroll-section>
+			@RenderBody()
 		</div>
-	</footer>
+		<div class="footer_overlay"></div>
+		<footer class="footer">
+			<div class="footer_content">
+				<div class="footer_logo">
+					<a asp-action="Index" asp-controller="Home">KICKSWARE</a>
+				</div>
+				<div class="copyright">
+					Copyright &copy; @Convert.ToString(DateTime.Today.Year) All rights reserved
+				</div>
+				<div class="menu-social">
+					@{
+						await Html.RenderPartialAsync("_SocialPartial");
+					}
+				</div>
+			</div>
+		</footer>
+	</div>
 </div>
 <script src="~/dist/layout.js" asp-append-version="true"></script>
 @* RENDER BODY SCRIPTS *@
@@ -124,8 +126,5 @@
 @{
 	await Html.RenderPartialAsync("_LockedHandlerPartial");
 }
-<script type="text/javascript">
-	$.Scrollax();
-</script>
 </body>
 </html>

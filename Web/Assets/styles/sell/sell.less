@@ -35,7 +35,12 @@
 		display: flex;
 		justify-content: center;
 		height: 80px;
-		margin: 10px 400px;
+		margin: 15px 400px;
+		border-radius: 12px;
+		.elevation(6);
+		.with-theme({
+			background: @hint;
+		});
 
 		ul {
 			width: 90%;
@@ -47,6 +52,7 @@
 		li {
 			display: flex;
 			align-items: center;
+			.transition-properties(all 400ms cubic-bezier(.15, 1.2, .3, 1.2));
 		}
 
 		li.active span,
@@ -100,10 +106,15 @@
 			height: 50px;
 			border-radius: 50%;
 			.with-theme({
-				background: @primary;
+				background: @hint;
 				border: 3px solid @secondary;
-				box-shadow: 3px 3px 9px -1px fade(@elevation, 30%);
+				.elevation(8);
 			});
+
+			&:hover  {
+				.transform-properties(scale(1.15));
+				.elevation(10);
+			}
 		}
 
 		svg {

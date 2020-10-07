@@ -220,7 +220,7 @@ namespace Web
 			});
 			app.UseStaticFiles();
 
-			app.UseAllElasticApm(Configuration);
+			// app.UseAllElasticApm(Configuration);
 		}
 
 		#region Configuration handlers

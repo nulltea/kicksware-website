@@ -1,14 +1,26 @@
-﻿import $ from "jquery"
-import ScrollMagic from "scrollmagic"
-const controller = new ScrollMagic.Controller();
+﻿import $ from "jquery";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import "Scrollax";
+
+gsap.registerPlugin(ScrollTrigger)
+
 
 function headerScrollInit() {
-	new ScrollMagic.Scene({
-		triggerElement: "#scroll-trigger",
-		triggerHook: 0
-	}).setClassToggle(".header", "scrolled")
-		//.addIndicators()
-		.addTo(controller);
+	gsap.to("header", {
+		scrollTrigger: {
+			trigger: "header",
+			toggleClass: "scrolled",
+			start: "+=210",
+			endTrigger:"html",
+			end:"bottom top",
+			scrub: true,
+		}
+	})
+}
+
+function heroParallaxInit() {
+	$.Scrollax();
 }
 
 function changeTheme() {
@@ -112,6 +124,8 @@ $(document).ready(function () {
 	"use strict";
 
 	headerScrollInit();
+
+	heroParallaxInit();
 
 	activePageInit();
 
