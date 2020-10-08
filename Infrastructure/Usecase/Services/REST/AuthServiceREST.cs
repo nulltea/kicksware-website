@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 using Core.Entities.Users;
+using Core.Environment;
 using Core.Gateway;
 using Core.Services;
 using Infrastructure.Gateway.REST;
@@ -23,7 +26,7 @@ namespace Infrastructure.Usecase
 			(token = _client.Request<AuthToken>(new AuthRemoteRequest(user))) != null;
 
 		public bool Guest(out AuthToken token) =>
-			(token = _client.Request<AuthToken>(new AuthGuestRequest())) != null;
+			(token = _client.Request<AuthToken>(new AuthGuestRequest(AccessKey()))) != null;
 
 		public void Logout(AuthToken token) => _client.Request(new AuthValidateTokenRequest(token));
 
@@ -42,7 +45,7 @@ namespace Infrastructure.Usecase
 			_client.RequestAsync<AuthToken>(new AuthRemoteRequest(user));
 
 		public Task<AuthToken> GuestAsync() =>
-			_client.RequestAsync<AuthToken>(new AuthGuestRequest());
+			_client.RequestAsync<AuthToken>(new AuthGuestRequest(AccessKey()));
 
 		public Task LogoutAsync(AuthToken token) =>
 			_client.RequestAsync(new AuthValidateTokenRequest(token));
@@ -52,5 +55,7 @@ namespace Infrastructure.Usecase
 
 		public Task<bool> ValidateTokenAsync(AuthToken token) =>
 			_client.RequestAsync<bool>(new AuthValidateTokenRequest(token));
+
+		private static string AccessKey() => new UTF8Encoding(false).GetString(MD5.Create().ComputeHash(Environment.AuthAccessKey));
 	}
 }

@@ -2,6 +2,9 @@
 {
 	public class AuthGuestRequest : AuthBaseRequest
 	{
-		public AuthGuestRequest() : base("/guest") { }
+		public AuthGuestRequest(string accessKey) : base("/guest")
+		{
+			AddQueryParameter("access", accessKey);
+		}
 	}
 }

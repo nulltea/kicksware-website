@@ -1,4 +1,5 @@
 using System.IO;
+using System.Text;
 using Core.Extension;
 using Core.Reference;
 
@@ -22,6 +23,8 @@ namespace Core.Environment
 
 		public static readonly DataProtocol DataProtocol = System.Environment.GetEnvironmentVariable("DATA_PROTOCOL")
 			.GetEnumByMemberValue<DataProtocol>();
+
+		public static readonly byte[] AuthAccessKey = new UTF8Encoding(false).GetBytes(System.Environment.GetEnvironmentVariable("AUTH_ACCESS_KEY")!);
 
 		public static readonly string SunnyUserIdPrefix =
 			System.Environment.GetEnvironmentVariable("SUNNY_USER_ID_PREFIX");

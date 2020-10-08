@@ -160,7 +160,7 @@ function parallaxInit() {
 			let squares = $(this).find(".mobile.square");
 			squares.toArray().forEach(figure => {
 				gsap.to(figure, {
-					marginTop: "130vh",
+					marginTop: "135vh",
 					ease: "none",
 					scrollTrigger: {
 						trigger: this,
@@ -194,9 +194,6 @@ function parallaxInit() {
 			});
 		}
 	});
-	// setTimeout(function (){
-	// 	$(".contact-section").css("height", "85vh");
-	// }, 2000)
 }
 
 function requestScrollSetting() {

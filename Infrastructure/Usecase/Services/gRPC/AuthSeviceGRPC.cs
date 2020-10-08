@@ -1,6 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 using Core.Entities.Users;
+using Core.Environment;
 using Core.Services;
+using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Infrastructure.Gateway.gRPC;
 
@@ -22,7 +26,7 @@ namespace Infrastructure.Usecase
 			string.IsNullOrEmpty(token = _client.Remote(user.FromNative())?.ToNative());
 
 		public bool Guest(out AuthToken token) =>
-			string.IsNullOrEmpty(token = _client.Guest(new Empty())?.ToNative());
+			string.IsNullOrEmpty(token = _client.Guest(AccessKey())?.ToNative());
 
 		public void Logout(AuthToken token) => _client.Logout(token.FromNative());
 
@@ -40,7 +44,7 @@ namespace Infrastructure.Usecase
 		public async Task<AuthToken> RemoteAsync(User user) =>
 			(await _client.RemoteAsync(user.FromNative()))?.ToNative();
 
-		public async Task<AuthToken> GuestAsync() => (await _client.GuestAsync(new Empty()))?.ToNative();
+		public async Task<AuthToken> GuestAsync() => (await _client.GuestAsync(AccessKey()))?.ToNative();
 
 		public Task LogoutAsync(AuthToken token) => _client.LogoutAsync(token.FromNative()).ResponseAsync;
 
@@ -48,5 +52,10 @@ namespace Infrastructure.Usecase
 			(await _client.RefreshAsync(token.FromNative()))?.ToNative();
 
 		public Task<bool> ValidateTokenAsync(AuthToken token) => Task.FromResult(true); // TODO ValidateToken
+
+		private static Proto.AccessKey AccessKey() => new Proto.AccessKey
+		{
+			Key = ByteString.CopyFrom(MD5.Create().ComputeHash(Environment.AuthAccessKey))
+		};
 	}
 }
