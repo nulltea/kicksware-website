@@ -1,6 +1,5 @@
 ﻿import Viewer from "viewerjs"
 
-
 function initCarousels() {
 	$(".carousel-wrapper").each(function () {
 		let carousel = $(this);

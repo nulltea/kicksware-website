@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Core.Environment;
 using Microsoft.AspNetCore.Mvc;
 using SmartBreadcrumbs.Attributes;
+using Environment = Core.Environment.Environment;
 
 namespace Web.Controllers
 {

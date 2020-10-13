@@ -56,6 +56,27 @@
 			max-height: 130%;
 			margin-bottom: -60px;
 		}
+
+		.details-content{
+			width: 100vw;
+			padding: 20px;
+
+			&.expanded {
+				left: 0;
+			}
+
+			.expandable {
+				right: 20px
+			}
+
+			.error-stack {
+				width: 100%;
+
+				.stack-call{
+					overflow-x: auto;
+				}
+			}
+		}
 	}
 
 	#internal-error {
@@ -76,6 +97,19 @@
 }
 
 @media only screen and (max-width: 575px) {
+	.exception {
+		aside {
+			height: 40%;
+		}
+
+		main {
+			height: 60%;
+		}
+
+		.details-content {
+			padding: 70px 20px 20px 20px;
+		}
+	}
 }
 
 @media only screen and (max-width: 539px) {

@@ -9,7 +9,6 @@ using Core.Reference;
 using Core.Repositories;
 using Core.Services;
 using Core.Services.Interactive;
-using Elastic.Apm.NetCoreAll;
 using Infrastructure.Data;
 using Infrastructure.Gateway.gRPC.Builder;
 using Infrastructure.Gateway.REST;
@@ -22,7 +21,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -188,7 +186,8 @@ namespace Web
 		{
 			if (env.IsDevelopment())
 			{
-				app.UseDeveloperExceptionPage();
+				// app.UseDeveloperExceptionPage();
+				app.UseExceptionHandler("/exception");
 			}
 			else
 			{

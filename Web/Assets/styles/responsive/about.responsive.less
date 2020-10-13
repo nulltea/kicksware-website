@@ -46,15 +46,14 @@
 				}
 			}
 
-			img.window-asset,
-			.asset-wrapper img.window-asset {
+			.window-asset img,
+			.asset-wrapper .window-asset img {
 				max-width: 90vw;
 			}
 
 			.asset-wrapper #creator-window {
 				top: 110vh;
 				left: -25%;
-				max-width: 50vw;
 				transition: top 600ms ease, right 600ms ease;
 
 				&.active {
@@ -62,6 +61,10 @@
 					right: 20px;
 					left: unset;
 					bottom: unset;
+				}
+
+				img {
+					max-width: 50vw;
 				}
 			}
 		}
@@ -145,8 +148,8 @@
 
 			a.credit-logo {
 				svg {
-					max-width: 80px !important;
-					max-height: 80px !important;
+					max-width: 75px !important;
+					max-height: 75px !important;
 					min-width: 60px;
 					min-height: 60px;
 				}
@@ -169,6 +172,16 @@
 						max-width: 75px !important;
 						max-height: 75px !important;
 					}
+				}
+
+				&#mongodb-logo {
+					left: 30%;
+					bottom: 60%;
+				}
+
+				&#postgres-logo {
+					left: 20%;
+					bottom: 60%;
 				}
 
 				&#glusterfs-logo {
@@ -199,8 +212,14 @@
 					left: 0;
 				}
 
-				&#redis-logo, &#elastic-logo{
-					bottom: 35%;
+				&#elastic-logo{
+					left: 30%;
+					bottom: 25%;
+				}
+
+				&#redis-logo {
+					bottom: 20%;
+					left: 20%;
 				}
 
 				&#kibana-logo {
@@ -279,66 +298,22 @@
 					}
 				}
 
+				&#mongodb-logo, &#postgres-logo {
+					bottom: 50%
+				}
+
 				&#goat-logo {
 					left: 40%;
 					bottom: 30%;
 				}
 
-				&#glusterfs-logo {
-					left: 40%;
-				}
-
-				&#jetbrains-logo {
-					bottom: 80%;
-					left: 43%;
-				}
-
-				&#asp-logo {
-					bottom: 80%;
-					left: 18%;
-				}
-
-				&#traefik-logo{
+				&#elastic-logo{
 					bottom: 35%;
 				}
 
-				&#k8s-logo {
-					bottom: 80%;
-					left: 55%;
-				}
-
-				&#helm-logo {
-					bottom: 80%;
-					left: 0;
-				}
-
-				&#redis-logo, &#elastic-logo{
-					bottom: 35%;
-				}
-
-				&#kibana-logo {
-					bottom: 70%;
-				}
-
-				&#do-logo {
-					bottom: 65%;
-				}
-
-				&.sean-go {
-					bottom: 65%;
-					left: 35%;
-					max-width: 80px!important;
-					max-height: 80px!important;
-				}
-
-				&#github-logo {
-					bottom: 17%;
-					left: 44%;
-				}
-
-				&#gitlab-logo {
-					bottom: 22%;
-					left: 0;
+				&#redis-logo {
+					bottom: 32%;
+					left: 25%;
 				}
 			}
 		}

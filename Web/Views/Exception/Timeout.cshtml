@@ -13,7 +13,9 @@
 
 <div class="exception" id="timeout">
 	<aside>
-		<img src="/storage/assets/exception/408.png" alt/>
+		<a href="https://mvsm.com/project/air-max-day-18" target="_blank">
+			<img src="/storage/assets/exception/408.png" alt/>
+		</a>
 	</aside>
 	<main>
 		<h1 class="error-code">408</h1>
@@ -22,14 +24,21 @@
 				Microservices have taken too much time to respond
 			</p>
 		</div>
+		@if (Model != null)
+		{
+			<button class="button expandable">
+				<span>Show details</span>
+			</button>
+		}
 		<div class="controls">
-			<button class="button">
-				<a asp-controller="Home" asp-action="Index">Try again</a>
+			<button class="button" id="try-again">
+				<span>Try again</span>
 			</button>
 			<button class="button">
-				<a asp-controller="Home" asp-action="Index">Go back</a>
+				<a href="@ViewBag.FromUrl">Go back</a>
 			</button>
 		</div>
+		@{ await Html.RenderPartialAsync("_ExceptionDetailsPartial", Model); }
 	</main>
 </div>
 

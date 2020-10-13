@@ -30,5 +30,13 @@ namespace Core.Environment
 
 		public static readonly string SunnyUserIdPrefix =
 			System.Environment.GetEnvironmentVariable("SUNNY_USER_ID_PREFIX");
+
+		public static readonly string RepoUrlFormat = System.Environment.GetEnvironmentVariable("REPO_URL_FORMAT");
+
+		public static readonly bool Development = System.Environment.GetEnvironmentVariable("ENV") == "dev";
+
+		public static readonly bool Kubernetes = System.Environment.GetEnvironmentVariable("ENV") == "k8s";
+
+		public static readonly bool Production = System.Environment.GetEnvironmentVariable("ENV") == "prod";
 	}
 }

@@ -281,16 +281,19 @@ section.about-section {
 			margin-top: -100px;
 		}
 
-		img.window-asset {
+		.window-asset {
 			position: absolute;
 			display: block;
-			max-width: 650px;
-			width: auto;
-			height: auto;
 			right: 0;
 			z-index: 2;
-			-webkit-filter: drop-shadow(3px 3px 3px fade(black, 50%));
-			filter: drop-shadow(3px 3px 3px fade(black, 50%));
+
+			img {
+				max-width: 650px;
+				width: auto;
+				height: auto;
+				-webkit-filter: drop-shadow(3px 3px 3px fade(black, 50%));
+				filter: drop-shadow(3px 3px 3px fade(black, 50%));
+			}
 		}
 
 		.asset-wrapper {
@@ -309,12 +312,15 @@ section.about-section {
 				position: absolute;
 				top: 100vh;
 				left: -60vw;
-				max-width: 350px;
 				z-index: 3;
 				.transition-properties(left 600ms ease, top 600ms ease;);
 
 				&.active {
 					transform: translate(0, 25%);
+				}
+
+				img {
+					max-width: 350px;
 				}
 			}
 		}

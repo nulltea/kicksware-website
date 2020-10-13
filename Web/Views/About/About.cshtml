@@ -11,6 +11,9 @@
 	const string windowAssetParallax = "{ 'translateY': '50%' }";
 	const string figureParallax = "{'translateY': '100%'}";
 	const string mobileFigureParallax = "{'top': '100%'}";
+
+	const string windowIllustrationCredit = "https://mvsm.com/project/air-max-day-18";
+	const string handIllustrationCredit = "https://mindsparklemag.com/design/nike-amd-revolution";
 }
 
 @section Styles
@@ -136,13 +139,14 @@
 			<p>And although <span class="kicksware">Kicksware</span> have a potential to become and pursue one or all of these things as for now it is not.</p>
 			<p>Not yet...</p>
 		</article>
-		<div class="hand-wrapper" data-direction="1">
-			<img class="hand-asset"
-				src=@($"{Environment.FileStoragePath}/assets/hand-air-max-90-3.png") alt/>
-		</div>
+		<a class="hand-wrapper" href="@handIllustrationCredit" target="_blank" data-direction="1">
+			<img class="hand-asset" src=@($"{Environment.FileStoragePath}/assets/hand-air-max-90-3.png") alt/>
+		</a>
 	</div>
-	<img class="window-asset" data-scroll data-depth="1.5" data-scrollax="properties: @windowAssetParallax"
-		src=@($"{Environment.FileStoragePath}/assets/window-air-max-97.png") alt/>
+	<a class="window-asset" href="@windowIllustrationCredit" target="_blank"
+		data-scroll data-depth="1.5" data-scrollax="properties: @windowAssetParallax">
+		<img src=@($"{Environment.FileStoragePath}/assets/window-air-max-97.png") alt/>
+	</a>
 </section>
 <section class="about-section title-section" id="who" data-scrollax-parent="true">
 	<div class="section-cover" style="background-image: url(@Model[3])" data-scrollax="properties: @coverParallax"></div>
@@ -176,15 +180,17 @@
 				was the main reason for <span class="kicksware">Kicksware</span> to exists.
 			</p>
 		</article>
-		<div class="hand-wrapper" data-direction="-1">
+		<a class="hand-wrapper" href="@handIllustrationCredit" target="_blank" data-direction="-1">
 			<img class="hand-asset" src=@($"{Environment.FileStoragePath}/assets/hand-air-max-90-1.png") alt/>
-		</div>
+		</a>
 	</div>
 	<div class="asset-wrapper" data-scroll data-depth="1.5" data-scrollax="properties: @windowAssetParallax">
-		<img class="window-asset"
-			src=@($"{Environment.FileStoragePath}/assets/window-react-element.png") alt/>
-		<img class="window-asset" id="creator-window"
-			src=@($"{Environment.FileStoragePath}/assets/window-creator.png") alt/>
+		<a class="window-asset" href="https://www.behance.net/gallery/74321253/Subvert-87" target="_blank">
+			<img src=@($"{Environment.FileStoragePath}/assets/window-react-element.png") alt/>
+		</a>
+		<a class="window-asset" id="creator-window" href="https://github.com/timoth-y" target="_blank">
+			<img src=@($"{Environment.FileStoragePath}/assets/window-creator.png") alt/>
+		</a>
 	</div>
 </section>
 <section class="about-section title-section" id="why" data-scrollax-parent="true">
@@ -228,12 +234,14 @@
 				Just consider trying new.
 			</p>
 		</article>
-		<div class="hand-wrapper" data-direction="1">
+		<a class="hand-wrapper" href="@handIllustrationCredit" target="_blank" data-direction="1">
 			<img class="hand-asset" src=@($"{Environment.FileStoragePath}/assets/hand-air-max-90-5.png") alt/>
-		</div>
+		</a>
 	</div>
-	<img class="window-asset" data-scroll data-depth="1.3" data-scrollax="properties: @windowAssetParallax"
-		src=@($"{Environment.FileStoragePath}/assets/window-air-max-97-vapormax.png") alt/>
+	<a class="window-asset" href="@windowIllustrationCredit" target="_blank"
+		data-scroll data-depth="1.3" data-scrollax="properties: @windowAssetParallax">
+		<img src=@($"{Environment.FileStoragePath}/assets/window-air-max-97-vapormax.png") alt/>
+	</a>
 </section>
 <section class="about-section title-section" id="next" data-scrollax-parent="true">
 	<div class="section-cover" style="background-image: url(@Model[5])" data-scrollax="properties: @coverParallax"></div>
@@ -266,12 +274,15 @@
 				well-designed, build and ready to use platform - feel free to contact with me and I hope together we'll make it work!
 			</p>
 		</article>
-		<div class="hand-wrapper" data-direction="-1">
+		<a class="hand-wrapper" href="@handIllustrationCredit" target="_blank" data-direction="-1">
 			<img class="hand-asset" src=@($"{Environment.FileStoragePath}/assets/hand-air-max-90-4.png") alt/>
-		</div>
+		</a>
 	</div>
-	<img class="window-asset" data-scroll data-depth="1.4" data-scrollax="properties: @windowAssetParallax"
-		src=@($"{Environment.FileStoragePath}/assets/window-air-max-93.png") alt/>
+	<a class="window-asset" href="@windowIllustrationCredit" target="_blank"
+		data-scroll data-depth="1.4" data-scrollax="properties: @windowAssetParallax">
+		<img src=@($"{Environment.FileStoragePath}/assets/window-air-max-93.png") alt/>
+	</a>
+
 </section>
 <section class="about-section contact-section" id="collab" data-scrollax-parent="true">
 	<figure class="rectangle"></figure>

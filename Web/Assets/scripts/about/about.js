@@ -227,14 +227,14 @@ function parallaxInit() {
 				scrub: true,
 			},
 		});
-
+		let withMobile = isMobile && window.matchMedia("(max-width: 870px)").matches;
 		$(this).find(".kicksware-logo path").each(function (index, path) {
 			let matrix = path.transform.baseVal[0].matrix;
 			let targetX = matrix["e"];
 			let targetY = matrix["f"];
 			let side = index % 2 === 0 ? 1 : -1;
-			matrix["e"] = getRandomX() * side;
-			matrix["f"] = getRandomY();
+			matrix["e"] = getRandomX() * side * (withMobile ? 3 : 1);
+			matrix["f"] = getRandomY() * (withMobile ? 2 : 1);
 			logoTL.to(path, {
 				y: targetY,
 				x: targetX,
