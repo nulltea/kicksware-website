@@ -32,13 +32,13 @@ ingress:
           port: 80
           scheme: http
     - host: www.kicksware.com
-        paths:
-          - /
-        middlewares: []
-        services:
-          - name: web-app
-            port: 80
-            scheme: http
+      paths:
+        - /
+      middlewares: []
+      services:
+        - name: web-app
+          port: 80
+          scheme: http
 
 volumes:
   - name: storage
