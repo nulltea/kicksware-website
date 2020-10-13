@@ -21,6 +21,8 @@ namespace Core.Environment
 
 		public static readonly string IconsPath = Path.Combine(LocalStoragePath, "icons");
 
+		public static readonly string LogosPath = Path.Combine(LocalStoragePath, "logos");
+
 		public static readonly DataProtocol DataProtocol = System.Environment.GetEnvironmentVariable("DATA_PROTOCOL")
 			.GetEnumByMemberValue<DataProtocol>();
 

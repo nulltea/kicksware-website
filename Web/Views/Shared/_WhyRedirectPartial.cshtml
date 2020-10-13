@@ -1,6 +1,7 @@
 @using Web.Utils.Helpers
 @using Environment = Core.Environment.Environment
 @using IO = System.IO.Path
+@model RedirectViewModel
 
 <div class="modal-content why-redirect">
 	<div class="modal-header">
@@ -9,11 +10,11 @@
 	<div class="modal-body">
 		<div class="illustration">
 			<a href="https://kicksware.com">
-			@Html.VectorIconRenderFromPath(IO.Combine(Environment.LocalStoragePath, "logos", "kicksware.svg"), "logo", "kicksware")
+			@Html.VectorIconRenderFromPath(IO.Combine(Environment.LocalStoragePath, "logos", "kicksware.svg"), "logo", "kicksware", "kicksware-logo")
 			</a>
 			@Html.VectorIconRender("redirect.svg", "redirect")
-			<a href="https://www.stadiumgoods.com">
-				@Html.VectorIconRenderFromPath(IO.Combine(Environment.LocalStoragePath, "logos", "stadium-goods.svg"), "logo", "stadium")
+			<a href="@Model.ProviderURL">
+				@Html.VectorIconRenderFromPath(IO.Combine(Environment.LocalStoragePath, "logos", Model.Icon), "logo", Model.CssClass)
 			</a>
 		</div>
 

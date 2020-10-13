@@ -43,8 +43,6 @@ function headerCorrectionInit() {
 		return
 	}
 
-	let header = $("header");
-
 	const controller = new ScrollMagic.Controller();
 	new ScrollMagic.Scene({
 		triggerElement: ".hero-content .bread",
@@ -59,7 +57,7 @@ function parallaxInit() {
 		return
 	}
 
-	$(".title-section").each(function () {
+	$(".title-section, .logo-section").each(function () {
 		let cover = $(this).find(".section-cover")[0];
 		let content = $(this).find(".section-content")[0];
 
@@ -192,6 +190,117 @@ function parallaxInit() {
 					scrub: true,
 				}
 			});
+		}
+	});
+	$(".logo-section").each(function () {
+		let figure = $(this).find(".figure")[0]
+		let wrapper = $(this).find(".logo-wrapper")[0]
+
+		let bgTL = gsap.timeline({
+			scrollTrigger: {
+				trigger: this,
+				scroller: scroller,
+				start: "top top",
+				end: "bottom top",
+				scrub: true,
+			},
+		});
+
+		if (figure) {
+			bgTL.to(figure, {
+				y: innerHeight * figure.dataset.speed,
+				ease: "none",
+			}, 0)
+		}
+
+		bgTL.to(wrapper, {
+			y: innerHeight * wrapper.dataset.speed,
+			ease: "none",
+		}, 0)
+
+		let logoTL = gsap.timeline({
+			scrollTrigger: {
+				trigger: this,
+				start: "top-=100vh bottom",
+				end: "center-=100vh bottom",
+				scroller: scroller,
+				scrub: true,
+			},
+		});
+
+		$(this).find(".kicksware-logo path").each(function (index, path) {
+			let matrix = path.transform.baseVal[0].matrix;
+			let targetX = matrix["e"];
+			let targetY = matrix["f"];
+			let side = index % 2 === 0 ? 1 : -1;
+			matrix["e"] = getRandomX() * side;
+			matrix["f"] = getRandomY();
+			logoTL.to(path, {
+				y: targetY,
+				x: targetX,
+				ease: "none",
+			}, 0)
+		});
+
+		let title = $(this).find(".logo-title")[0];
+		if (title) {
+			title.style.transform = "translateY(100vh)";
+			gsap.to(title, {
+				y: 0,
+				ease: "none",
+				scrollTrigger: {
+					trigger: this,
+					start: "center-=150vh bottom",
+					end: "center-=100vh bottom",
+					scroller: scroller,
+					scrub: true,
+				},
+			});
+		}
+
+
+		let creditTl = gsap.timeline({
+			scrollTrigger: {
+				trigger: this,
+				start: "center-=150vh bottom",
+				end: "bottom-=150vh bottom",
+				scroller: scroller,
+				scrub: true,
+			},
+		});
+
+		$(this).find("a[data-scroll]").each(function (index, logo) {
+			let targetX = logo.dataset.targetx;
+			let targetY = logo.dataset.targety;
+			let portion = logo.dataset.portion;
+
+			let baseX = `calc(${targetX}vw ${targetX >= 0 ? "+" : "-"} ${(window.screen.width / 2)}px)`;
+			let baseY = `calc(${targetY}vh ${targetY >= 0 ? "+" : "-"} ${(window.screen.height / 2)}px)`;
+			if (targetX >= 0 && targetX <= 5) {
+				baseX = `${targetX}vw`;
+			}
+			logo.style.transform = `translate(${baseX}, ${baseY})`;
+
+			creditTl.to(logo,  {
+				y: `${targetY}vh`,
+				x: `${targetX}vw`,
+				duration: 5,
+				ease: "none",
+			}, portion / 2)
+		});
+
+		function getRandomX() {
+			return getRandom(window.screen.width, window.screen.width * 1.5)
+		}
+
+		function getRandomY() {
+			return getRandom(-window.screen.height, window.screen.height)
+		}
+
+		function getRandom(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min + 1)) + min;
 		}
 	});
 }

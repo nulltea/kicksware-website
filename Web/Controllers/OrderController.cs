@@ -6,6 +6,7 @@ using Core.Entities;
 using Core.Entities.Products;
 using Core.Entities.References;
 using Microsoft.Extensions.Logging;
+using Web.Models;
 using Web.Utils.Extensions;
 
 namespace Web.Controllers
@@ -36,8 +37,8 @@ namespace Web.Controllers
 			return Json(new
 			{
 				success = true,
-				content = await this.RenderViewAsync("_WhyRedirectPartial", true),
-				rdirectURL = order?.SourceURL
+				content = await this.RenderViewAsync("_WhyRedirectPartial", RedirectViewModel(order), true),
+				redirectURL = order?.SourceURL
 			});
 		}
 
@@ -51,6 +52,35 @@ namespace Web.Controllers
 		{
 			if (product is null) throw new ArgumentException(nameof(product));
 			return CommitOrder(product.ReferenceID, product.UniqueID);
+		}
+
+		private RedirectViewModel RedirectViewModel(Order order)
+		{
+			var model = new RedirectViewModel
+			{
+				Host = "stadiumgoods.com",
+				Provider = "Stadium Goods",
+				Icon = "stadium-goods.svg",
+				CssClass = "stadium",
+				ProviderURL = "https://www.stadiumgoods.com"
+			};
+
+			if (order is null || string.IsNullOrEmpty(order.SourceURL)) return model;
+			model.RedirectTo = order.SourceURL;
+
+			var url = new Uri(order.SourceURL);
+
+			if (url.Host.Contains("goat")) return new RedirectViewModel
+			{
+				Host = url.Host,
+				Provider = "GOAT",
+				Icon = "goat.svg",
+				CssClass = "goat",
+				ProviderURL = "https://www.goat.com",
+				RedirectTo = order.SourceURL
+			};
+
+			return model;
 		}
 	}
 }

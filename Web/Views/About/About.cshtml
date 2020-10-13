@@ -1,7 +1,6 @@
 ﻿@using Web.Utils.Helpers
 @using Web.Utils.Bundle
 @using Environment = Core.Environment.Environment
-@using Web.Controllers
 @model List<string>
 @{
 	ViewBag.Title = "About us";
@@ -31,11 +30,91 @@
 	</div>
 </section>
 <section class="about-section title-section" id="what" data-scrollax-parent="true">
-	<div class="section-cover" style="background-image: url(@Model[4])" data-scrollax="properties: @coverParallax"></div>
+	<div class="section-cover" style="background-image: url(@Model[1])" data-scrollax="properties: @coverParallax"></div>
 	<div class="section-content" data-scrollax="properties: @titleParallax">
 		<h1 class="section-title">WHAT?</h1>
 		<hr/>
 		<h4 class="section-subtitle">NOT WHAT YOU THINK IT IS</h4>
+	</div>
+</section>
+<section class="about-section logo-section" id="logo" data-scrollax-parent="true">
+	<div class="section-cover" style="background-image: url(@Model[2])" data-scrollax="properties: @coverParallax"></div>
+	@* <figure class="figure" data-scroll data-speed="2" data-mobile_speed="4" data-scrollax="properties: @figureParallax"></figure> *@
+	<div class="logo-wrapper" data-scroll data-speed="3" data-scrollax="properties: @windowAssetParallax">
+		@Html.VectorIconRenderFromPath(System.IO.Path.Combine(Environment.LocalStoragePath, "logos", "kicksware.svg"), "logo", "kicksware-logo")
+		<h1 class="logo-title kicksware">KICKSWARE</h1>
+		<a class="credit-logo" href="https://traefik.io" target="_blank"
+			data-scroll data-targetX="4" data-targetY="-25" data-portion="1">
+			@Html.VectorLogoRender("traefik.svg")
+		</a>
+		<a class="credit-logo" href="https://www.mongodb.com/" target="_blank"
+			data-scroll data-targetX="20" data-targetY="-12" data-portion="1">
+			@Html.VectorLogoRender("mongodb.svg")
+		</a>
+		<a class="credit-logo" href="https://www.postgresql.org" target="_blank"
+			data-scroll data-targetX="-10" data-targetY="-12" data-portion="1">
+			@Html.VectorLogoRender("postgresql.svg")
+		</a>
+		<a class="credit-logo" href="https://redis.io" target="_blank"
+			data-scroll data-targetX="-15" data-targetY="20" data-portion="1">
+			@Html.VectorLogoRender("redis.svg")
+		</a>
+		<a class="credit-logo" href="https://www.elastic.co/elasticsearch" target="_blank"
+			data-scroll data-targetX="23" data-targetY="20" data-portion="1">
+			@Html.VectorLogoRender("elasticsearch.svg")
+		</a>
+		<a class="credit-logo" href="https://www.elastic.co/kibana" target="_blank"
+			data-scroll data-targetX="4" data-targetY="40" data-portion="1">
+			@Html.VectorLogoRender("kibana.svg")
+		</a>
+		<a class="credit-logo" href="https://github.com/timoth-y/kicksware-platform" target="_blank"
+			data-scroll data-targetX="-25" data-targetY="33" data-portion="2">
+			@Html.VectorLogoRender("github.svg")
+		</a>
+		<a class="credit-logo" href="https://about.gitlab.com/stages-devops-lifecycle" target="_blank"
+			data-scroll data-targetX="35" data-targetY="35" data-portion="2">
+			@Html.VectorLogoRender("gitlab.svg")
+		</a>
+		<a class="credit-logo" href="https://kubernetes.io" target="_blank"
+			data-scroll data-targetX="-25" data-targetY="-20" data-portion="2">
+			@Html.VectorLogoRender("kubernetes.svg")
+		</a>
+		<a class="credit-logo" href="https://helm.sh" target="_blank"
+			data-scroll data-targetX="33" data-targetY="-20" data-portion="2">
+			@Html.VectorLogoRender("helm.svg")
+		</a>
+		<a class="credit-logo" href="https://golang.org" target="_blank"
+			data-scroll data-targetX="45" data-targetY="-30" data-portion="3">
+			@Html.VectorLogoRender("gopher.svg")
+		</a>
+		<a class="credit-logo" href="https://www.gluster.org" target="_blank"
+			data-scroll data-targetX="-40" data-targetY="-30" data-portion="3">
+			@Html.VectorLogoRender("glusterfs.svg")
+		</a>
+		<a class="credit-logo sean-go" href="https://seango.ca" target="_blank"
+			data-scroll data-targetX="-40" data-targetY="40" data-portion="3">
+			@Html.VectorIconRender("sean-go.svg")
+		</a>
+		<a class="credit-logo" href="https://www.digitalocean.com" target="_blank"
+			data-scroll data-targetX="45" data-targetY="40" data-portion="3">
+			@Html.VectorLogoRender("digitalocean.svg")
+		</a>
+		<a class="credit-logo" href="https://www.jetbrains.com" target="_blank"
+			data-scroll data-targetX="-43" data-targetY="2" data-portion="3">
+			@Html.VectorLogoRender("jetbrains.svg")
+		</a>
+		<a class="credit-logo" href="https://dotnet.microsoft.com/apps/aspnet" target="_blank"
+			data-scroll data-targetX="48" data-targetY="2" data-portion="3">
+			@Html.VectorLogoRender("aspnet-core.svg")
+		</a>
+		<a class="credit-logo" id="stadium-logo" href="https://www.stadiumgoods.com" target="_blank"
+			data-scroll data-targetX="-30" data-targetY="2" data-portion="2">
+			@Html.VectorLogoRender("stadium-goods.svg")
+		</a>
+		<a class="credit-logo" id="goat-logo" href="https://www.goat.com" target="_blank"
+			data-scroll data-targetX="35" data-targetY="2" data-portion="2">
+			@Html.VectorLogoRender("goat.svg")
+		</a>
 	</div>
 </section>
 <section class="about-section info-section" data-scrollax-parent="true">
@@ -66,7 +145,7 @@
 		src=@($"{Environment.FileStoragePath}/assets/window-air-max-97.png") alt/>
 </section>
 <section class="about-section title-section" id="who" data-scrollax-parent="true">
-	<div class="section-cover" style="background-image: url(@Model[1])" data-scrollax="properties: @coverParallax"></div>
+	<div class="section-cover" style="background-image: url(@Model[3])" data-scrollax="properties: @coverParallax"></div>
 	<div class="section-content" data-scrollax="properties: @titleParallax">
 		<h1 class="section-title">WHO?</h1>
 		<hr/>
@@ -109,7 +188,7 @@
 	</div>
 </section>
 <section class="about-section title-section" id="why" data-scrollax-parent="true">
-	<div class="section-cover" style="background-image: url(@Model[2])" data-scrollax="properties: @coverParallax"></div>
+	<div class="section-cover" style="background-image: url(@Model[4])" data-scrollax="properties: @coverParallax"></div>
 	<div class="section-content" data-scrollax="properties: @titleParallax">
 		<h1 class="section-title">WHY?</h1>
 		<hr/>
@@ -157,7 +236,7 @@
 		src=@($"{Environment.FileStoragePath}/assets/window-air-max-97-vapormax.png") alt/>
 </section>
 <section class="about-section title-section" id="next" data-scrollax-parent="true">
-	<div class="section-cover" style="background-image: url(@Model[3])" data-scrollax="properties: @coverParallax"></div>
+	<div class="section-cover" style="background-image: url(@Model[5])" data-scrollax="properties: @coverParallax"></div>
 	<div class="section-content" data-scrollax="properties: @titleParallax">
 		<h1 class="section-title">NEXT</h1>
 		<hr/>
@@ -166,7 +245,8 @@
 </section>
 <section class="about-section info-section" data-scrollax-parent="true">
 	<figure class="figure" data-scroll data-depth="0.7" data-mobile_speed="4" data-scrollax="properties: @figureParallax"></figure>
-	<div class="section-content" data-scroll data-depth="1.2">>
+	<div class="section-content" data-scroll data-depth="1.2">
+		>
 		<article class="section-article">
 			<p>
 				The original goal of this campaign is actually already successfully achieved.

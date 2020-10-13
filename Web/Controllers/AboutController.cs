@@ -14,10 +14,11 @@ namespace Web.Controllers
 			return View(new List<string>
 			{
 				$"{Environment.FileStoragePath}/heroes/about-hero.jpg",
+				$"{Environment.FileStoragePath}/heroes/contact-hero.jpg",
+				$"{Environment.FileStoragePath}/heroes/nike-kobe-hero.jpg",
 				$"{Environment.FileStoragePath}/heroes/seller-hero.jpg",
 				$"{Environment.FileStoragePath}/heroes/shop-hero.jpg",
 				$"{Environment.FileStoragePath}/heroes/seller-hero2.jpg",
-				$"{Environment.FileStoragePath}/heroes/contact-hero.jpg",
 			});
 		}
 	}

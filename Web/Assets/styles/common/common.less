@@ -225,6 +225,16 @@ textarea {
 	letter-spacing: 0.5px;
 }
 
+.kicksware-logo {
+	width: 250px;
+	height: 250px;
+	filter: drop-shadow(8px 8px 13px fade(black, 25%));
+	-webkit-filter: drop-shadow(8px 8px 13px fade(black, 25%));
+	.with-theme({
+		fill: @secondary;
+	})
+}
+
 a.underline {
 	.transition-properties(all 300ms ease);
 
@@ -1223,6 +1233,22 @@ input[type="checkbox"].regular_checkbox {
 		});
 		.transition-properties(all 400ms cubic-bezier(.15, 1.2, .3, 1.2));
 		.elevation(4);
+	}
+
+	&[data-tooltip-anchor="left"]::before {
+		transform: translate(-110%,25px);
+	}
+
+	&[data-tooltip-anchor="right"]::before {
+		transform: translate(60%,25px);
+	}
+
+	&[data-tooltip-anchor="top"]::before {
+		transform: translate(-25%,-110%);
+	}
+
+	&[data-tooltip-anchor="bottom"]::before {
+		transform: translate(-25%,170%);
 	}
 
 	&:hover::before {
