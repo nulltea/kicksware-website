@@ -346,9 +346,10 @@ function mobileParallaxInit() {
 				trigger: this,
 				start: "top-=100vh bottom",
 				end: "center-=100vh bottom",
-				scrub: true,
+				scrub: 0.5,
 			},
 		});
+
 		gsap.to(this, {
 			scrollTrigger: {
 				trigger: this,
@@ -369,6 +370,7 @@ function mobileParallaxInit() {
 				y: targetY,
 				x: targetX,
 				ease: "none",
+				duration: 2
 			}, 0)
 		});
 
