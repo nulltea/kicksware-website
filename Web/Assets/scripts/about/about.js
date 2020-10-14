@@ -190,9 +190,7 @@ function parallaxInit() {
 			});
 		}
 	});
-}
 
-function logoSectionInit(){
 	$(".logo-section").each(function () {
 		let figure = $(this).find(".figure")[0]
 		let wrapper = $(this).find(".logo-wrapper")[0]
@@ -306,6 +304,7 @@ function logoSectionInit(){
 	});
 }
 
+
 function requestScrollSetting() {
 	return window.getCookie("EXPERIMENTAL_SCROLL_COOKIE") === "True";
 }
@@ -318,6 +317,7 @@ function mobileParallaxInit() {
 	$(".mobile.square").css("margin-top", "65vh");
 	$(".contact-section").css("height", "85vh");
 	$(".section-content").css("top", 0);
+	$(".hero-content").css("top", "-10%");
 
 	const controller = new ScrollMagic.Controller();
 
@@ -337,6 +337,68 @@ function mobileParallaxInit() {
 	}).setClassToggle("#creator-window", "active")
 		.addTo(controller);
 
+	$(".logo-section").each(function () {
+		let withMobile = isMobile && window.matchMedia("(max-width: 870px)").matches;
+		$(this).addClass("mobile-logo");
+
+		$(this).find(".kicksware-logo path").each(function (index, path) {
+			let matrix = path.transform.baseVal[0].matrix;
+			let side = index % 2 === 0 ? 1 : -1;
+			matrix["e"] = getRandomX() * side * (withMobile ? 3 : 1);
+			matrix["f"] = getRandomY() * (withMobile ? 2 : 1);
+		});
+
+		new ScrollMagic.Scene({
+			triggerElement: this,
+			triggerHook: -0.5
+		}).setClassToggle(this, "animated")
+			.addTo(controller);
+
+
+		let creditTl = gsap.timeline({
+			scrollTrigger: {
+				trigger: this,
+				start: "center-=150vh bottom",
+				end: "bottom-=150vh bottom",
+				scroller: scroller,
+				scrub: true,
+			},
+		});
+
+		$(this).find("a[data-scroll]").each(function (index, logo) {
+			let targetX = logo.dataset.targetx;
+			let targetY = logo.dataset.targety;
+			let portion = logo.dataset.portion;
+
+			let baseX = `calc(${targetX}vw ${targetX >= 0 ? "+" : "-"} ${(window.screen.width / 2)}px)`;
+			let baseY = `calc(${targetY}vh ${targetY >= 0 ? "+" : "-"} ${(window.screen.height / 2)}px)`;
+			if (targetX >= 0 && targetX <= 5) {
+				baseX = `${targetX}vw`;
+			}
+			logo.style.transform = `translate(${baseX}, ${baseY})`;
+			creditTl.to(logo,  {
+				y: `${targetY}vh`,
+				x: `${targetX}vw`,
+				duration: 5,
+				ease: "none",
+			}, portion / 2)
+		});
+
+		function getRandomX() {
+			return getRandom(window.screen.width, window.screen.width * 1.5)
+		}
+
+		function getRandomY() {
+			return getRandom(-window.screen.height, window.screen.height)
+		}
+
+		function getRandom(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+	});
+
 	window.heroParallaxInit();
 }
 
@@ -348,8 +410,6 @@ $(document).ready(function () {
 	headerCorrectionInit();
 
 	parallaxInit();
-
-	logoSectionInit();
 
 	mobileParallaxInit();
 });

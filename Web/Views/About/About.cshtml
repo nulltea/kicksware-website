@@ -42,8 +42,7 @@
 </section>
 <section class="about-section logo-section" id="logo" data-scrollax-parent="true">
 	<div class="section-cover" style="background-image: url(@Model[2])" data-scrollax="properties: @coverParallax"></div>
-	@* <figure class="figure" data-scroll data-speed="2" data-mobile_speed="4" data-scrollax="properties: @figureParallax"></figure> *@
-	<div class="logo-wrapper" data-scroll data-speed="3" data-scrollax="properties: @windowAssetParallax">
+	<div class="logo-wrapper" data-scroll data-speed="3" data-scrollax="properties: { 'translateY': '300vh' }">
 		@Html.VectorIconRenderFromPath(System.IO.Path.Combine(Environment.LocalStoragePath, "logos", "kicksware.svg"), "logo", "kicksware-logo")
 		<h1 class="logo-title kicksware">KICKSWARE</h1>
 		<a class="credit-logo" id="traefik-logo" href="https://traefik.io" target="_blank"
