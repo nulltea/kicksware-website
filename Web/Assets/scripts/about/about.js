@@ -9,8 +9,6 @@ const isMobileLocomotive = isMobile && requestScrollSetting();
 const isLocomotive = !isMobile || isMobileLocomotive;
 const scroller = isLocomotive ? "[data-scroll-container]" : "";
 
-
-
 gsap.registerPlugin(ScrollTrigger)
 
 function locomotiveScrollInit() {
@@ -192,6 +190,9 @@ function parallaxInit() {
 			});
 		}
 	});
+}
+
+function logoSectionInit(){
 	$(".logo-section").each(function () {
 		let figure = $(this).find(".figure")[0]
 		let wrapper = $(this).find(".logo-wrapper")[0]
@@ -347,6 +348,8 @@ $(document).ready(function () {
 	headerCorrectionInit();
 
 	parallaxInit();
+
+	logoSectionInit();
 
 	mobileParallaxInit();
 });
