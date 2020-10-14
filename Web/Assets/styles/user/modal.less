@@ -13,7 +13,6 @@
 	.flex-row();
 	width: 800px;
 	height: 600px;
-	overflow: hidden;
 	.transition-properties(~"all 300ms cubic-bezier(.2, 1, .3, 1) !important");
 
 	&.login {
@@ -28,12 +27,19 @@
 	}
 
 	&.oauth {
+		.info-control {
+			visibility: visible;
+		}
 		#oauth-content {
 			display: block;
 		}
 	}
 
 	&.manual {
+		.info-control {
+			visibility: visible;
+		}
+
 		#manual-content {
 			display: block;
 		}
@@ -83,7 +89,8 @@
 
 	.info-control {
 		.flex-row();
-		border-radius: 6px;
+		visibility: hidden;
+		border-radius: 10px;
 		.with-theme({
 			background: darken(@hint, 4%);
 		});
@@ -295,6 +302,7 @@
 
 						&:hover {
 							.with-dark-theme({
+
 								border: 4px solid @theme-light-primary;
 							});
 

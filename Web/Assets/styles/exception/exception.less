@@ -134,7 +134,7 @@
 		transition: left 400ms cubic-bezier(.155, 1, .295, 1.20);
 		overflow-y: auto;
 		z-index: 10;
-		.flex-col(@align: flex-start);
+		.flex-col(@justify: flex-start, @align: flex-start);
 		.elevation(12);
 		&.expanded {
 			left: 25%;
@@ -145,6 +145,10 @@
 			right: 40px;
 			top: 20px;
 			width: 100px;
+		}
+
+		.error-title {
+			margin-right: 100px;
 		}
 
 		.error-stack {

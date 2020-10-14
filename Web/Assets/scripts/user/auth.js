@@ -297,9 +297,11 @@ function lock(redirectURL){
 		dialog.find(".close-button").off("click").click(function () {
 			window.location.href = "/";
 		})
+		$(".modal-backdrop").addClass("in-lock");
 	})
 }
 window.lock = lock;
+
 
 $(document).ready(function () {
 	"use strict";

@@ -536,9 +536,20 @@
 				border: 2px solid @secondary;
 			});
 
+			a {
+				display: block;
+				position: relative;
+				color: inherit;
+				line-height: unset;
+				font-size: 12px;
+				font-weight: 600;
+				z-index: 1;
+				transition: none;
+			}
+
 			&:hover {
 				border-width: 4px;
-				span {
+				span, a {
 					margin-top: -3px;
 					position: relative;
 					z-index: 1;
@@ -557,15 +568,6 @@
 
 		.header-button-strong {
 			position: relative;
-			.with-theme({
-				color: @primary;
-			});
-			.with-theme({
-				background: @secondary;
-			});
-			.with-theme({
-				border: 2px solid @secondary;
-			});
 			display: block;
 			cursor: pointer;
 			right: 0;
@@ -575,8 +577,13 @@
 			padding-top: 3px;
 			font-size: 12px;
 			font-weight: 700;
+			.with-theme({
+				color: @primary;
+				background: @secondary;
+				border: 2px solid @secondary;
+			});
 
-			&:hover span {
+			&:hover span, &:hover a {
 				position: relative;
 				z-index: 1;
 				.with-theme({

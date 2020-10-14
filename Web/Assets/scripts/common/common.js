@@ -196,7 +196,7 @@ function stopLoadingOverlay() {
 	preloader.modal("hide");
 	preloader.hide();
 	$('body').removeClass("modal-open");
-	$('.modal-backdrop').removeClass("show");
+	$('.modal-backdrop:not(.in-lock)').removeClass("show");
 	clearTimeout(window.loadingTimeout);
 }
 window.stopLoadingOverlay = stopLoadingOverlay;
