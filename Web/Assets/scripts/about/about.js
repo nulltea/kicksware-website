@@ -341,39 +341,21 @@ function mobileParallaxInit() {
 		let withMobile = isMobile && window.matchMedia("(max-width: 870px)").matches;
 		$(this).addClass("mobile-logo");
 
-		let logoTL = gsap.timeline({
-			scrollTrigger: {
-				trigger: this,
-				start: "top-=100vh bottom",
-				end: "center-=100vh bottom",
-				scrub: 0.5,
-			},
+		$(this).find(".kicksware-logo path").each(function (index, path) {
+			let matrix = path.transform.baseVal[0].matrix;
+			let side = index % 2 === 0 ? 1 : -1;
+			matrix["e"] = getRandomX() * side * (withMobile ? 3 : 1);
+			matrix["f"] = getRandomY() * (withMobile ? 2 : 1);
 		});
 
 		gsap.to(this, {
 			scrollTrigger: {
 				trigger: this,
-				start: "center-=100vh bottom",
+				start: "top top",
 				scrub: true,
 				toggleClass: "animated"
 			},
 		})
-
-		$(this).find(".kicksware-logo path").each(function (index, path) {
-			let matrix = path.transform.baseVal[0].matrix;
-			let targetX = matrix["e"];
-			let targetY = matrix["f"];
-			let side = index % 2 === 0 ? 1 : -1;
-			matrix["e"] = getRandomX() * side * (withMobile ? 3 : 1);
-			matrix["f"] = getRandomY() * (withMobile ? 2 : 1);
-			logoTL.to(path, {
-				y: targetY,
-				x: targetX,
-				ease: "none",
-				duration: 2
-			}, 0)
-		});
-
 
 		let creditTl = gsap.timeline({
 			scrollTrigger: {

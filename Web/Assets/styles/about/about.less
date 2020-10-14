@@ -118,9 +118,15 @@ section.about-section {
 		}
 
 		&.mobile-logo {
+			.kicksware-logo path {
+				.transform-transition-properties(~"transform 1200ms ease-in-out")
+			}
+
 			.logo-title {
 				opacity: 0;
-				transition: opacity 100ms ease-in-out;
+				visibility: hidden;
+				transition-delay: 1200ms;
+				.transition-properties(opacity 100ms ease);
 			}
 
 			.credit-logo {
@@ -128,7 +134,11 @@ section.about-section {
 			}
 
 			&.animated {
+				.kicksware-logo path {
+					.transform-properties(translate(-582.8px, -503.75px));
+				}
 				.logo-title {
+					visibility: visible;
 					opacity: 1;
 				}
 				.credit-logo {
