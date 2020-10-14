@@ -243,13 +243,13 @@ function parallaxInit() {
 
 		let title = $(this).find(".logo-title")[0];
 		if (title) {
-			title.style.transform = "translateY(100vh)";
+			title.style.opacity = 0;
 			gsap.to(title, {
-				y: 0,
+				opacity: 1,
 				ease: "none",
 				scrollTrigger: {
 					trigger: this,
-					start: "center-=150vh bottom",
+					start: "center-=100vh bottom",
 					end: "center-=100vh bottom",
 					scroller: scroller,
 					scrub: true,
@@ -341,18 +341,36 @@ function mobileParallaxInit() {
 		let withMobile = isMobile && window.matchMedia("(max-width: 870px)").matches;
 		$(this).addClass("mobile-logo");
 
+		let logoTL = gsap.timeline({
+			scrollTrigger: {
+				trigger: this,
+				start: "top-=100vh bottom",
+				end: "center-=100vh bottom",
+				scrub: true,
+			},
+		});
+		gsap.to(this, {
+			scrollTrigger: {
+				trigger: this,
+				start: "center-=100vh bottom",
+				scrub: true,
+				toggleClass: "animated"
+			},
+		})
+
 		$(this).find(".kicksware-logo path").each(function (index, path) {
 			let matrix = path.transform.baseVal[0].matrix;
+			let targetX = matrix["e"];
+			let targetY = matrix["f"];
 			let side = index % 2 === 0 ? 1 : -1;
 			matrix["e"] = getRandomX() * side * (withMobile ? 3 : 1);
 			matrix["f"] = getRandomY() * (withMobile ? 2 : 1);
+			logoTL.to(path, {
+				y: targetY,
+				x: targetX,
+				ease: "none",
+			}, 0)
 		});
-
-		new ScrollMagic.Scene({
-			triggerElement: this,
-			triggerHook: -0.5
-		}).setClassToggle(this, "animated")
-			.addTo(controller);
 
 
 		let creditTl = gsap.timeline({
