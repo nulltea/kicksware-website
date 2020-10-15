@@ -11,7 +11,8 @@
 @model Core.Model.IFilteredModel<Core.Entities.IBaseEntity>
 
 @{
-	ViewBag.Title = "Products";
+	ViewBag.Title = new[] {"Shop", ViewBag.SubTitle}.JoinNotEmpty(" ");
+	ViewBag.Description = "Kicksware provides a way to browse, search, and navigate through thousands of the newest and archived sneaker models, as well as directs you to place you can buy them";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	var entityValue = ViewContext.RouteData.Values["action"].ToString();
 	var layoutView = ProfileController.GetCookieLayoutView(Context.Request);

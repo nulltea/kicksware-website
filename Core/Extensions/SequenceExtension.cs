@@ -11,5 +11,10 @@ namespace Core.Extension
 		{
 			return sequence.OrderBy(item => LevenshteinDistance.Calculate(selector(item), pattern));
 		}
+
+		public static string JoinNotEmpty(this IEnumerable<object> parts, string separator)
+		{
+			return string.Join(separator, parts.Where(p => p != null && !string.IsNullOrEmpty(Convert.ToString(p))));
+		}
 	}
 }

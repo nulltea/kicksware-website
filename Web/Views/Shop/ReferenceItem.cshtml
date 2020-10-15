@@ -1,5 +1,6 @@
 ﻿@using Core.Entities.References
 @using Core.Entities.Users
+@using Core.Extension
 @using Microsoft.AspNetCore.Identity
 @using Web.Utils.Bundle
 @using Web.Utils.Extensions
@@ -8,6 +9,7 @@
 @inject SignInManager<User> SignInManager
 @{
 	ViewBag.Title = Model.ModelName;
+	ViewBag.Description = $"Find out where you can buy {Model.BrandName}'s {Model.ModelName}. {Model.Description.TakeSentences()}";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	var relatedReferences = ViewBag.RelatedReferences as List<SneakerReference>;
 }

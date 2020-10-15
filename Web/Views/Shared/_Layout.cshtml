@@ -1,13 +1,11 @@
 ﻿@using Web.Utils.Helpers
 @using Web.Models.Auth
-@using Core.Services
-@using Microsoft.AspNetCore.Identity
-@using Core.Entities.Users
 @using Core.Extension
 @using Web.Controllers
 
 @{
 	ViewBag.Theme = ProfileController.GetCookieTheme(Context.Request).GetEnumMemberValue();
+	ViewBag.Description ??= "Kicksware is a noncommercial, research project dedicated to showcasing the use of modern technologies in the context of the fashion industry";
 }
 
 <!DOCTYPE html>
@@ -15,7 +13,8 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<title>@ViewBag.Title | Kicksware </title>
+	<title>@(new[] {ViewBag.Title, "Kicksware"}.JoinNotEmpty(" - "))</title>
+	<meta name="description" content="@ViewBag.Description"/>
 	<link rel="icon" type="image/x-icon" href="/favicon.ico">
 	<link rel="stylesheet" href="~/dist/layout.css" asp-append-version="true"/>
 	@await RenderSectionAsync("Styles", false)

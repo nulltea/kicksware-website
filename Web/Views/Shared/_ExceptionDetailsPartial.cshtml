@@ -61,9 +61,9 @@
 
 <div class="details-content">
 	<button class="button expandable"><span>Hide details</span></button>
-	<h1 class="error-title">
+	<h2 class="error-title">
 		@HtmlEncodeAndReplaceLineBreaks(Model.Message)
-	</h1>
+	</h2>
 	@if (Model is ReflectionTypeLoadException reflectionTypeLoadException)
 	{
 		if (reflectionTypeLoadException.LoaderExceptions?.Length > 0)

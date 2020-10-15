@@ -21,6 +21,8 @@ namespace Web.Controllers
 			var baseModel = references.FirstOrDefault()?.Model
 					?? new SneakerModel((modelID.Split("_").ElementAtOrDefault(1) ?? modelID).Replace("-", " "));
 
+			ViewBag.SubTitle = baseModel.Name;
+
 			HeroCoverPath = baseModel.HeroPath ?? brand.HeroPath;
 			HeroBreadTitle = baseModel.Name;
 			HeroBreadSubTitle = brand.Name;

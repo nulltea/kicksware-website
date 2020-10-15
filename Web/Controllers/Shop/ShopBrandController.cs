@@ -18,6 +18,8 @@ namespace Web.Controllers
 
 			var brand = references.FirstOrDefault()?.Brand ?? new SneakerBrand(brandID);
 
+			ViewBag.SubTitle = brand.Name;
+
 			HeroCoverPath = brand.HeroPath;
 			HeroBreadTitle = brand.Name;
 			HeroBreadSubTitle = brand.Description;
