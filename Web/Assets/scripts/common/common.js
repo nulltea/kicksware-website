@@ -204,7 +204,7 @@ window.stopLoadingOverlay = stopLoadingOverlay;
 function sendNotification(content, status = "success", style = "top-right") {
 	let existing = $(".notification");
 	let notification = $(`<div class='notification'><span>${content}</span></div>`);
-	let icon = $(`<object data="/storage/icons/${status}.svg" type="image/svg+xml"></object>`);
+	let icon = $(`<object data="https://kicksware.com/storage/icons/${status}.svg" type="image/svg+xml"></object>`);
 	if (!existing.length) {
 		$("body").append(notification);
 	} else {

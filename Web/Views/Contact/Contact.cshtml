@@ -10,11 +10,16 @@
 
 @section Styles
 {
-	<link rel="stylesheet" href="@Bundle.GetAssetName("contact", "css")" asp-append-version="true" />
+	<link rel="stylesheet" href="@Bundle.GetAssetName("contact", "css")" asp-append-version="true"/>
 }
 
 <div class="contact">
 	<div class="contact-content">
+		<div class="carousel">
+			@{
+				await Html.RenderPartialAsync("_SocialPartial", "carousel-wrapper full");
+			}
+		</div>
 		<div class="contact-form">
 			<div class="section_title">SHARE YOUR THOUGHTS</div>
 			<form asp-action="Contact" method="post">
@@ -59,6 +64,9 @@
 					</section>
 				}
 			</div>
+		}
+		@{
+			await Html.RenderPartialAsync("_SocialPartial", "stack full");
 		}
 		<div class="contact-map" id="map"></div>
 	</div>

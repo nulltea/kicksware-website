@@ -1,4 +1,6 @@
-﻿.contact {
+﻿@import "../mixins/mixins";
+
+.contact {
 	@media only screen and (max-width: 1600px) {
 
 	}
@@ -35,6 +37,16 @@
 			.contact-map {
 				height: 50vw;
 				width: 100%;
+			}
+
+			.social-links {
+				display: none;
+			}
+			.carousel{
+				display: flex;
+				.social-links {
+					display: block;
+				}
 			}
 		}
 	}

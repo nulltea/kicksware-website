@@ -31,7 +31,7 @@ namespace Infrastructure.Usecase
 		#region CRUD sync
 
 		public SneakerReference FetchUnique(string sneakerId, RequestParams requestParams = default) =>
-			_repository.GetUnique(sneakerId, requestParams);
+			_repository.GetUnique(sneakerId ?? string.Empty, requestParams);
 
 		public List<SneakerReference> Fetch(RequestParams requestParams = default) => _repository.Get(requestParams);
 
@@ -57,7 +57,7 @@ namespace Infrastructure.Usecase
 
 		#region CRUD async
 
-		public Task<SneakerReference> FetchUniqueAsync(string sneakerId, RequestParams requestParams = default) => _repository.GetUniqueAsync(sneakerId, requestParams);
+		public Task<SneakerReference> FetchUniqueAsync(string sneakerId, RequestParams requestParams = default) => _repository.GetUniqueAsync(sneakerId ?? string.Empty, requestParams);
 
 		public Task<List<SneakerReference>> FetchAsync(RequestParams requestParams = default) => _repository.GetAsync(requestParams);
 

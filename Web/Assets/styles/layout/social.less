@@ -4,38 +4,82 @@
 // MIXINS
 @import "../mixins/mixins";
 
-//TODO social
 
-.menu_social {
-	ul li {
-		display: inline-block;
+.social-links {
+	display: grid;
+	grid-template-columns: repeat(4, auto);
+	grid-gap: 15px;
 
-		&:not(:last-child) {
-			margin-right: 18px;
+	&.grid {
+		grid-template-columns: auto auto;
+	}
+
+	&.list {
+		grid-template-columns: repeat(4, auto);
+	}
+
+	&.stack {
+		grid-template-columns: auto;
+	}
+
+	&.carousel-wrapper {
+		display: unset;
+	}
+
+	&.full {
+		&.grid {
+			grid-template-columns: repeat(3, auto);
 		}
 
-		a i {
-			font-size: 16px;
-			color: #b5b5b5;
-			padding: 5px;
-			.transition-properties(all 200ms ease);
+		&.list {
+			grid-template-columns: repeat(6, auto);
+		}
 
-			&:hover {
+		.addt-social {
+			display: block;
+		}
+	}
+
+	li {
+		&.addt-social {
+			display: none;
+		}
+
+		a.social-link {
+			height: 50px;
+			width: 50px;
+
+			svg {
+				height: inherit;
+				width: inherit;
+				.transition-properties(all 400ms cubic-bezier(.15, 1.2, .3, 1.2));
+			}
+
+			&.facebook-link svg {
+				fill: @facebook-color;
+			}
+
+			&.linkedin-link svg {
+				fill: @linkedin-color;
+			}
+
+			&.github-link svg, &.medium-link svg {
 				.with-theme({
-					color: @secondary;
+					fill: @contrast !important;
 				});
+			}
+
+			&.linkedin-link svg {
+				fill: @linkedin-color;
+			}
+
+			&:hover svg {
+				.transform-properties(scale(1.15));
+				-webkit-filter: drop-shadow(3px 3px 3px fade(black, 50%));
+				filter: drop-shadow(3px 3px 3px fade(black, 50%));
 			}
 		}
 	}
-}
 
-header .menu_social {
-	position: absolute;
-	top: 50%;
-	right: 60px;
-	bottom: 15px;
-	margin-right: -5px;
-	z-index: 1;
-	.transform-properties(translateY(-50%));
-}
 
+}

@@ -19,6 +19,8 @@ namespace Web.Controllers
 			var service = HttpContext.RequestServices.GetService<ISneakerReferenceService>();
 			if (service == null) throw new NotImplementedException($"{nameof(ISneakerReferenceService)} not implemented");
 
+			if (string.IsNullOrEmpty(referenceID)) return this.ViewStep(1, new SneakerProductViewModel());
+
 			var reference = await service.FetchUniqueAsync(referenceID);
 			if (reference == null) return this.ViewStep(1, new SneakerProductViewModel());
 
