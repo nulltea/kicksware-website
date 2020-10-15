@@ -320,10 +320,18 @@ function mapDarkTheme() {
 	];
 }
 
+function socialMobileInit() {
+	if (window.matchMedia("(max-width: 1100px)").matches){
+		$(".contact-content > .social-links").removeClass("stack").addClass("list").prependTo(".contact-content");
+	}
+}
+
 $(document).ready(function () {
 	"use strict";
 
 	window.heroParallaxInit();
 
 	mapInit();
+
+	socialMobileInit();
 });

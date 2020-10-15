@@ -6,11 +6,11 @@
 	if (cssClass.Contains("carousel-wrapper"))
 	{
 		cssClass += " js-flickity";
-		htmlAttrs = "data-flickity-options='{ wrapAround: true }'";
+		htmlAttrs = @"data-flickity-options='{ ""wrapAround"": true }'";
 	}
 }
 
-<ul class="social-links @cssClass" data-flickity-options='{ "wrapAround": true }'>
+<ul class="social-links @cssClass" @Html.Raw(htmlAttrs)>
 	<li>
 		<a href="https://github.com/timoth-y/kicksware-platform" target="_blank" class="social-link github-link">
 			@Html.VectorLogoRender("github.svg")
