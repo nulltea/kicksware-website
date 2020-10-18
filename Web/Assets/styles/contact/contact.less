@@ -67,7 +67,7 @@
 		}
 
 		.contact-textarea {
-			height: 200px;
+			height: 265px;
 			padding-top: 15px;
 			border-radius: 0 !important;
 			.with-theme({
@@ -167,6 +167,10 @@
 				.elevation(12);
 				.transform-properties(scale(1.05));
 			}
+
+			&.medium-social {
+				display: none;
+			}
 		}
 	}
 
@@ -187,6 +191,10 @@
 			li  {
 				margin-right: 15px;
 				counter-increment: li;
+
+				&.medium-social {
+					display: block;
+				}
 			}
 		}
 
