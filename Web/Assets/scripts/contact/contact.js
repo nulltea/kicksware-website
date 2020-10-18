@@ -324,7 +324,12 @@ function socialMobileInit() {
 	if (window.matchMedia("(max-width: 1100px)").matches){
 		$(".contact-content > .social-links").removeClass("stack").addClass("list").prependTo(".contact-content");
 	}
+
+	if (window.matchMedia("(max-width: 575px)").matches){
+		$(".carousel .social-links .linkedin-social ").appendTo(".carousel .social-links")
+	}
 }
+socialMobileInit();
 
 $(document).ready(function () {
 	"use strict";
@@ -332,6 +337,4 @@ $(document).ready(function () {
 	window.heroParallaxInit();
 
 	mapInit();
-
-	socialMobileInit();
 });
