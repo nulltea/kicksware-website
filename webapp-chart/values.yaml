@@ -44,7 +44,7 @@ volumes:
   - name: storage
     persistent:
       claim: webapp-storage
-      storageClass: glusterfs
+      storageClass: nfs
       size: 25Gi
       accessModes:
         - ReadWriteMany
@@ -52,8 +52,8 @@ volumes:
   - name: keys
     persistent:
       claim: webapp-keys
-      storageClass: glusterfs
-      size: 100Mi
+      storageClass: nfs
+      size: 250Mi
       accessModes:
         - ReadWriteOnce
     mountPath: /keys
@@ -61,9 +61,9 @@ volumes:
 resources: {}
 
 autoscaling:
-  enabled: false
+  enabled: true
   minReplicas: 1
-  maxReplicas: 25
+  maxReplicas: 10
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
 

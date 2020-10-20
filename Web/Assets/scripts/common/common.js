@@ -159,7 +159,6 @@ window.initCustomDropDown = initCustomDropDown;
 
 function isDescendant(parent, child) {
 	if (child.id === "login" || child.id === "sing-up") return true;
-
 	let node = child.parentNode;
 	while (node !== null) {
 		if (node === parent) {
