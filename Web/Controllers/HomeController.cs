@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities.References;
@@ -24,7 +25,14 @@ namespace Web.Controllers
 		[Authorize]
 		public async Task<IActionResult> Index([FromServices]IOptions<AppConfig> options)
 		{
-			HomeFeedInfo ??= JsonConvert.DeserializeObject<List<HomePageInfoViewModel>>(await System.IO.File.ReadAllTextAsync(options.Value.HomeFeedContentPath))?.Where(post => !post.Outdated).ToList();
+			if (System.IO.File.Exists(options.Value.HomeFeedContentPath))
+			{
+				HomeFeedInfo ??= JsonConvert.DeserializeObject<List<HomePageInfoViewModel>>(await System.IO.File.ReadAllTextAsync(options.Value.HomeFeedContentPath))?.Where(post => !post.Outdated).ToList();
+			}
+			else
+			{
+				HomeFeedInfo ??= new List<HomePageInfoViewModel>();
+			}
 			ViewBag.FeaturedReferences = await GetFeatured();
 			ViewBag.LatestReferences = await GetLatest();
 			return View(HomeFeedInfo);

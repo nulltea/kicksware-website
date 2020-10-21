@@ -11,9 +11,12 @@ namespace Web.Handlers.Menu
 
 		public MenuBuilder(string path)
 		{
-			_menuContent = JsonConvert.DeserializeObject<TMenuContent>(File.ReadAllText(path));
+			if (File.Exists(path))
+			{
+				_menuContent = JsonConvert.DeserializeObject<TMenuContent>(File.ReadAllText(path));
+			}
 		}
 
-		public IHtmlContent RenderMenu(IHtmlHelper html) => _menuContent.Render(html);
+		public IHtmlContent RenderMenu(IHtmlHelper html) => _menuContent?.Render(html);
 	}
 }
