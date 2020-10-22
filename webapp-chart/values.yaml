@@ -40,6 +40,15 @@ ingress:
         - name: web-app
           port: 80
           scheme: http
+    - host: health.kicksware.com
+      paths:
+        - /
+      middlewares:
+        - name: health-add
+      services:
+        - name: web-app
+          port: 80
+          scheme: http
 
 volumes:
   - name: storage

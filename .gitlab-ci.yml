@@ -128,9 +128,9 @@ web-app.check.k8s:
   before_script:
     - echo Waiting half a minute for app to properly start or fail... && sleep 30s
   script:
-    - curl "https://$WEBAPP_ENDPOINT_URL/health/live" -f -o /dev/null || exit 1 | echo -e "\e[91mWeb app dead! Triggering check job failure"
+    - curl "https://$HEALTH_ENDPOINT_URL/live" -f -o /dev/null || exit 1 | echo -e "\e[91mWeb app dead! Triggering check job failure"
     - echo -e "\e[36mWeb app live. Checking service readiness:\n"
-    - curl "https://$WEBAPP_ENDPOINT_URL/health/ready" -f -o /dev/null || exit 1 | echo -e "\e[91mWeb app not ready! Triggering check job failure"
+    - curl "https://$HEALTH_ENDPOINT_URL/ready" -f -o /dev/null || exit 1 | echo -e "\e[91mWeb app not ready! Triggering check job failure"
     - echo -e "\e[36mWeb app ready. Check job succeeded!"
   dependencies: []
   retry: 2
