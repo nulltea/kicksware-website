@@ -23,6 +23,6 @@ spec:
     - type: Resource
       resource:
         name: memory
-        targetAverageValue: {{ .Values.autoscaling.targetMemoryUtilization }}
+        targetAverageUtilization: {{ .Values.autoscaling.targetMemoryUtilization }}
   {{- end }}
 {{- end }}

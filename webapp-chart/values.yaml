@@ -20,7 +20,7 @@ ingress:
     - web
     - websecure
   tls:
-    enabled: false
+    enabled: true
     certResolver: le
     secretName: temp-tls
   routes:
