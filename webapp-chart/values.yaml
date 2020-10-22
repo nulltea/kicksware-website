@@ -20,8 +20,9 @@ ingress:
     - web
     - websecure
   tls:
-    enabled: true
+    enabled: false
     certResolver: le
+    secretName: temp-tls
   routes:
     - host: kicksware.com
       paths:
@@ -45,7 +46,7 @@ volumes:
     persistent:
       claim: webapp-storage
       storageClass: glusterfs
-      size: 25Gi
+      size: 30Gi
       accessModes:
         - ReadWriteMany
     mountPath: /source/storage
@@ -59,12 +60,15 @@ volumes:
     mountPath: /keys
 
 resources:
+  requests:
+    cpu: 100m
+    memory: 250Mi
 
 autoscaling:
   enabled: true
-  minReplicas: 1
+  minReplicas: 2
   maxReplicas: 10
-  targetCPUUtilization: 50
+  targetCPUUtilization: 80
 
 serviceAccount:
   create: true
