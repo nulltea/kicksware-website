@@ -145,6 +145,7 @@ section.about-section {
 			z-index: 2;
 			left: 25%;
 			bottom: 50%;
+			.transition-properties(all 400ms cubic-bezier(.15, 1.2, .3, 1.2));
 
 			svg {
 				max-width: 100px;
@@ -152,12 +153,11 @@ section.about-section {
 				min-width: 75px;
 				filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .5));
 				-webkit-filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .5));
-				.transition-properties(all 400ms cubic-bezier(.15, 1.2, .3, 1.2));
 			}
 
 			&:hover {
+				.transform-properties(scale(1.15));
 				svg {
-					.transform-properties(scale(1.15));
 					-webkit-filter: drop-shadow(3px 3px 3px fade(black, 50%));
 					filter: drop-shadow(3px 3px 3px fade(black, 50%));
 				}
