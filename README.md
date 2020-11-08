@@ -1,7 +1,7 @@
 # [![repo logo][]][Kicksware url]
 
 <p align="center">
-	<a href="https://kicksware.com">
+	<a href="https://www.kicksware.com">
 		<img src="https://img.shields.io/website?label=Visit%20website&down_message=unavailable&up_color=teal&up_message=kicksware.com%20%7C%20online&url=https%3A%2F%2Fhealth.kicksware.com/ready">
 	</a>
 </p>
@@ -100,7 +100,7 @@ Although this website can't satisfy the potential buyer with a pair of new Nike'
 Licensed under the [GNU AGPL-3.0][license file].
 
 [repo logo]: https://ci.kicksware.com/kicksware/web-app/-/raw/master/assets/repo-logo.png
-[kicksware url]: https://kicksware.com
+[kicksware url]: https://www.kicksware.com
 
 [Website badge]: https://img.shields.io/website?label=Visit%20website&down_message=unavailable&up_color=teal&up_message=kicksware.com%20%7C%20online&url=https%3A%2F%2Fkicksware.com
 [c# badge]: https://img.shields.io/badge/Code-C%23-informational?style=flat&logo=c-sharp&logoColor=white&color=1E9E25
