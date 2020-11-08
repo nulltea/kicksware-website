@@ -95,6 +95,9 @@ While being a part of a distributed, diverse, microservice-based software infras
 
 Although this website can't satisfy the potential buyer with a pair of new Nike's, it still tries to deliver the best usage experience with the help of both innovative web frameworks and proven graphical design solutions.
 
+## More
+See [other Kicksware project repositories][kicksware-main-repo].
+
 ## License
 
 Licensed under the [GNU AGPL-3.0][license file].
@@ -138,5 +141,7 @@ Licensed under the [GNU AGPL-3.0][license file].
 
 [helm]: https://helm.sh/
 [helm chart]: https://github.com/timoth-y/kicksware-web-app/tree/master/webapp-chart
+
+[kicksware-main-repo]: https://github.com/timoth-y/kicksware-platform#components
 
 [license file]: https://github.com/timoth-y/kicksware-web-app/blob/master/LICENSE
