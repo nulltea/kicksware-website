@@ -43,3 +43,5 @@ Web/node_modules
 /certs
 
 .cache
+
+.env

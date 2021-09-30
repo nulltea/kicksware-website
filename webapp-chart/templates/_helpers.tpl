@@ -1,4 +1,4 @@
-{{/*
+z{{/*
 Expand the name of the chart.
 */}}
 {{- define "chart.name" -}}

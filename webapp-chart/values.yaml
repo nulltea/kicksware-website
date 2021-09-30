@@ -5,10 +5,10 @@ fullnameOverride: web-app
 replicaCount: 2
 
 image:
-  registry: registry.kicksware.com
-  repository: web-app
-  pullPolicy: Always
+  registry: timothydockid
+  repository: kicksware-web-app
   tag: latest
+  pullPolicy: Always
 
 service:
   type: ClusterIP
@@ -54,15 +54,15 @@ volumes:
   - name: storage
     persistent:
       claim: webapp-storage
-      storageClass: glusterfs
-      size: 30Gi
+      storageClass: local-path
+      size: 23Gi
       accessModes:
-        - ReadWriteMany
+        - ReadWriteOnce
     mountPath: /source/storage
   - name: keys
     persistent:
       claim: webapp-keys
-      storageClass: nfs
+      storageClass: local-path
       size: 250Mi
       accessModes:
         - ReadWriteOnce
@@ -77,7 +77,7 @@ autoscaling:
   enabled: true
   minReplicas: 2
   maxReplicas: 10
-  targetCPUUtilization: 80
+  targetCPUUtilization: 300
 
 serviceAccount:
   create: true
@@ -85,13 +85,24 @@ serviceAccount:
   name: ""
 
 secrets:
-  dockerRegistry: registry-token
   mounts:
     - name: grpc-tls
       mountPath: /app/certs
   environment:
     - google-oauth
     - facebook-oauth
+    - github-oauth
+    - api-access
 
 config:
   environment: PROD
+
+environment:
+  name: PROD
+  aspEnviroment: Production
+  aspnetURL: http://0.0.0.0:80
+  apiURL: https://rpc.kicksware.com
+  storagePath: https://cdn.kicksware.com
+  localStroragePath: /source/storage
+  tlsCertFile: /app/certs/tls.crt
+  dataProtocol: grpc
