@@ -15,8 +15,8 @@ styles:
 	done;
 
 build:
-	docker build -f docker/Dockerfile . -t timothydockid/kicksware-web-app
-	docker push timothydockid/kicksware-web-app
+	docker build -f docker/Dockerfile . -t timothydockid/kicksware-website
+	docker push timothydockid/kicksware-website
 
 install:
 	kubectl create secret generic google-oauth \
@@ -38,4 +38,4 @@ install:
 	helm upgrade --install web-app ./webapp-chart
 
 sync-source:
-	rsync -r -v . --exclude .git ubuntu@${REMOTE_IP}:kicksware/web-app
+	rsync -r -v . --exclude .git ubuntu@${REMOTE_IP}:kicksware/website

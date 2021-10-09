@@ -53,19 +53,16 @@ ingress:
 volumes:
   - name: storage
     persistent:
-      claim: webapp-storage
-      storageClass: local-path
-      size: 23Gi
-      accessModes:
-        - ReadWriteOnce
+      claim: content
+      exists: true
     mountPath: /source/storage
   - name: keys
     persistent:
       claim: webapp-keys
-      storageClass: local-path
+      storageClass: longhorn
       size: 250Mi
       accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
     mountPath: /keys
 
 resources:
@@ -76,8 +73,8 @@ resources:
 autoscaling:
   enabled: true
   minReplicas: 2
-  maxReplicas: 10
-  targetCPUUtilization: 300
+  maxReplicas: 4
+  targetCPUUtilization: 500
 
 serviceAccount:
   create: true
