@@ -8,15 +8,10 @@
 
 [![c# badge]](https://docs.microsoft.com/dotnet/csharp)&nbsp;
 [![js badge]][jamstack]&ensp;
-[![lines counter]](https://github.com/timoth-y/kicksware-web-app)&nbsp;
-[![commit activity badge]][repo commit activity]&nbsp;
 [![asp.net badge]][asp.net core]&nbsp;
-[![license badge]](https://www.gnu.org/licenses/agpl-3.0)
-
 [![kubernetes badge]](https://kubernetes.io)&nbsp;
-[![gitlab badge]](https://ci.kicksware.com/kicksware/kicksware-web-app)&nbsp;
-[![web-app pipeline]](https://ci.kicksware.com/kicksware/web-app/-/commits/master)&nbsp;
-[![maintainability badge]][maintainability source]
+[![maintainability badge]][maintainability source]&nbsp;
+[![license badge]](https://www.gnu.org/licenses/agpl-3.0)
 
 ## Overview
 
