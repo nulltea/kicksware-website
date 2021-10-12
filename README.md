@@ -7,7 +7,7 @@
 </p>
 
 [![c# badge]](https://docs.microsoft.com/dotnet/csharp)&nbsp;
-[![js badge]][jamstack]&ensp;
+[![js badge]][jamstack]&nbsp;
 [![asp.net badge]][asp.net core]&nbsp;
 [![kubernetes badge]](https://kubernetes.io)&nbsp;
 [![maintainability badge]][maintainability source]&nbsp;
